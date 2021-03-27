@@ -1,0 +1,86 @@
+{
+  "name": "kenshin",
+  "version": "1.0.0",
+  "description": "React UI Components",
+  "keywords": [
+    "umi",
+    "react",
+    "frontend",
+    "component"
+  ],
+  "homepage": "https://github.com/learners",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:learners/kenshin.git"
+  },
+  "license": "MIT",
+  "author": "learners",
+  "contributors": [
+    {
+      "name": "richard",
+      "email": "richard.lam@my.com",
+      "url": "https://github.com/yibhou"
+    },
+    {
+      "name": "xyx650",
+      "email": "475815694@qq.com",
+      "url": "https://github.com/xyx650"
+    }
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "serve": "dumi dev",
+    "build:docs": "dumi build",
+    "deploy:site": "gh-pages -d site",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "release": "npm run build && npm publish",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "clean": "rimraf dist site es lib"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "element-remove": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.11",
+    "@umijs/test": "^3.0.5",
+    "classnames": "^2.2.6",
+    "dumi": "^1.1.6",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "react": "^17.0.1",
+    "rimraf": "^3.0.2",
+    "sort-package-json": "^1.49.0",
+    "typescript": "^4.2.2",
+    "yorkie": "^2.0.0"
+  },
+  "publishConfig": {
+    "registry": "http://mingjie.ltd:4873/"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
+}
