@@ -1,15 +1,5 @@
-import * as React from 'react';
-import classNames from 'classnames';
-import omit from 'rc-util/lib/omit';
-// import './index.less'
+import Button from '@/button/Button'
 
-export default (props: any, state: object) => {
-  const { ...restProps } = props;
-  console.log(props, restProps);
-
-  return (
-    <button className="button" {...restProps}>
-      {props.children}
-    </button>
-  );
-};
+export type { ButtonProps, ButtonShape, ButtonType } from './Button'
+export type { SizeType as ButtonSize } from '@/config-provider/SizeContext'
+export default Button

@@ -13,7 +13,7 @@ export default defineConfig({
     // 兼容臭名昭著 IE9+ 的 polyfill
     imports: ['element-remove', 'babel-polyfill'],
   },
-  mode: 'site',
+  // mode: 'site',
   hash: true,
   history: { type: 'hash' },
   publicPath: './',
