@@ -1,16 +1,21 @@
-## Button
+---
+title:Button 按钮
+---
 
-Demo:
+### Button 按钮
+
+按钮有五种类型：主按钮、次按钮、虚线按钮、文本按钮和链接按钮。主按钮在同一个操作区域最多出现一次。
 
 ```tsx
 import React from 'react';
 import { Button } from 'kenshin';
+import './style/index.less'
 
-export default () => (
-  <Button onClick={() => alert('hello')}>
-    <span>23123</span>
-  </Button>
-);
+export default () => <>
+  <Button type="primary" style={{ marginRight: '10px' }}>primary</Button>
+  <Button type="dashed" style={{ marginRight: '10px' }}>dashed</Button>
+  <Button type="text">text</Button>
+</>
 ```
 
 ```tsx

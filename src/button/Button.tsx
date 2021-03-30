@@ -43,6 +43,12 @@ export type ButtonProps = Partial<AnchorButtonProps & NativeButtonProps>
 
 type Loading = number | boolean
 
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
+  // Group: typeof Group;
+  __ANT_BUTTON: boolean;
+}
+
 function isString(str: any): str is string {
   return typeof str === 'string'
 }
@@ -73,8 +79,8 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
   const size = React.useContext(SizeContext)
   const [innerLoading, setLoading] = React.useState<Loading>(loading as boolean)
   const [hasTwoCNChar, setHasTwoCNChar] = React.useState(false)
-  const { getPrefixCls, autoInsertSpaceInButton } = React.useContext(ConfigContext)
-  const buttonRef = ref || React.createRef<HTMLElement>()
+  const { getPrefixCls } = React.useContext(ConfigContext)
+  const buttonRef = ref as any || React.createRef<HTMLElement>()
   const delayTimeoutRef = React.useRef<number>()
 
   const isNeedInserted = () => React.Children.count(children) === 1 && !icon && !isUnborderedButtonType(type)
@@ -121,12 +127,12 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     [`${prefixCls}-loading`]: innerLoading,
     [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar,
     [`${prefixCls}-block`]: block,
-    [`${prefixCls}-dangerous`]: !!danger,
+    [`${prefixCls}-dangerous`]: !!danger
   }, className)
 
 
-  const iconNode =
-    icon && !innerLoading ? icon : <LoadingIcon existIcon={!!icon} prefixCls={prefixCls} loading={!!innerLoading} />
+  const iconNode = icon && !innerLoading ? icon :
+    <LoadingIcon existIcon={!!icon} prefixCls={prefixCls} loading={!!innerLoading} />
 
   const kids = children || children === 0 ? children : null
 
@@ -156,6 +162,11 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
   return buttonNode
 }
 
-const Button = React.forwardRef(InternalButton)
+const Button = React.forwardRef<unknown, ButtonProps>(InternalButton) as CompoundedComponent
+
+Button.displayName = 'Button'
+
+// Button.Group = Group
+Button.__ANT_BUTTON = true
 export default Button
 
