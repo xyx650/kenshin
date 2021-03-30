@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ConfigContext } from '../config-provider';
+import { ConfigContext } from '../_config-provider';
 import DefaultEmptyImg from './empty';
 import SimpleEmptyImg from './simple';
 import './styles/index';
