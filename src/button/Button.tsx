@@ -3,9 +3,8 @@ import classNames from 'classnames'
 import omit from 'rc-util/lib/omit'
 import LoadingIcon from '@/button/LoadingIcon'
 
-import { tuple } from '@/util/type'
-import SizeContext, { SizeType } from '@/config-provider/SizeContext'
-import { ConfigContext } from '@/config-provider'
+import SizeContext, { SizeType } from '@/_config-provider/SizeContext'
+import { ConfigContext } from '@/_config-provider'
 // import './index.less'
 
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { updateCSS } from 'rc-util/lib/Dom/dynamicCSS'
 import { supportRef, composeRef } from 'rc-util/lib/ref'
-import { ConfigConsumer, ConfigConsumerProps, CSPConfig, ConfigContext } from '../config-provider'
+import { ConfigConsumer, ConfigConsumerProps, CSPConfig, ConfigContext } from '../_config-provider'
 import { cloneElement } from './reactNode'
 import raf from './raf'
 
