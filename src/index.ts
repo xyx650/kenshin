@@ -1,9 +1,6 @@
-// import 'element-remove'
-// import 'babel-polyfill'
 import Foo from './foo';
 import Button from './button';
 import Loading from './loading';
+import Empty from './empty';
 
-const a = document.createElement('span');
-
-export { Foo, Button, Loading };
+export { Foo, Button, Loading, Empty };

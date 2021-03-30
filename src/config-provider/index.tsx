@@ -1,3 +1,3 @@
-import { ConfigContext, ConfigConsumerProps } from './context';
+import { ConfigContext } from './context';
 
-export { ConfigContext, ConfigConsumerProps };
+export { ConfigContext };
