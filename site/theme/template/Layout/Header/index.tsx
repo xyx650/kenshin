@@ -256,33 +256,33 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 
           let menu: (React.ReactElement | null)[] = [
             navigationNode,
-            <Select
-              key="version"
-              className="version"
-              size="small"
-              defaultValue={antdVersion}
-              onChange={this.handleVersionChange}
-              dropdownStyle={this.getDropdownStyle()}
-              getPopupContainer={trigger => trigger.parentNode}
-            >
-              {versionOptions}
-            </Select>,
-            <Button
-              size="small"
-              onClick={this.onLangChange}
-              className="header-button header-lang-button"
-              key="lang-button"
-            >
-              <FormattedMessage id="app.header.lang" />
-            </Button>,
-            <Button
-              size="small"
-              onClick={this.onDirectionChange}
-              className="header-button header-direction-button"
-              key="direction-button"
-            >
-              {this.getNextDirectionText()}
-            </Button>,
+            // <Select
+            //   key="version"
+            //   className="version"
+            //   size="small"
+            //   defaultValue={antdVersion}
+            //   onChange={this.handleVersionChange}
+            //   dropdownStyle={this.getDropdownStyle()}
+            //   getPopupContainer={trigger => trigger.parentNode}
+            // >
+            //   {versionOptions}
+            // </Select>,
+            // <Button
+            //   size="small"
+            //   onClick={this.onLangChange}
+            //   className="header-button header-lang-button"
+            //   key="lang-button"
+            // >
+            //   <FormattedMessage id="app.header.lang" />
+            // </Button>,
+            // <Button
+            //   size="small"
+            //   onClick={this.onDirectionChange}
+            //   className="header-button header-direction-button"
+            //   key="direction-button"
+            // >
+            //   {this.getNextDirectionText()}
+            // </Button>,
             <More key="more" {...sharedProps} />,
             <Github key="github" responsive={responsive} />,
           ];

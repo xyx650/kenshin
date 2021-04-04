@@ -69,11 +69,11 @@ export default class Layout extends React.Component {
 
   constructor(props) {
     super(props);
-    const { pathname } = props.location;
-    const appLocale = utils.isZhCN(pathname) ? cnLocale : enLocale;
+    // const { pathname } = props.location;
+    // const appLocale = utils.isZhCN(pathname) ? cnLocale : enLocale;
 
     this.state = {
-      appLocale,
+      appLocale: cnLocale,
       theme: 'default',
       setTheme: this.setTheme,
       direction: 'ltr',
