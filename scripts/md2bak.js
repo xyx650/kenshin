@@ -1,5 +1,5 @@
 const fs = require('fs')
-const isIgnoreBasic = false // 是否忽略basic
+const isIgnoreBasic = true // 是否忽略basic
 // 忽略清单
 const ignoresMap = {
   button: ['block', 'danger'],
