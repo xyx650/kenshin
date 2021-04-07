@@ -34,7 +34,7 @@ fs.readdir(filePath, (err, components) => {
 
     !component.includes('.') && fs.readdir(filePath + component, (err, files) => {
       !err && files.forEach(file => {
-        if (file.indexOf('index.zh-CN') != -1) {
+        if (file.indexOf('index.zh-CN') !== -1) {
           let suffixName = file.split('.')[2]
           suffixName = suffixName === 'md' ? (sufName || 'bak') : (sufName || 'md')
           const oldPath = filePath + component + '/' + file
