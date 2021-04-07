@@ -3,6 +3,7 @@
  ****************/
 const ignoresMap = {
   button: ['index'],
+  checkbox: ['index'],
   card: []
 }
 
