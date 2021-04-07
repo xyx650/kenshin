@@ -5,6 +5,7 @@ const filePath = './components/'
 // 忽略清单
 const ignoresMap = {
   button: ['block', 'danger'],
+  card: []
 }
 
 
@@ -23,7 +24,7 @@ fs.readdir(filePath, (err, components) => {
         suffixName = suffixName === 'md' ? (sufName || 'bak') : (sufName || 'md')
         const oldPath = filePath + component + '/demo/' + file
         const newPath = filePath + component + '/demo/' + fileName + '.' + suffixName
-        keys.includes(component) && ignoresMap[keys].includes(fileName) && ignoreList.push(oldPath)
+        keys.includes(component) && keys.forEach(key => ignoresMap[key].includes(fileName) && ignoreList.push(oldPath))
         !ignoreList.includes(oldPath) && fs.rename(oldPath, newPath, error => {
           !error && console.log('成功修改' + oldPath)
           error && console.log(error)
