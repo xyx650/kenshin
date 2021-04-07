@@ -55,8 +55,7 @@
     "es"
   ],
   "scripts": {
-    "m2b": "node scripts/md2bak.js bak",
-    "b2m": "node scripts/md2bak.js md",
+    "md": "node scripts/md2bak.js",
     "api-collection": "antd-tools run api-collection",
     "build": "npm run compile && NODE_OPTIONS='--max-old-space-size=4096' npm run dist",
     "bundlesize": "bundlesize",
