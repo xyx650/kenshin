@@ -2,10 +2,7 @@
  * 忽略清单
  ****************/
 const ignoresMap = {
-  button: ['index', 'block'],
-  checkbox: ['index', 'a'],
-  card: [],
-  icon: ['index']
+  overview: ['index']
 }
 
 
