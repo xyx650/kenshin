@@ -98,7 +98,7 @@ module.exports = {
     'app.footer.author': '蚂蚁集团体验技术部出品 @ XTech',
     'app.footer.work_with_us': '加入我们',
     'app.footer.more-product': '更多产品',
-    'app.footer.company': 'XTech',
+    'app.footer.company': 'Waper',
     'app.footer.ant-design': '蚂蚁 UI 体系',
     'app.footer.yuque': '语雀',
     'app.footer.yuque.slogan': '专业的云端知识库',

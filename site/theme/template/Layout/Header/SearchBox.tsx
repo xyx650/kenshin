@@ -14,7 +14,7 @@ export interface SearchBoxProps extends SharedProps {
 export default ({ isZhCN, responsive, onTriggerFocus }: SearchBoxProps) => {
   const inputRef = React.useRef<any>(null);
   const [focused, setFocused] = React.useState(false);
-  const searchPlaceholder = isZhCN ? '在 ant.design 中搜索' : 'Search in ant.design';
+  const searchPlaceholder = isZhCN ? '在 kenshin 中搜索' : 'Search in kenshin';
 
   function triggerFocus(focus: boolean) {
     setFocused(focus);

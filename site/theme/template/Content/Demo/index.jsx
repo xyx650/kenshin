@@ -328,10 +328,10 @@ ${parsedSourceCode.replace('mountNode', "document.getElementById('container')")}
                 {localizedTitle}
               </a>
             </Tooltip>
-            <EditButton
-              title={<FormattedMessage id="app.content.edit-demo" />}
-              filename={meta.filename}
-            />
+            {/*<EditButton*/}
+            {/*  title={<FormattedMessage id="app.content.edit-demo" />}*/}
+            {/*  filename={meta.filename}*/}
+            {/*/>*/}
           </div>
           <div className="code-box-description">{introChildren}</div>
           <div className="code-box-actions">
@@ -353,56 +353,56 @@ ${parsedSourceCode.replace('mountNode', "document.getElementById('container')")}
                 </Tooltip>
               </form>
             ) : null}
-            <form
-              className="code-box-code-action"
-              action="https://codesandbox.io/api/v1/sandboxes/define"
-              method="POST"
-              target="_blank"
-              ref={this.codeSandboxIconRef}
-              onClick={() => {
-                this.track({ type: 'codesandbox', demo: meta.id });
-                this.codeSandboxIconRef.current.submit();
-              }}
-            >
-              <input
-                type="hidden"
-                name="parameters"
-                value={compress(JSON.stringify(codesanboxPrefillConfig))}
-              />
-              <Tooltip title={<FormattedMessage id="app.demo.codesandbox" />}>
-                <CodeSandboxIcon className="code-box-codesandbox" />
-              </Tooltip>
-            </form>
-            <form
-              className="code-box-code-action"
-              action="https://codepen.io/pen/define"
-              method="POST"
-              target="_blank"
-              ref={this.codepenIconRef}
-              onClick={() => {
-                this.track({ type: 'codepen', demo: meta.id });
-                this.codepenIconRef.current.submit();
-              }}
-              style={{
-                display: sourceCode ? '' : 'none',
-              }}
-            >
-              <input type="hidden" name="data" value={JSON.stringify(codepenPrefillConfig)} />
-              <Tooltip title={<FormattedMessage id="app.demo.codepen" />}>
-                <CodePenIcon className="code-box-codepen" />
-              </Tooltip>
-            </form>
-            <Tooltip title={<FormattedMessage id="app.demo.stackblitz" />}>
-              <span
-                className="code-box-code-action"
-                onClick={() => {
-                  this.track({ type: 'stackblitz', demo: meta.id });
-                  stackblitzSdk.openProject(stackblitzPrefillConfig);
-                }}
-              >
-                <ThunderboltOutlined className="code-box-stackblitz" />
-              </span>
-            </Tooltip>
+            {/*<form*/}
+            {/*  className="code-box-code-action"*/}
+            {/*  action="https://codesandbox.io/api/v1/sandboxes/define"*/}
+            {/*  method="POST"*/}
+            {/*  target="_blank"*/}
+            {/*  ref={this.codeSandboxIconRef}*/}
+            {/*  onClick={() => {*/}
+            {/*    this.track({ type: 'codesandbox', demo: meta.id });*/}
+            {/*    this.codeSandboxIconRef.current.submit();*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <input*/}
+            {/*    type="hidden"*/}
+            {/*    name="parameters"*/}
+            {/*    value={compress(JSON.stringify(codesanboxPrefillConfig))}*/}
+            {/*  />*/}
+            {/*  <Tooltip title={<FormattedMessage id="app.demo.codesandbox" />}>*/}
+            {/*    <CodeSandboxIcon className="code-box-codesandbox" />*/}
+            {/*  </Tooltip>*/}
+            {/*</form>*/}
+            {/*<form*/}
+            {/*  className="code-box-code-action"*/}
+            {/*  action="https://codepen.io/pen/define"*/}
+            {/*  method="POST"*/}
+            {/*  target="_blank"*/}
+            {/*  ref={this.codepenIconRef}*/}
+            {/*  onClick={() => {*/}
+            {/*    this.track({ type: 'codepen', demo: meta.id });*/}
+            {/*    this.codepenIconRef.current.submit();*/}
+            {/*  }}*/}
+            {/*  style={{*/}
+            {/*    display: sourceCode ? '' : 'none',*/}
+            {/*  }}*/}
+            {/*>*/}
+            {/*  <input type="hidden" name="data" value={JSON.stringify(codepenPrefillConfig)} />*/}
+            {/*  <Tooltip title={<FormattedMessage id="app.demo.codepen" />}>*/}
+            {/*    <CodePenIcon className="code-box-codepen" />*/}
+            {/*  </Tooltip>*/}
+            {/*</form>*/}
+            {/*<Tooltip title={<FormattedMessage id="app.demo.stackblitz" />}>*/}
+            {/*  <span*/}
+            {/*    className="code-box-code-action"*/}
+            {/*    onClick={() => {*/}
+            {/*      this.track({ type: 'stackblitz', demo: meta.id });*/}
+            {/*      stackblitzSdk.openProject(stackblitzPrefillConfig);*/}
+            {/*    }}*/}
+            {/*  >*/}
+            {/*    <ThunderboltOutlined className="code-box-stackblitz" />*/}
+            {/*  </span>*/}
+            {/*</Tooltip>*/}
             <CopyToClipboard text={sourceCode} onCopy={() => this.handleCodeCopied(meta.id)}>
               <Tooltip
                 visible={copyTooltipVisible}

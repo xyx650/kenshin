@@ -7,23 +7,23 @@ title:
 
 ## zh-CN
 
-按钮有五种类型：主按钮、次按钮、虚线按钮、文本按钮和链接按钮。主按钮在同一个操作区域最多出现一次。
+按钮有五种类型：主按钮、次按钮、虚线按钮、文本按钮和链接按钮。
 
 ## en-US
 
 There are `primary` button, `default` button, `dashed` button, `text` button and `link` button in antd.
 
 ```jsx
-import { Button } from 'antd';
+import { Button } from 'kenshin';
 
 ReactDOM.render(
   <>
-    <Button type="primary">Primary Button</Button>
-    <Button>Default Button</Button>
-    <Button type="dashed">Dashed Button</Button>
+    <Button type="primary">主按钮</Button>
+    <Button>次按钮</Button>
+    <Button type="dashed">虚线按钮</Button>
     <br />
-    <Button type="text">Text Button</Button>
-    <Button type="link">Link Button</Button>
+    <Button type="text">文本按钮</Button>
+    <Button type="link">链接按钮</Button>
   </>,
   mountNode,
 );

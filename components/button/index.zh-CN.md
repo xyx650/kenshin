@@ -7,12 +7,12 @@ cover: https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg
 ---
 
 按钮用于开始一个即时操作。
-
+<!--
 ## 何时使用
 
 标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。
-
-在 Ant Design 中我们提供了五种按钮。
+-->
+在 kenshin 中我们提供了五种按钮。
 
 - 主按钮：用于主行动点，一个操作区域只能有一个主按钮。
 - 默认按钮：用于没有主次之分的一组行动点。
@@ -27,6 +27,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg
 - 禁用：行动点不可用的时候，一般需要文案解释。
 - 加载中：用于异步操作等待反馈的时候，也可以避免多次提交。
 
+<!--
 ## API
 
 通过设置 Button 的属性来产生不同的按钮样式，推荐顺序为：`type` -> `shape` -> `size` -> `loading` -> `disabled`。
@@ -59,23 +60,20 @@ cover: https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg
 
 <img src="https://gw.alipayobjects.com/zos/antfincdn/MY%26THAPZrW/38f06cb9-293a-4b42-b183-9f443e79ffea.png" style="box-shadow: none; margin: 0; width: 100px" alt="移除两个汉字之间的空格"  />
 
+-->
 <style>
-[id^="components-button-demo-"] .ant-btn {
+[id^="components-button-demo-"] .kenshin-btn {
   margin-right: 8px;
   margin-bottom: 12px;
 }
-[id^="components-button-demo-"] .ant-btn-rtl {
+[id^="components-button-demo-"] .kenshin-btn-rtl {
   margin-right: 0;
   margin-left: 8px;
 }
-[id^="components-button-demo-"] .ant-btn-group > .ant-btn {
+[id^="components-button-demo-"] .kenshin-btn-group > .kenshin-btn {
   margin-right: 0;
 }
 [data-theme="dark"] .site-button-ghost-wrapper {
   background: rgba(255, 255, 255, 0.2);
 }
 </style>
-
-## 设计指引
-
-- [我的按钮究竟该放哪儿！？| Ant Design 4.0 系列分享](https://zhuanlan.zhihu.com/p/109644406)

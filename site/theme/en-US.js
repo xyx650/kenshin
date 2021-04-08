@@ -99,7 +99,7 @@ module.exports = {
     'app.footer.author': 'Created by XTech',
     'app.footer.work_with_us': 'Work with Us',
     'app.footer.more-product': 'More Products',
-    'app.footer.company': 'XTech',
+    'app.footer.company': 'Waper',
     'app.footer.ant-design': 'UI Design Language',
     'app.footer.yuque': 'YuQue',
     'app.footer.yuque.slogan': 'Write your document as a team',

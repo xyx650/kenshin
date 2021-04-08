@@ -1,92 +1,94 @@
 /* eslint-disable react/button-has-type */
-import * as React from 'react';
-import classNames from 'classnames';
-import omit from 'rc-util/lib/omit';
+import * as React from 'react'
+import classNames from 'classnames'
+import omit from 'rc-util/lib/omit'
 
-import Group from './button-group';
-import { ConfigContext } from '../config-provider';
-import Wave from '../_util/wave';
-import { Omit, tuple } from '../_util/type';
-import devWarning from '../_util/devWarning';
-import SizeContext, { SizeType } from '../config-provider/SizeContext';
-import LoadingIcon from './LoadingIcon';
-import { cloneElement } from '../_util/reactNode';
+import Group from './button-group'
+import { ConfigContext } from '../config-provider'
+import Wave from '../_util/wave'
+import { Omit } from '../_util/type'
+import devWarning from '../_util/devWarning'
+import SizeContext, { SizeType } from '../config-provider/SizeContext'
+import LoadingIcon from './LoadingIcon'
+import { cloneElement } from '../_util/reactNode'
 
-const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
-const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
+// 两个中文
+const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/
+const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar)
+
 function isString(str: any) {
-  return typeof str === 'string';
+  return typeof str === 'string'
 }
 
+// 无边框按钮类型
 function isUnborderedButtonType(type: ButtonType | undefined) {
-  return type === 'text' || type === 'link';
+  return type === 'text' || type === 'link'
 }
 
-// Insert one space between two chinese characters automatically.
+// 两个中文按钮插入空格
 function insertSpace(child: React.ReactChild, needInserted: boolean) {
-  // Check the child if is undefined or null.
   if (child == null) {
-    return;
+    return
   }
-  const SPACE = needInserted ? ' ' : '';
-  // strictNullChecks oops.
+  const SPACE = needInserted ? ' ' : ''
+  // 严格空检查
   if (
     typeof child !== 'string' &&
     typeof child !== 'number' &&
     isString(child.type) &&
     isTwoCNChar(child.props.children)
   ) {
-    return cloneElement(child, {
-      children: child.props.children.split('').join(SPACE),
-    });
+    return cloneElement(child, { children: child.props.children.split('').join(SPACE) })
   }
   if (typeof child === 'string') {
     if (isTwoCNChar(child)) {
-      child = child.split('').join(SPACE);
+      child = child.split('').join(SPACE)
     }
-    return <span>{child}</span>;
+    return <span>{child}</span>
   }
-  return child;
+  return child
 }
 
 function spaceChildren(children: React.ReactNode, needInserted: boolean) {
-  let isPrevChildPure: boolean = false;
-  const childList: React.ReactNode[] = [];
+  let isPrevChildPure: boolean = false
+  const childList: React.ReactNode[] = []
   React.Children.forEach(children, child => {
-    const type = typeof child;
-    const isCurrentChildPure = type === 'string' || type === 'number';
+    const type = typeof child
+    const isCurrentChildPure = type === 'string' || type === 'number'
     if (isPrevChildPure && isCurrentChildPure) {
-      const lastIndex = childList.length - 1;
-      const lastChild = childList[lastIndex];
-      childList[lastIndex] = `${lastChild}${child}`;
+      const lastIndex = childList.length - 1
+      const lastChild = childList[lastIndex]
+      childList[lastIndex] = `${lastChild}${child}`
     } else {
-      childList.push(child);
+      childList.push(child)
     }
 
-    isPrevChildPure = isCurrentChildPure;
-  });
+    isPrevChildPure = isCurrentChildPure
+  })
 
-  // Pass to React.Children.map to auto fill key
+  // 自动填充 React.Children
   return React.Children.map(childList, child =>
-    insertSpace(child as React.ReactChild, needInserted),
-  );
+    insertSpace(child as React.ReactChild, needInserted)
+  )
 }
 
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
-export type ButtonType = typeof ButtonTypes[number];
-const ButtonShapes = tuple('circle', 'round');
-export type ButtonShape = typeof ButtonShapes[number];
-const ButtonHTMLTypes = tuple('submit', 'button', 'reset');
-export type ButtonHTMLType = typeof ButtonHTMLTypes[number];
-
+// 定义 React 按钮类型
+export type ButtonType = 'default' | 'primary' | 'ghost' | 'dashed' | 'link' | 'text';
+// 定义 React 按钮形状
+export type ButtonShape = 'circle' | 'round';
+// 定义 HTML 按钮类型
+export type ButtonHTMLType = 'submit' | 'button' | 'reset';
+// 传统按钮类型
 export type LegacyButtonType = ButtonType | 'danger';
+
 export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
   if (type === 'danger') {
-    return { danger: true };
+    return { danger: true }
   }
-  return { type };
+  return { type }
 }
 
+// 基础按钮属性类型
 export interface BaseButtonProps {
   type?: ButtonType;
   icon?: React.ReactNode;
@@ -95,15 +97,15 @@ export interface BaseButtonProps {
   loading?: boolean | { delay?: number };
   prefixCls?: string;
   className?: string;
+  // 幽灵属性，使按钮背景透明
   ghost?: boolean;
   danger?: boolean;
+  // 将按钮宽度调整为其父宽度的选项
   block?: boolean;
   children?: React.ReactNode;
 }
 
-// Typescript will make optional not optional if use Pick with union.
-// Should change to `AnchorButtonProps | NativeButtonProps` and `any` to `HTMLAnchorElement | HTMLButtonElement` if it fixed.
-// ref: https://github.com/ant-design/ant-design/issues/15930
+// 锚点按钮属性类型
 export type AnchorButtonProps = {
   href: string;
   target?: string;
@@ -111,25 +113,29 @@ export type AnchorButtonProps = {
 } & BaseButtonProps &
   Omit<React.AnchorHTMLAttributes<any>, 'type' | 'onClick'>;
 
+// 原生按钮属性类型
 export type NativeButtonProps = {
   htmlType?: ButtonHTMLType;
   onClick?: React.MouseEventHandler<HTMLElement>;
 } & BaseButtonProps &
   Omit<React.ButtonHTMLAttributes<any>, 'type' | 'onClick'>;
 
+// 按钮属性类型
 export type ButtonProps = Partial<AnchorButtonProps & NativeButtonProps>;
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
+// 复合组件类型
+interface CompoundedComponent extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
   Group: typeof Group;
-  __ANT_BUTTON: boolean;
+  // __ANT_BUTTON: boolean;
 }
 
 type Loading = number | boolean;
 
+// 内部按钮 ForwardRefRender 类型
 const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
     loading = false,
+    // class 前缀
     prefixCls: customizePrefixCls,
     type,
     danger,
@@ -140,96 +146,95 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     icon,
     ghost = false,
     block = false,
-    /** If we extract items here, we don't need use omit.js */
-    // React does not recognize the `htmlType` prop on a DOM element. Here we pick it out of `rest`.
+    // React 无法识别 DOM 元素上的 htmlType 属性
     htmlType = 'button' as ButtonProps['htmlType'],
     ...rest
-  } = props;
+  } = props
 
-  const size = React.useContext(SizeContext);
-  const [innerLoading, setLoading] = React.useState<Loading>(!!loading);
-  const [hasTwoCNChar, setHasTwoCNChar] = React.useState(false);
-  const { getPrefixCls, autoInsertSpaceInButton, direction } = React.useContext(ConfigContext);
-  const buttonRef = (ref as any) || React.createRef<HTMLElement>();
-  const delayTimeoutRef = React.useRef<number>();
+  const size = React.useContext(SizeContext)
+  const [innerLoading, setLoading] = React.useState<Loading>(loading as boolean)
+  const [hasTwoCNChar, setHasTwoCNChar] = React.useState(false)
+  const { getPrefixCls, autoInsertSpaceInButton, direction } = React.useContext(ConfigContext)
+  const buttonRef = (ref as any) || React.createRef<HTMLElement>()
+  const delayTimeoutRef = React.useRef<number>()
 
-  const isNeedInserted = () =>
-    React.Children.count(children) === 1 && !icon && !isUnborderedButtonType(type);
+  // 是否需要插入空格
+  const isNeedInserted = () => React.Children.count(children) === 1 && !icon && !isUnborderedButtonType(type)
 
   const fixTwoCNChar = () => {
-    // Fix for HOC usage like <FormatMessage />
     if (!buttonRef || !buttonRef.current || autoInsertSpaceInButton === false) {
-      return;
+      return
     }
-    const buttonText = buttonRef.current.textContent;
+    const buttonText = buttonRef.current.textContent
     if (isNeedInserted() && isTwoCNChar(buttonText)) {
       if (!hasTwoCNChar) {
-        setHasTwoCNChar(true);
+        setHasTwoCNChar(true)
       }
     } else if (hasTwoCNChar) {
-      setHasTwoCNChar(false);
+      setHasTwoCNChar(false)
     }
-  };
+  }
 
   // =============== Update Loading ===============
-  let loadingOrDelay: Loading;
+  let loadingOrDelay: Loading
   if (typeof loading === 'object' && loading.delay) {
-    loadingOrDelay = loading.delay || true;
+    loadingOrDelay = loading.delay || true
   } else {
-    loadingOrDelay = !!loading;
+    loadingOrDelay = loading as boolean
   }
 
   React.useEffect(() => {
-    clearTimeout(delayTimeoutRef.current);
+    clearTimeout(delayTimeoutRef.current)
     if (typeof loadingOrDelay === 'number') {
       delayTimeoutRef.current = window.setTimeout(() => {
-        setLoading(loadingOrDelay);
-      }, loadingOrDelay);
+        setLoading(loadingOrDelay)
+      }, loadingOrDelay)
     } else {
-      setLoading(loadingOrDelay);
+      setLoading(loadingOrDelay)
     }
-  }, [loadingOrDelay]);
+  }, [loadingOrDelay])
 
-  React.useEffect(fixTwoCNChar, [buttonRef]);
+  React.useEffect(fixTwoCNChar, [buttonRef])
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => {
-    const { onClick } = props;
+    const { onClick } = props
     if (innerLoading) {
-      return;
+      return
     }
-    (onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)?.(e);
-  };
+    (onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>)?.(e)
+  }
 
+  // icon 未使用 ReactNode
   devWarning(
     !(typeof icon === 'string' && icon.length > 2),
     'Button',
-    `\`icon\` is using ReactNode instead of string naming in v4. Please check \`${icon}\` at https://ant.design/components/icon`,
-  );
+    `\`icon\` is using ReactNode instead of string naming.`
+  )
 
   devWarning(
     !(ghost && isUnborderedButtonType(type)),
     'Button',
-    "`link` or `text` button can't be a `ghost` button.",
-  );
+    '`link` or `text` button can\'t be a `ghost` button.'
+  )
 
-  const prefixCls = getPrefixCls('btn', customizePrefixCls);
-  const autoInsertSpace = autoInsertSpaceInButton !== false;
+  const prefixCls = getPrefixCls('btn', customizePrefixCls)
+  const autoInsertSpace = autoInsertSpaceInButton !== false
 
   // large => lg
   // small => sm
-  let sizeCls = '';
+  let sizeCls = ''
   switch (customizeSize || size) {
     case 'large':
-      sizeCls = 'lg';
-      break;
+      sizeCls = 'lg'
+      break
     case 'small':
-      sizeCls = 'sm';
-      break;
+      sizeCls = 'sm'
+      break
     default:
-      break;
+      break
   }
 
-  const iconType = innerLoading ? 'loading' : icon;
+  const iconType = innerLoading ? 'loading' : icon
 
   const classes = classNames(
     prefixCls,
@@ -243,31 +248,31 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
       [`${prefixCls}-two-chinese-chars`]: hasTwoCNChar && autoInsertSpace,
       [`${prefixCls}-block`]: block,
       [`${prefixCls}-dangerous`]: !!danger,
-      [`${prefixCls}-rtl`]: direction === 'rtl',
+      [`${prefixCls}-rtl`]: direction === 'rtl'
     },
-    className,
-  );
+    className
+  )
 
   const iconNode =
     icon && !innerLoading ? (
       icon
     ) : (
       <LoadingIcon existIcon={!!icon} prefixCls={prefixCls} loading={!!innerLoading} />
-    );
+    )
 
   const kids =
     children || children === 0
       ? spaceChildren(children, isNeedInserted() && autoInsertSpace)
-      : null;
+      : null
 
-  const linkButtonRestProps = omit(rest as AnchorButtonProps & { navigate: any }, ['navigate']);
+  const linkButtonRestProps = omit(rest as AnchorButtonProps & { navigate: any }, ['navigate'])
   if (linkButtonRestProps.href !== undefined) {
     return (
       <a {...linkButtonRestProps} className={classes} onClick={handleClick} ref={buttonRef}>
         {iconNode}
         {kids}
       </a>
-    );
+    )
   }
 
   const buttonNode = (
@@ -281,20 +286,20 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
       {iconNode}
       {kids}
     </button>
-  );
+  )
 
   if (isUnborderedButtonType(type)) {
-    return buttonNode;
+    return buttonNode
   }
 
-  return <Wave>{buttonNode}</Wave>;
-};
+  return <Wave>{buttonNode}</Wave>
+}
 
-const Button = React.forwardRef<unknown, ButtonProps>(InternalButton) as CompoundedComponent;
+const Button = React.forwardRef<unknown, ButtonProps>(InternalButton) as CompoundedComponent
 
-Button.displayName = 'Button';
+Button.displayName = 'Button'
 
-Button.Group = Group;
-Button.__ANT_BUTTON = true;
+Button.Group = Group
+// Button.__ANT_BUTTON = true
 
-export default Button;
+export default Button
