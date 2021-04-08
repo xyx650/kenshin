@@ -48,7 +48,7 @@ readdir(filePath).then(async components => {
   const componentsDir = components.filter(component => !component.startsWith('_') && !component.includes('.'))
   componentsDir.forEach(dir => {
     // 入口文件
-    !isIgnoreIndex && readdir(filePath + dir).then(files => {
+    !isIgnoreIndex && fs.existsSync(filePath + dir) && readdir(filePath + dir).then(files => {
       files.forEach(file => {
         let [fileName, midName, suffixName] = file.split('.')
         // index.zh-CN.md
@@ -58,13 +58,13 @@ readdir(filePath).then(async components => {
           const oldPath = filePath + dir + '/' + file
           const newPath = filePath + dir + `/${fileName}.${midName}.` + suffixName
           !isForce && keys.includes(dir) && ignoresMap[dir].includes('index') && ignoreSet.add(oldPath)
-          !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log('成功修改' + oldPath)).catch(e => console.log(e))
+          !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`成功修改 ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
         }
       })
     })
 
     // demo 目录
-    readdir(filePath + dir + '/demo/').then(files => {
+    fs.existsSync(filePath + dir + '/demo/') && readdir(filePath + dir + '/demo/').then(files => {
       // 是否忽略 basic
       isIgnoreBasic === 'true' && ignoreSet.add(filePath + dir + '/demo/basic.md')
       files.forEach(file => {
@@ -73,7 +73,7 @@ readdir(filePath).then(async components => {
         const oldPath = filePath + dir + '/demo/' + file
         const newPath = filePath + dir + '/demo/' + fileName + '.' + suffixName
         !isForce && keys.includes(dir) && keys.forEach(key => ignoresMap[key].includes(fileName) && ignoreSet.add(oldPath))
-        !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log('成功修改' + oldPath)).catch(e => console.log(e))
+        !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`成功修改 ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
       })
     })
   })
