@@ -2,7 +2,8 @@
  * 忽略清单
  ****************/
 const ignoresMap = {
-  overview: ['index']
+  overview: ['index'],
+  checkbox: ['index', 'basic']
 }
 
 
@@ -55,7 +56,7 @@ readdir(filePath).then(async components => {
           const oldPath = filePath + dir + '/' + file
           const newPath = filePath + dir + `/${fileName}.${midName}.` + suffixName
           !isForce && keys.includes(dir) && ignoresMap[dir].includes('index') && ignoreSet.add(oldPath)
-          !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`成功修改 ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
+          !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`Successfully modified ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
         }
       })
     })
@@ -70,7 +71,7 @@ readdir(filePath).then(async components => {
         const oldPath = filePath + dir + '/demo/' + file
         const newPath = filePath + dir + '/demo/' + fileName + '.' + suffixName
         !isForce && keys.includes(dir) && keys.forEach(key => ignoresMap[key].includes(fileName) && ignoreSet.add(oldPath))
-        !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`成功修改 ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
+        !ignoreSet.has(oldPath) && rename(oldPath, newPath).then(() => console.log(`Successfully modified ${oldPath} -> ${newPath}`)).catch(e => console.log(e))
       })
     })
   })
