@@ -9,7 +9,7 @@ import useBreakpoint from '../grid/hooks/useBreakpoint';
 import SizeContext, { AvatarSize } from './SizeContext';
 
 export interface AvatarProps {
-  /** Shape of avatar, options:`circle`, `square` */
+  /** Shape of avatar, options: `circle`, `square` */
   shape?: 'circle' | 'square';
   /*
    * Size of avatar, options: `large`, `small`, `default`

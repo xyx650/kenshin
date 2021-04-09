@@ -84,7 +84,7 @@ export interface CascaderProps {
   className?: string;
   /** 自定义浮层类名 */
   popupClassName?: string;
-  /** 浮层预设位置：`bottomLeft` `bottomRight` `topLeft` `topRight` */
+  /** 浮层预设位置： `bottomLeft` `bottomRight` `topLeft` `topRight` */
   popupPlacement?: string;
   /** 输入框占位文本 */
   placeholder?: string;

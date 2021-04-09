@@ -96,8 +96,12 @@
 
     > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-arrow,
     > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-clear,
-    :not(.@{kenshin-prefix}-input-group-addon) > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-arrow,
-    :not(.@{kenshin-prefix}-input-group-addon) > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-clear {
+    :not(.@{kenshin-prefix}-input-group-addon)
+      > .@{kenshin-prefix}-select
+      .@{kenshin-prefix}-select-arrow,
+    :not(.@{kenshin-prefix}-input-group-addon)
+      > .@{kenshin-prefix}-select
+      .@{kenshin-prefix}-select-clear {
       .@{form-prefix-cls}-rtl & {
         right: auto;
         left: 32px;

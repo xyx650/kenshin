@@ -83,7 +83,11 @@ ReactDOM.render(
 [data-theme='dark'] #components-tabs-demo-card-top .code-box-demo {
   background: #000;
 }
-[data-theme='dark'] .card-container > .kenshin-tabs-card .kenshin-tabs-content > .kenshin-tabs-tabpane {
+[data-theme='dark']
+  .card-container
+  > .kenshin-tabs-card
+  .kenshin-tabs-content
+  > .kenshin-tabs-tabpane {
   background: #141414;
 }
 [data-theme='dark'] .card-container > .kenshin-tabs-card .kenshin-tabs-tab-active {

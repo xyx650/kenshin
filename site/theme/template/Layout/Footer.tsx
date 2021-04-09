@@ -1,9 +1,9 @@
-import React from 'react'
-import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl'
-import { Modal, message } from 'antd'
+import React from 'react';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from 'react-intl';
+import { Modal, message } from 'antd';
 // import { Link } from 'bisheng/router'
-import RcFooter from 'rc-footer'
-import { presetPalettes } from '@ant-design/colors'
+import RcFooter from 'rc-footer';
+import { presetPalettes } from '@ant-design/colors';
 import {
   // AntDesignOutlined,
   // MediumOutlined,
@@ -17,24 +17,24 @@ import {
   // IssuesCloseOutlined,
   // BookOutlined,
   // QuestionCircleOutlined
-} from '@ant-design/icons'
+} from '@ant-design/icons';
 // import { isLocalStorageNameSupported, loadScript, getLocalizedPathname } from '../utils'
-import { isLocalStorageNameSupported, loadScript } from '../utils'
-import ColorPicker from '../Color/ColorPicker'
-import './Footer.less'
+import { isLocalStorageNameSupported, loadScript } from '../utils';
+import ColorPicker from '../Color/ColorPicker';
+import './Footer.less';
 
 class Footer extends React.Component<WrappedComponentProps & { location: any }> {
-  lessLoaded = false
+  lessLoaded = false;
 
   state = {
-    color: presetPalettes.blue.primary
-  }
+    color: presetPalettes.blue.primary,
+  };
 
   componentDidMount() {
     // for some iOS
     // http://stackoverflow.com/a/14555361
     if (!isLocalStorageNameSupported()) {
-      return
+      return;
     }
     // 大版本发布后全局弹窗提示
     //   1. 点击『知道了』之后不再提示
@@ -43,7 +43,7 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
       localStorage.getItem('antd@3.0.0-notification-sent') !== 'true' &&
       Date.now() < new Date('2017/12/20').getTime()
     ) {
-      this.infoNewVersion()
+      this.infoNewVersion();
     }
   }
 
@@ -72,7 +72,7 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
     // }
 
     const col1 = {
-      title: <FormattedMessage id='app.footer.resources' />,
+      title: <FormattedMessage id="app.footer.resources" />,
       items: [
         // {
         //   title: 'Ant Design Pro',
@@ -125,9 +125,9 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
         // },
         {
           title: 'Dumi',
-          description: <FormattedMessage id='app.footer.dumi' />,
+          description: <FormattedMessage id="app.footer.dumi" />,
           url: 'https://d.umijs.org',
-          openExternal: true
+          openExternal: true,
         },
         // {
         //   title: 'Remax',
@@ -159,8 +159,8 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
         //   title: <FormattedMessage id='app.footer.chinamirror' />,
         //   url: 'https://ant-design.gitee.io/'
         // }
-      ]
-    }
+      ],
+    };
 
     // const col2 = {
     //   title: <FormattedMessage id='app.footer.community' />,
@@ -223,13 +223,13 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
     // }
 
     const col3 = {
-      title: <FormattedMessage id='app.footer.help' />,
+      title: <FormattedMessage id="app.footer.help" />,
       items: [
         {
           icon: <GithubOutlined />,
           title: 'GitHub',
           url: 'https://github.com/ant-design/ant-design',
-          openExternal: true
+          openExternal: true,
         },
         // {
         //   icon: <HistoryOutlined />,
@@ -279,8 +279,8 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
         //   url: 'https://segmentfault.com/t/antd',
         //   openExternal: true
         // }
-      ]
-    }
+      ],
+    };
 
     // const col4 = {
     //   icon: (
@@ -360,67 +360,67 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
     // }
 
     // return [col1, col2, col3, col4]
-    return [col1, col3]
+    return [col1, col3];
   }
 
   handleColorChange = (color: string) => {
     const {
-      intl: { messages }
-    } = this.props
+      intl: { messages },
+    } = this.props;
     message.loading({
       content: messages['app.footer.primary-color-changing'],
-      key: 'change-primary-color'
-    })
+      key: 'change-primary-color',
+    });
     const changeColor = () => {
       (window as any).less
         .modifyVars({
-          '@primary-color': color
+          '@primary-color': color,
         })
         .then(() => {
           message.success({
             content: messages['app.footer.primary-color-changed'],
-            key: 'change-primary-color'
-          })
-          this.setState({ color })
-        })
-    }
+            key: 'change-primary-color',
+          });
+          this.setState({ color });
+        });
+    };
 
-    const lessUrl = 'https://gw.alipayobjects.com/os/lib/less/3.10.3/dist/less.min.js'
+    const lessUrl = 'https://gw.alipayobjects.com/os/lib/less/3.10.3/dist/less.min.js';
 
     if (this.lessLoaded) {
-      changeColor()
+      changeColor();
     } else {
       (window as any).less = {
         async: true,
-        javascriptEnabled: true
-      }
+        javascriptEnabled: true,
+      };
       loadScript(lessUrl).then(() => {
-        this.lessLoaded = true
-        changeColor()
-      })
+        this.lessLoaded = true;
+        changeColor();
+      });
     }
-  }
+  };
 
   infoNewVersion() {
     const {
-      intl: { messages }
-    } = this.props
+      intl: { messages },
+    } = this.props;
     Modal.info({
       title: messages['app.publish.title'],
       content: (
         <div>
           <img
-            src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'
-            alt='Ant Design'
+            src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+            alt="Ant Design"
           />
           <p>
             {messages['app.publish.greeting']}
-            <a target='_blank' rel='noopener noreferrer' href='/changelog'>
+            <a target="_blank" rel="noopener noreferrer" href="/changelog">
               antd@3.0.0
             </a>
             {messages['app.publish.intro']}
             {messages['app.publish.old-version-guide']}
-            <a target='_blank' rel='noopener noreferrer' href='http://2x.ant.design'>
+            <a target="_blank" rel="noopener noreferrer" href="http://2x.ant.design">
               2x.ant.design
             </a>
             {messages['app.publish.old-version-tips']}
@@ -430,26 +430,26 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
       okText: 'OK',
       onOk: () => localStorage.setItem('antd@3.0.0-notification-sent', 'true'),
       className: 'new-version-info-modal',
-      width: 470
-    })
+      width: 470,
+    });
   }
 
   renderThemeChanger() {
-    const { color } = this.state
-    const colors = Object.keys(presetPalettes).filter(item => item !== 'grey')
+    const { color } = this.state;
+    const colors = Object.keys(presetPalettes).filter(item => item !== 'grey');
     return (
       <ColorPicker
         small
         color={color}
-        position='top'
+        position="top"
         presetColors={[
           ...colors.map(c => presetPalettes[c][5]),
           ...colors.map(c => presetPalettes[c][4]),
-          ...colors.map(c => presetPalettes[c][6])
+          ...colors.map(c => presetPalettes[c][6]),
         ]}
         onChangeComplete={this.handleColorChange}
       />
-    )
+    );
   }
 
   render() {
@@ -460,14 +460,14 @@ class Footer extends React.Component<WrappedComponentProps & { location: any }> 
           <>
             Made with <span style={{ color: '#fff' }}>❤</span> by
             {/* eslint-disable-next-line react/jsx-curly-brace-presence */}{' '}
-            <a target='_blank' rel='noopener noreferrer' href='https://xtech.antfin.com'>
-              <FormattedMessage id='app.footer.company' />
+            <a target="_blank" rel="noopener noreferrer" href="https://xtech.antfin.com">
+              <FormattedMessage id="app.footer.company" />
             </a>
           </>
         }
       />
-    )
+    );
   }
 }
 
-export default injectIntl(Footer)
+export default injectIntl(Footer);
