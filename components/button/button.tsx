@@ -127,7 +127,7 @@ export type ButtonProps = Partial<AnchorButtonProps & NativeButtonProps>;
 interface CompoundedComponent
   extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
   Group: typeof Group;
-  // __ANT_BUTTON: boolean;
+  __ANT_BUTTON: boolean;
 }
 
 type Loading = number | boolean;
@@ -303,6 +303,6 @@ const Button = React.forwardRef<unknown, ButtonProps>(InternalButton) as Compoun
 Button.displayName = 'Button';
 
 Button.Group = Group;
-// Button.__ANT_BUTTON = true
+Button.__ANT_BUTTON = true;
 
 export default Button;
