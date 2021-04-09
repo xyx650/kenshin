@@ -31,11 +31,11 @@ function getModuleData(props) {
   const excludedSuffix = utils.isZhCN(props.location.pathname) ? 'en-US.md' : 'zh-CN.md';
   let data;
   switch (moduleName) {
-    case 'docs/react':
-    case 'changelog':
-    case 'changelog-cn':
-      data = [...props.picked['docs/react'], ...props.picked.changelog];
-      break;
+    // case 'docs/react':
+    // case 'changelog':
+    // case 'changelog-cn':
+    //   data = [...props.picked['docs/react'], ...props.picked.changelog];
+    //   break;
     default:
       data = props.picked[moduleName];
   }
@@ -394,7 +394,7 @@ class MainContent extends Component {
     return (
       <>
         <Article {...this.props} content={localizedPageData} />
-        {this.renderContributors()}
+        {/*{this.renderContributors()}*/}
       </>
     );
   }

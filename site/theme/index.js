@@ -69,38 +69,38 @@ module.exports = {
         path: 'docs/react/:children',
         component: contentTmpl,
       },
-      {
-        path: 'changelog',
-        component: contentTmpl,
-      },
-      {
-        path: 'changelog-cn',
-        component: contentTmpl,
-      },
-      {
-        path: 'components/form/v3',
-        component: contentTmpl,
-      },
-      {
-        path: 'components/form/v3-cn',
-        component: contentTmpl,
-      },
+      // {
+      //   path: 'changelog',
+      //   component: contentTmpl,
+      // },
+      // {
+      //   path: 'changelog-cn',
+      //   component: contentTmpl,
+      // },
+      // {
+      //   path: 'components/form/v3',
+      //   component: contentTmpl,
+      // },
+      // {
+      //   path: 'components/form/v3-cn',
+      //   component: contentTmpl,
+      // },
       {
         path: 'components/:children/',
         component: contentTmpl,
       },
-      {
-        path: 'docs/spec/:children',
-        component: contentTmpl,
-      },
-      {
-        path: 'docs/resources',
-        component: resourcesTmpl,
-      },
-      {
-        path: 'docs/resources-cn',
-        component: resourcesTmpl,
-      },
+      // {
+      //   path: 'docs/spec/:children',
+      //   component: contentTmpl,
+      // },
+      // {
+      //   path: 'docs/resources',
+      //   component: resourcesTmpl,
+      // },
+      // {
+      //   path: 'docs/resources-cn',
+      //   component: resourcesTmpl,
+      // },
     ],
   },
 };

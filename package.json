@@ -1,11 +1,12 @@
 {
-  "name": "wdc",
-  "version": "1.0.0",
+  "name": "antd",
+  "version": "4.15.0",
   "description": "An enterprise-class UI design language and React components implementation",
   "keywords": [
+    "ant",
     "component",
     "components",
-    "wdc",
+    "design",
     "framework",
     "frontend",
     "react",
@@ -26,7 +27,7 @@
   },
   "license": "MIT",
   "contributors": [
-    "wdc",
+    "ant",
     {
       "name": "richard",
       "email": "richard.lam@my.com",
@@ -317,7 +318,7 @@
       "maxSize": "70 kB"
     }
   ],
-  "title": "WDC UI",
+  "title": "Ant Design",
   "tnpm": {
     "mode": "npm"
   }
