@@ -2,12 +2,12 @@
 @import '../../style/mixins/index';
 @import '../../input/style/mixin';
 
-@cascader-prefix-cls: ~'@{ant-prefix}-cascader';
+@cascader-prefix-cls: ~'@{kenshin-prefix}-cascader';
 
 .@{cascader-prefix-cls} {
   .reset-component();
 
-  &-input.@{ant-prefix}-input {
+  &-input.@{kenshin-prefix}-input {
     // Keep it static for https://github.com/ant-design/ant-design/issues/16738
     position: static;
     width: 100%;
@@ -19,7 +19,7 @@
     cursor: pointer;
   }
 
-  &-picker-show-search &-input.@{ant-prefix}-input {
+  &-picker-show-search &-input.@{kenshin-prefix}-input {
     position: relative;
   }
 

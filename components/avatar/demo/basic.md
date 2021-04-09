@@ -37,11 +37,11 @@ ReactDOM.render(
 ```
 
 <style>
-#components-avatar-demo-basic .ant-avatar {
+#components-avatar-demo-basic .kenshin-avatar {
   margin-top: 16px;
   margin-right: 16px;
 }
-.ant-row-rtl #components-avatar-demo-basic .ant-avatar {
+.kenshin-row-rtl #components-avatar-demo-basic .kenshin-avatar {
   margin-right: 0;
   margin-left: 16px;
 }

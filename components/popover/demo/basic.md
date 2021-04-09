@@ -32,7 +32,7 @@ ReactDOM.render(
 ```
 
 <style>
-.ant-popover-content p {
+.kenshin-popover-content p {
   margin: 0;
 }
 </style>

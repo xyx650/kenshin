@@ -201,7 +201,7 @@ ReactDOM.render(<EditableTable />, mountNode);
 ```
 
 ```css
-.editable-row .ant-form-item-explain {
+.editable-row .kenshin-form-item-explain {
   position: absolute;
   top: 100%;
   font-size: 12px;

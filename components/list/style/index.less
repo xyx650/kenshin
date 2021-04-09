@@ -2,7 +2,7 @@
 @import '../../style/mixins/index';
 @import './customize.less';
 
-@list-prefix-cls: ~'@{ant-prefix}-list';
+@list-prefix-cls: ~'@{kenshin-prefix}-list';
 
 .@{list-prefix-cls} {
   .reset-component();
@@ -18,7 +18,7 @@
     text-align: right;
 
     // https://github.com/ant-design/ant-design/issues/20037
-    .@{ant-prefix}-pagination-options {
+    .@{kenshin-prefix}-pagination-options {
       text-align: left;
     }
   }
@@ -163,7 +163,7 @@
     min-height: 32px;
   }
 
-  &-split&-something-after-last-item .@{ant-prefix}-spin-container > &-items > &-item:last-child {
+  &-split&-something-after-last-item .@{kenshin-prefix}-spin-container > &-items > &-item:last-child {
     border-bottom: 1px solid @border-color-split;
   }
 
@@ -211,7 +211,7 @@
     }
   }
 
-  &-grid .@{ant-prefix}-col > &-item {
+  &-grid .@{kenshin-prefix}-col > &-item {
     display: block;
     max-width: 100%;
     margin-bottom: @margin-md;

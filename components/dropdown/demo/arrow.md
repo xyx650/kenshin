@@ -63,11 +63,11 @@ ReactDOM.render(
 ```
 
 ```css
-#components-dropdown-demo-arrow .ant-btn {
+#components-dropdown-demo-arrow .kenshin-btn {
   margin-right: 8px;
   margin-bottom: 8px;
 }
-.ant-row-rtl #components-dropdown-demo-arrow .ant-btn {
+.kenshin-row-rtl #components-dropdown-demo-arrow .kenshin-btn {
   margin-right: 0;
   margin-bottom: 8px;
   margin-left: 8px;

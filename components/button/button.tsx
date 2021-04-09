@@ -5,7 +5,7 @@ import omit from 'rc-util/lib/omit'
 
 import Group from './button-group'
 import { ConfigContext } from '../config-provider'
-import Wave from '../_util/wave'
+// import Wave from '../_util/wave'
 import { Omit } from '../_util/type'
 import devWarning from '../_util/devWarning'
 import SizeContext, { SizeType } from '../config-provider/SizeContext'
@@ -253,46 +253,37 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     className
   )
 
-  const iconNode =
-    icon && !innerLoading ? (
-      icon
-    ) : (
-      <LoadingIcon existIcon={!!icon} prefixCls={prefixCls} loading={!!innerLoading} />
-    )
+  const iconNode = icon && !innerLoading ? icon :
+    <LoadingIcon existIcon={!!icon} prefixCls={prefixCls} loading={!!innerLoading} />
 
-  const kids =
-    children || children === 0
-      ? spaceChildren(children, isNeedInserted() && autoInsertSpace)
-      : null
+  const kids = children || children === 0 ? spaceChildren(children, isNeedInserted() && autoInsertSpace) : null
 
   const linkButtonRestProps = omit(rest as AnchorButtonProps & { navigate: any }, ['navigate'])
   if (linkButtonRestProps.href !== undefined) {
-    return (
-      <a {...linkButtonRestProps} className={classes} onClick={handleClick} ref={buttonRef}>
-        {iconNode}
-        {kids}
-      </a>
-    )
-  }
-
-  const buttonNode = (
-    <button
-      {...(rest as NativeButtonProps)}
-      type={htmlType}
-      className={classes}
-      onClick={handleClick}
-      ref={buttonRef}
-    >
+    return <a {...linkButtonRestProps} className={classes} onClick={handleClick} ref={buttonRef}>
       {iconNode}
       {kids}
-    </button>
-  )
+    </a>
+  }
+
+  const buttonNode = <button
+    {...(rest as NativeButtonProps)}
+    type={htmlType}
+    className={classes}
+    onClick={handleClick}
+    ref={buttonRef}
+  >
+    {iconNode}
+    {kids}
+  </button>
+
 
   if (isUnborderedButtonType(type)) {
     return buttonNode
   }
-
-  return <Wave>{buttonNode}</Wave>
+  // 暂未使用 Wave
+  // return <Wave>{buttonNode}</Wave>
+  return buttonNode
 }
 
 const Button = React.forwardRef<unknown, ButtonProps>(InternalButton) as CompoundedComponent

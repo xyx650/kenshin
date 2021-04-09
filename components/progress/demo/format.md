@@ -26,13 +26,13 @@ ReactDOM.render(
 ```
 
 <style>
-div.ant-progress-circle,
-div.ant-progress-line {
+div.kenshin-progress-circle,
+div.kenshin-progress-line {
   margin-right: 8px;
   margin-bottom: 8px;
 }
-[class*='-col-rtl'] div.ant-progress-circle,
-[class*='-col-rtl'] div.ant-progress-line {
+[class*='-col-rtl'] div.kenshin-progress-circle,
+[class*='-col-rtl'] div.kenshin-progress-line {
   margin-right: 0;
   margin-left: 8px;
 }

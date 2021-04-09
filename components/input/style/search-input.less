@@ -3,32 +3,32 @@
 @import '../../button/style/mixin';
 @import './mixin';
 
-@search-prefix: ~'@{ant-prefix}-input-search';
+@search-prefix: ~'@{kenshin-prefix}-input-search';
 
 .@{search-prefix} {
-  .@{ant-prefix}-input {
+  .@{kenshin-prefix}-input {
     &:hover,
     &:focus {
       border-color: @input-hover-border-color;
 
-      + .@{ant-prefix}-input-group-addon .@{search-prefix}-button:not(.@{ant-prefix}-btn-primary) {
+      + .@{kenshin-prefix}-input-group-addon .@{search-prefix}-button:not(.@{kenshin-prefix}-btn-primary) {
         border-left-color: @input-hover-border-color;
       }
     }
   }
 
-  .@{ant-prefix}-input-affix-wrapper {
+  .@{kenshin-prefix}-input-affix-wrapper {
     border-radius: 0;
   }
 
   // fix slight height diff in Firefox:
   // https://ant.design/components/auto-complete-cn/#components-auto-complete-demo-certain-category
-  .@{ant-prefix}-input-lg {
+  .@{kenshin-prefix}-input-lg {
     line-height: @line-height-base - 0.0002;
   }
 
-  > .@{ant-prefix}-input-group {
-    > .@{ant-prefix}-input-group-addon:last-child {
+  > .@{kenshin-prefix}-input-group {
+    > .@{kenshin-prefix}-input-group-addon:last-child {
       left: -1px;
       padding: 0;
       border: 0;
@@ -39,10 +39,10 @@
         border-radius: 0 @border-radius-base @border-radius-base 0;
       }
 
-      .@{search-prefix}-button:not(.@{ant-prefix}-btn-primary) {
+      .@{search-prefix}-button:not(.@{kenshin-prefix}-btn-primary) {
         color: @text-color-secondary;
 
-        &.@{ant-prefix}-btn-loading::before {
+        &.@{kenshin-prefix}-btn-loading::before {
           top: 0;
           right: 0;
           bottom: 0;
