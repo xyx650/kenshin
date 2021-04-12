@@ -2,7 +2,7 @@
 @import '../../style/mixins/index';
 @import './status';
 
-@menu-prefix-cls: ~'@{ant-prefix}-menu';
+@menu-prefix-cls: ~'@{kenshin-prefix}-menu';
 
 // default theme
 .@{menu-prefix-cls} {
@@ -81,7 +81,7 @@
   }
 
   // https://github.com/ant-design/ant-design/issues/19809
-  &-item > .@{ant-prefix}-badge a {
+  &-item > .@{kenshin-prefix}-badge a {
     color: @menu-item-color;
     &:hover {
       color: @menu-highlight-color;
@@ -584,7 +584,7 @@
 }
 
 // Integration with header element so menu items have the same height
-.@{ant-prefix}-layout-header {
+.@{kenshin-prefix}-layout-header {
   .@{menu-prefix-cls} {
     line-height: inherit;
   }

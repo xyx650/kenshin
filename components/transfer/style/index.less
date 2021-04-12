@@ -3,7 +3,7 @@
 @import '../../checkbox/style/mixin';
 @import './customize';
 
-@transfer-prefix-cls: ~'@{ant-prefix}-transfer';
+@transfer-prefix-cls: ~'@{kenshin-prefix}-transfer';
 
 @transfer-header-vertical-padding: ceil(
   ((@transfer-header-height - 1px - @font-size-base * @line-height-base) / 2)
@@ -210,7 +210,7 @@
       border-top: @border-width-base @border-style-base @border-color-split;
     }
 
-    &-checkbox .@{ant-prefix}-checkbox {
+    &-checkbox .@{kenshin-prefix}-checkbox {
       top: 0;
     }
   }
@@ -224,7 +224,7 @@
     overflow: hidden;
     vertical-align: middle;
 
-    .@{ant-prefix}-btn {
+    .@{kenshin-prefix}-btn {
       display: block;
 
       &:first-child {
@@ -237,7 +237,7 @@
     }
   }
 
-  .@{ant-prefix}-empty-image {
+  .@{kenshin-prefix}-empty-image {
     max-height: (@transfer-header-height / 2) - 22;
   }
 }

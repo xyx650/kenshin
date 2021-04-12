@@ -1188,7 +1188,7 @@ timeline: true
 - 🐞 修复 Cascader 下拉框中扩展按钮在禁用时的颜色。[#24521](https://github.com/ant-design/ant-design/pull/24521)
 - 🐞 修复 Alert 关闭按钮 `padding` 样式。[#24471](https://github.com/ant-design/ant-design/pull/24471)
 - 🐞 修复 Tree `@tree-directory-selected-bg` 变量不生效的问题。[#24468](https://github.com/ant-design/ant-design/pull/24468) [@morenyang](https://github.com/morenyang)
-- 🐞 修复 `@ant-prefix` 变量在部分样式里不生效的问题。[#24459](https://github.com/ant-design/ant-design/pull/24459) [@morenyang](https://github.com/morenyang)
+- 🐞 修复 `@kenshin-prefix` 变量在部分样式里不生效的问题。[#24459](https://github.com/ant-design/ant-design/pull/24459) [@morenyang](https://github.com/morenyang)
 - 🐞 修复 Steps `subtitle` hover 渐变过渡。[#24593](https://github.com/ant-design/ant-design/pull/24593)
 - 🐞 修复 List 报 `React does not recognize colStyle prop` 的问题。[#24568](https://github.com/ant-design/ant-design/pull/24568)
 - 🐞 修复步骤 Progress `percent` 样式未正确更新的问题。[#24534](https://github.com/ant-design/ant-design/pull/24534) [@ChuckJonas](https://github.com/ChuckJonas)

@@ -203,9 +203,9 @@ Some operator functions in render form of Form.List.
 
 New in 4.7.0. Show error messages, should only work with `rules` of Form.List. See [example](#components-form-demo-dynamic-form-item).
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
-| errors | Error list | ReactNode\[] | - |
+| Property | Description | Type         | Default |
+| -------- | ----------- | ------------ | ------- |
+| errors   | Error list  | ReactNode\[] | -       |
 
 ## Form.Provider
 
@@ -286,13 +286,13 @@ validateFields()
 
 #### FieldData
 
-| Name | Description | Type |
-| --- | --- | --- |
-| errors | Error messages | string\[] |
-| name | Field name path | [NamePath](#NamePath)\[] |
-| touched | Whether is operated | boolean |
-| validating | Whether is in validating | boolean |
-| value | Field value | any |
+| Name       | Description              | Type                     |
+| ---------- | ------------------------ | ------------------------ |
+| errors     | Error messages           | string\[]                |
+| name       | Field name path          | [NamePath](#NamePath)\[] |
+| touched    | Whether is operated      | boolean                  |
+| validating | Whether is in validating | boolean                  |
+| value      | Field value              | any                      |
 
 #### Rule
 
@@ -324,7 +324,7 @@ type Rule = RuleConfig | ((form: FormInstance) => RuleConfig);
 If you are a user of v3, you can ref [migrate doc](/components/form/v3)。
 
 <style>
-.code-box-demo .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+.code-box-demo .kenshin-form:not(.kenshin-form-inline):not(.kenshin-form-vertical) {
   max-width: 600px;
 }
 .markdown.api-container table td:nth-of-type(4) {

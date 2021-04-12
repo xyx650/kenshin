@@ -4,7 +4,7 @@
 @import '../../button/style/mixin';
 @import '../../grid/style/mixin';
 
-@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-prefix-cls: ~'@{kenshin-prefix}-form';
 @form-item-prefix-cls: ~'@{form-prefix-cls}-item';
 
 .@{form-prefix-cls} {
@@ -51,36 +51,36 @@
   // =                            Input                           =
   // ==============================================================
   &-control {
-    .@{ant-prefix}-col-rtl &:first-child {
+    .@{kenshin-prefix}-col-rtl &:first-child {
       width: 100%;
     }
   }
 
   // status
   &-has-feedback {
-    .@{ant-prefix}-input {
+    .@{kenshin-prefix}-input {
       .@{form-prefix-cls}-rtl & {
         padding-right: @input-padding-horizontal-base;
         padding-left: 24px;
       }
     }
 
-    .@{ant-prefix}-input-affix-wrapper {
-      .@{ant-prefix}-input-suffix {
+    .@{kenshin-prefix}-input-affix-wrapper {
+      .@{kenshin-prefix}-input-suffix {
         .@{form-prefix-cls}-rtl & {
           padding-right: @input-padding-horizontal-base;
           padding-left: 18px;
         }
       }
-      .@{ant-prefix}-input {
+      .@{kenshin-prefix}-input {
         .@{form-prefix-cls}-rtl & {
           padding: 0;
         }
       }
     }
 
-    .@{ant-prefix}-input-search:not(.@{ant-prefix}-input-search-enter-button) {
-      .@{ant-prefix}-input-suffix {
+    .@{kenshin-prefix}-input-search:not(.@{kenshin-prefix}-input-search-enter-button) {
+      .@{kenshin-prefix}-input-suffix {
         .@{form-prefix-cls}-rtl & {
           right: auto;
           left: 28px;
@@ -88,33 +88,37 @@
       }
     }
 
-    .@{ant-prefix}-input-number {
+    .@{kenshin-prefix}-input-number {
       .@{form-prefix-cls}-rtl & {
         padding-left: 18px;
       }
     }
 
-    > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
-    > .@{ant-prefix}-select .@{ant-prefix}-select-clear,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-clear {
+    > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-arrow,
+    > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-clear,
+    :not(.@{kenshin-prefix}-input-group-addon)
+      > .@{kenshin-prefix}-select
+      .@{kenshin-prefix}-select-arrow,
+    :not(.@{kenshin-prefix}-input-group-addon)
+      > .@{kenshin-prefix}-select
+      .@{kenshin-prefix}-select-clear {
       .@{form-prefix-cls}-rtl & {
         right: auto;
         left: 32px;
       }
     }
 
-    > .@{ant-prefix}-select .@{ant-prefix}-select-selection-selected-value,
-    :not(.@{ant-prefix}-input-group-addon)
-      > .@{ant-prefix}-select
-      .@{ant-prefix}-select-selection-selected-value {
+    > .@{kenshin-prefix}-select .@{kenshin-prefix}-select-selection-selected-value,
+    :not(.@{kenshin-prefix}-input-group-addon)
+      > .@{kenshin-prefix}-select
+      .@{kenshin-prefix}-select-selection-selected-value {
       .@{form-prefix-cls}-rtl & {
         padding-right: 0;
         padding-left: 42px;
       }
     }
 
-    .@{ant-prefix}-cascader-picker {
+    .@{kenshin-prefix}-cascader-picker {
       &-arrow {
         .@{form-prefix-cls}-rtl & {
           margin-right: 0;
@@ -129,7 +133,7 @@
       }
     }
 
-    .@{ant-prefix}-picker {
+    .@{kenshin-prefix}-picker {
       .@{form-prefix-cls}-rtl & {
         padding-right: @input-padding-horizontal-base;
         padding-left: @input-padding-horizontal-base + @font-size-base * 1.3;

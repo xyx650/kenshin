@@ -101,27 +101,27 @@ ReactDOM.render(
 ```
 
 ```css
-[data-theme='compact'] .ant-advanced-search-form,
-.ant-advanced-search-form {
+[data-theme='compact'] .kenshin-advanced-search-form,
+.kenshin-advanced-search-form {
   padding: 24px;
   background: #fbfbfb;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
 }
 
-[data-theme='compact'] .ant-advanced-search-form .ant-form-item,
-.ant-advanced-search-form .ant-form-item {
+[data-theme='compact'] .kenshin-advanced-search-form .kenshin-form-item,
+.kenshin-advanced-search-form .kenshin-form-item {
   display: flex;
 }
 
-[data-theme='compact'] .ant-advanced-search-form .ant-form-item-control-wrapper,
-.ant-advanced-search-form .ant-form-item-control-wrapper {
+[data-theme='compact'] .kenshin-advanced-search-form .kenshin-form-item-control-wrapper,
+.kenshin-advanced-search-form .kenshin-form-item-control-wrapper {
   flex: 1;
 }
 ```
 
 <style>
-#components-form-demo-advanced-search .ant-form {
+#components-form-demo-advanced-search .kenshin-form {
   max-width: none;
 }
 #components-form-demo-advanced-search .search-result-list {
@@ -133,7 +133,7 @@ ReactDOM.render(
   text-align: center;
   padding-top: 80px;
 }
-[data-theme="dark"] .ant-advanced-search-form  {
+[data-theme="dark"] .kenshin-advanced-search-form  {
   background: rgba(255,255,255,0.04);
   border: 1px solid #434343;
   padding: 24px;

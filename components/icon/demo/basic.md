@@ -40,7 +40,7 @@ ReactDOM.render(
   margin-right: 6px;
   font-size: 24px;
 }
-.ant-row-rtl .icons-list > .anticon {
+.kenshin-row-rtl .icons-list > .anticon {
   margin-right: 0;
   margin-left: 6px;
 }

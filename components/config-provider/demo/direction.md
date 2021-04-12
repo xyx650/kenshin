@@ -563,13 +563,13 @@ ReactDOM.render(<App />, mountNode);
 ```
 
 ```css
-.button-demo .ant-btn,
-.button-demo .ant-btn-group {
+.button-demo .kenshin-btn,
+.button-demo .kenshin-btn-group {
   margin-right: 8px;
   margin-bottom: 12px;
 }
-.button-demo .ant-btn-group > .ant-btn,
-.button-demo .ant-btn-group > span > .ant-btn {
+.button-demo .kenshin-btn-group > .kenshin-btn,
+.button-demo .kenshin-btn-group > span > .kenshin-btn {
   margin-right: 0;
   margin-left: 0;
 }
@@ -583,10 +583,10 @@ ReactDOM.render(<App />, mountNode);
   border-radius: 4px;
 }
 
-.ant-badge:not(.ant-badge-not-a-wrapper) {
+.kenshin-badge:not(.kenshin-badge-not-a-wrapper) {
   margin-right: 20px;
 }
-.ant-badge-rtl:not(.ant-badge-not-a-wrapper) {
+.kenshin-badge-rtl:not(.kenshin-badge-not-a-wrapper) {
   margin-right: 0;
   margin-left: 20px;
 }

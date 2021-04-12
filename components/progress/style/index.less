@@ -1,7 +1,7 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
-@progress-prefix-cls: ~'@{ant-prefix}-progress';
+@progress-prefix-cls: ~'@{kenshin-prefix}-progress';
 
 .@{progress-prefix-cls} {
   .reset-component();
@@ -65,11 +65,11 @@
   }
 
   &-circle-path {
-    animation: ~'@{ant-prefix}-progress-appear' 0.3s;
+    animation: ~'@{kenshin-prefix}-progress-appear' 0.3s;
   }
 
-  &-inner:not(.@{ant-prefix}-progress-circle-gradient) {
-    .@{ant-prefix}-progress-circle-path {
+  &-inner:not(.@{kenshin-prefix}-progress-circle-gradient) {
+    .@{kenshin-prefix}-progress-circle-path {
       stroke: @progress-default-color;
     }
   }
@@ -115,7 +115,7 @@
       background: @component-background;
       border-radius: 10px;
       opacity: 0;
-      animation: ~'@{ant-prefix}-progress-active' 2.4s @ease-out-quint infinite;
+      animation: ~'@{kenshin-prefix}-progress-active' 2.4s @ease-out-quint infinite;
       content: '';
     }
   }
@@ -187,7 +187,7 @@
   }
 }
 
-@keyframes ~"@{ant-prefix}-progress-active" {
+@keyframes ~"@{kenshin-prefix}-progress-active" {
   0% {
     width: 0;
     opacity: 0.1;

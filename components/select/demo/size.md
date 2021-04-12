@@ -76,15 +76,15 @@ ReactDOM.render(<SelectSizesDemo />, mountNode);
 ```
 
 ```css
-.code-box-demo .ant-select {
+.code-box-demo .kenshin-select {
   margin: 0 8px 10px 0;
 }
 
-.ant-row-rtl .code-box-demo .ant-select {
+.kenshin-row-rtl .code-box-demo .kenshin-select {
   margin: 0 0 10px 8px;
 }
 
-#components-select-demo-search-box .code-box-demo .ant-select {
+#components-select-demo-search-box .code-box-demo .kenshin-select {
   margin: 0;
 }
 ```

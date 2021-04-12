@@ -89,7 +89,7 @@ export default class Wave extends React.Component<{ insertExtraNode?: boolean }>
       extraNode.style.borderColor = waveColor;
 
       const nodeRoot = node.getRootNode?.() || node.ownerDocument;
-      const nodeBody = nodeRoot instanceof Document ? nodeRoot.body : nodeRoot as HTMLElement;
+      const nodeBody = nodeRoot instanceof Document ? nodeRoot.body : (nodeRoot as HTMLElement);
       styleForPseudo = updateCSS(
         `
       [${getPrefixCls('')}-click-animating-without-extra-node='true']::after, .${getPrefixCls(

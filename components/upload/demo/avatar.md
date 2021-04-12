@@ -88,7 +88,7 @@ ReactDOM.render(<Avatar />, mountNode);
 ```
 
 ```css
-.avatar-uploader > .ant-upload {
+.avatar-uploader > .kenshin-upload {
   width: 128px;
   height: 128px;
 }

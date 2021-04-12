@@ -50,7 +50,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | input | Set Input common props | { autoComplete?: string } | - | 4.2.0 |
 | locale | Language package setting, you can find the packages in [antd/lib/locale](http://unpkg.com/antd/lib/locale/) | object | - |  |
 | pageHeader | Unify the ghost of PageHeader, ref [PageHeader](/components/page-header) | { ghost: boolean } | true |  |
-| prefixCls | Set prefix className (cooperated with [@ant-prefix](https://github.com/ant-design/ant-design/blob/2c6c789e3a9356f96c47aea0083f5a15538315cf/components/style/themes/default.less#L7)) | string | `ant` |  |
+| prefixCls | Set prefix className (cooperated with [@kenshin-prefix](https://github.com/ant-design/ant-design/blob/2c6c789e3a9356f96c47aea0083f5a15538315cf/components/style/themes/default.less#L7)) | string | `ant` |  |
 | renderEmpty | Set empty content of components. Ref [Empty](/components/empty/) | function(componentName: string): ReactNode | - |  |
 | space | Set Space `size`, ref [Space](/components/space) | { size: `small` \| `middle` \| `large` \| `number` } | - | 4.1.0 |
 | virtual | Disable virtual scroll when set to `false` | boolean | - | 4.3.0 |

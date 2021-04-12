@@ -32,10 +32,10 @@ module.exports = {
   hash: true,
   source: {
     components: './components',
-    docs: './docs',
-    changelog: ['CHANGELOG.zh-CN.md', 'CHANGELOG.en-US.md'],
-    'components/form/v3': ['components/form/v3.zh-CN.md', 'components/form/v3.en-US.md'],
-    'docs/resources': ['./docs/resources.zh-CN.md', './docs/resources.en-US.md'],
+    // docs: './docs',
+    // changelog: ['CHANGELOG.zh-CN.md', 'CHANGELOG.en-US.md'],
+    // 'components/form/v3': ['components/form/v3.zh-CN.md', 'components/form/v3.en-US.md'],
+    // 'docs/resources': ['./docs/resources.zh-CN.md', './docs/resources.en-US.md'],
   },
   theme: './site/theme',
   htmlTemplate: './site/theme/static/template.html',
@@ -62,7 +62,10 @@ module.exports = {
     config.resolve.alias = {
       'antd/lib': path.join(process.cwd(), 'components'),
       'antd/es': path.join(process.cwd(), 'components'),
+      '@': path.join(process.cwd(), 'components'),
       antd: path.join(process.cwd(), 'index'),
+      kenshin: path.join(process.cwd(), 'index'),
+      wdc: path.join(process.cwd(), 'index'),
       site: path.join(process.cwd(), 'site'),
       'react-router': 'react-router/umd/ReactRouter',
     };

@@ -169,7 +169,7 @@
     &:hover {
       z-index: 1;
       border-right-width: 1px;
-      .@{ant-prefix}-input-search-with-button & {
+      .@{kenshin-prefix}-input-search-with-button & {
         z-index: 0;
       }
     }
@@ -188,11 +188,11 @@
     transition: all 0.3s;
 
     // Reset Select's style in addon
-    .@{ant-prefix}-select {
+    .@{kenshin-prefix}-select {
       margin: -(@input-padding-vertical-base + 1px) (-@input-padding-horizontal-base);
 
-      &.@{ant-prefix}-select-single:not(.@{ant-prefix}-select-customize-input)
-        .@{ant-prefix}-select-selector {
+      &.@{kenshin-prefix}-select-single:not(.@{kenshin-prefix}-select-customize-input)
+        .@{kenshin-prefix}-select-selector {
         background-color: inherit;
         border: @border-width-base @border-style-base transparent;
         box-shadow: none;
@@ -200,7 +200,7 @@
 
       &-open,
       &-focused {
-        .@{ant-prefix}-select-selector {
+        .@{kenshin-prefix}-select-selector {
           color: @primary-color;
         }
       }
@@ -214,7 +214,7 @@
     border-bottom-right-radius: 0;
 
     // Reset Select's style in addon
-    .@{ant-prefix}-select .@{ant-prefix}-select-selector {
+    .@{kenshin-prefix}-select .@{kenshin-prefix}-select-selector {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -246,7 +246,7 @@
     border-bottom-left-radius: 0;
 
     // Reset Select's style in addon
-    .@{ant-prefix}-select .@{ant-prefix}-select-selector {
+    .@{kenshin-prefix}-select .@{kenshin-prefix}-select-selector {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -264,11 +264,11 @@
   }
 
   // Fix https://github.com/ant-design/ant-design/issues/5754
-  &-lg .@{ant-prefix}-select-single .@{ant-prefix}-select-selector {
+  &-lg .@{kenshin-prefix}-select-single .@{kenshin-prefix}-select-selector {
     height: @input-height-lg;
   }
 
-  &-sm .@{ant-prefix}-select-single .@{ant-prefix}-select-selector {
+  &-sm .@{kenshin-prefix}-select-single .@{kenshin-prefix}-select-selector {
     height: @input-height-sm;
   }
 
@@ -281,7 +281,7 @@
     &:not(:last-child) {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-      .@{ant-prefix}-input-search & {
+      .@{kenshin-prefix}-input-search & {
         border-top-left-radius: @border-radius-base;
         border-bottom-left-radius: @border-radius-base;
       }
@@ -319,7 +319,7 @@
       display: inline-flex;
     }
 
-    & > .@{ant-prefix}-picker-range {
+    & > .@{kenshin-prefix}-picker-range {
       display: inline-flex;
     }
 
@@ -334,10 +334,10 @@
     }
 
     // reset border for Select, DatePicker, AutoComplete, Cascader, Mention, TimePicker, Input
-    & > .@{ant-prefix}-select > .@{ant-prefix}-select-selector,
-    & > .@{ant-prefix}-select-auto-complete .@{ant-prefix}-input,
-    & > .@{ant-prefix}-cascader-picker .@{ant-prefix}-input,
-    & > .@{ant-prefix}-input-group-wrapper .@{ant-prefix}-input {
+    & > .@{kenshin-prefix}-select > .@{kenshin-prefix}-select-selector,
+    & > .@{kenshin-prefix}-select-auto-complete .@{kenshin-prefix}-input,
+    & > .@{kenshin-prefix}-cascader-picker .@{kenshin-prefix}-input,
+    & > .@{kenshin-prefix}-input-group-wrapper .@{kenshin-prefix}-input {
       border-right-width: @border-width-base;
       border-radius: 0;
 
@@ -350,51 +350,51 @@
       }
     }
 
-    & > .@{ant-prefix}-select-focused {
+    & > .@{kenshin-prefix}-select-focused {
       z-index: 1;
     }
 
     // update z-index for arrow icon
-    & > .@{ant-prefix}-select > .@{ant-prefix}-select-arrow {
+    & > .@{kenshin-prefix}-select > .@{kenshin-prefix}-select-arrow {
       z-index: 1; // https://github.com/ant-design/ant-design/issues/20371
     }
 
     & > *:first-child,
-    & > .@{ant-prefix}-select:first-child > .@{ant-prefix}-select-selector,
-    & > .@{ant-prefix}-select-auto-complete:first-child .@{ant-prefix}-input,
-    & > .@{ant-prefix}-cascader-picker:first-child .@{ant-prefix}-input {
+    & > .@{kenshin-prefix}-select:first-child > .@{kenshin-prefix}-select-selector,
+    & > .@{kenshin-prefix}-select-auto-complete:first-child .@{kenshin-prefix}-input,
+    & > .@{kenshin-prefix}-cascader-picker:first-child .@{kenshin-prefix}-input {
       border-top-left-radius: @border-radius-base;
       border-bottom-left-radius: @border-radius-base;
     }
 
     & > *:last-child,
-    & > .@{ant-prefix}-select:last-child > .@{ant-prefix}-select-selector,
-    & > .@{ant-prefix}-cascader-picker:last-child .@{ant-prefix}-input,
-    & > .@{ant-prefix}-cascader-picker-focused:last-child .@{ant-prefix}-input {
+    & > .@{kenshin-prefix}-select:last-child > .@{kenshin-prefix}-select-selector,
+    & > .@{kenshin-prefix}-cascader-picker:last-child .@{kenshin-prefix}-input,
+    & > .@{kenshin-prefix}-cascader-picker-focused:last-child .@{kenshin-prefix}-input {
       border-right-width: @border-width-base;
       border-top-right-radius: @border-radius-base;
       border-bottom-right-radius: @border-radius-base;
     }
 
     // https://github.com/ant-design/ant-design/issues/12493
-    & > .@{ant-prefix}-select-auto-complete .@{ant-prefix}-input {
+    & > .@{kenshin-prefix}-select-auto-complete .@{kenshin-prefix}-input {
       vertical-align: top;
     }
 
-    .@{ant-prefix}-input-group-wrapper + .@{ant-prefix}-input-group-wrapper {
+    .@{kenshin-prefix}-input-group-wrapper + .@{kenshin-prefix}-input-group-wrapper {
       margin-left: -1px;
-      .@{ant-prefix}-input-affix-wrapper {
+      .@{kenshin-prefix}-input-affix-wrapper {
         border-radius: 0;
       }
     }
 
-    .@{ant-prefix}-input-group-wrapper:not(:last-child) {
-      &.@{ant-prefix}-input-search > .@{ant-prefix}-input-group {
-        & > .@{ant-prefix}-input-group-addon > .@{ant-prefix}-input-search-button {
+    .@{kenshin-prefix}-input-group-wrapper:not(:last-child) {
+      &.@{kenshin-prefix}-input-search > .@{kenshin-prefix}-input-group {
+        & > .@{kenshin-prefix}-input-group-addon > .@{kenshin-prefix}-input-search-button {
           border-radius: 0;
         }
 
-        & > .@{ant-prefix}-input {
+        & > .@{kenshin-prefix}-input {
           border-radius: @border-radius-base 0 0 @border-radius-base;
         }
       }

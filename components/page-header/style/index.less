@@ -1,7 +1,7 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
-@pageheader-prefix-cls: ~'@{ant-prefix}-page-header';
+@pageheader-prefix-cls: ~'@{kenshin-prefix}-page-header';
 
 .@{pageheader-prefix-cls} {
   .reset-component();
@@ -33,13 +33,13 @@
     }
   }
 
-  .@{ant-prefix}-divider-vertical {
+  .@{kenshin-prefix}-divider-vertical {
     height: 14px;
     margin: 0 @margin-sm;
     vertical-align: middle;
   }
 
-  .@{ant-prefix}-breadcrumb + &-heading {
+  .@{kenshin-prefix}-breadcrumb + &-heading {
     margin-top: @margin-xs;
   }
 
@@ -70,7 +70,7 @@
       .text-overflow-ellipsis();
     }
 
-    .@{ant-prefix}-avatar {
+    .@{kenshin-prefix}-avatar {
       margin-right: @margin-sm;
     }
 
@@ -102,15 +102,15 @@
 
   &-footer {
     margin-top: @margin-md;
-    .@{ant-prefix}-tabs {
-      > .@{ant-prefix}-tabs-nav {
+    .@{kenshin-prefix}-tabs {
+      > .@{kenshin-prefix}-tabs-nav {
         margin: 0;
         &::before {
           border: none;
         }
       }
 
-      .@{ant-prefix}-tabs-tab {
+      .@{kenshin-prefix}-tabs-tab {
         padding: @tabs-horizontal-padding-sm;
         font-size: @page-header-tabs-tab-font-size;
       }

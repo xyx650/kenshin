@@ -11,7 +11,7 @@ import MobileMenu from 'rc-drawer';
 import ThemeIcon from './ThemeIcon';
 import Article from './Article';
 import PrevAndNext from './PrevAndNext';
-import Footer from '../Layout/Footer';
+// import Footer from '../Layout/Footer';
 import SiteContext from '../Layout/SiteContext';
 import ComponentDoc from './ComponentDoc';
 import ComponentOverview from './ComponentOverview';
@@ -31,11 +31,11 @@ function getModuleData(props) {
   const excludedSuffix = utils.isZhCN(props.location.pathname) ? 'en-US.md' : 'zh-CN.md';
   let data;
   switch (moduleName) {
-    case 'docs/react':
-    case 'changelog':
-    case 'changelog-cn':
-      data = [...props.picked['docs/react'], ...props.picked.changelog];
-      break;
+    // case 'docs/react':
+    // case 'changelog':
+    // case 'changelog-cn':
+    //   data = [...props.picked['docs/react'], ...props.picked.changelog];
+    //   break;
     default:
       data = props.picked[moduleName];
   }
@@ -331,38 +331,38 @@ class MainContent extends Component {
     }
   };
 
-  renderContributors() {
-    const {
-      localizedPageData: { meta },
-      intl: { formatMessage },
-    } = this.props;
-    return (
-      <ContributorsList
-        className="contributors-list"
-        fileName={meta.filename}
-        renderItem={(item, loading) =>
-          loading ? (
-            <Avatar style={{ opacity: 0.3 }} />
-          ) : (
-            <Tooltip
-              title={`${formatMessage({ id: 'app.content.contributors' })}: ${item.username}`}
-              key={item.username}
-            >
-              <a
-                href={`https://github.com/${item.username}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Avatar src={item.url}>{item.username}</Avatar>
-              </a>
-            </Tooltip>
-          )
-        }
-        repo="ant-design"
-        owner="ant-design"
-      />
-    );
-  }
+  // renderContributors() {
+  //   const {
+  //     localizedPageData: { meta },
+  //     intl: { formatMessage },
+  //   } = this.props;
+  //   return (
+  //     <ContributorsList
+  //       className="contributors-list"
+  //       fileName={meta.filename}
+  //       renderItem={(item, loading) =>
+  //         loading ? (
+  //           <Avatar style={{ opacity: 0.3 }} />
+  //         ) : (
+  //           <Tooltip
+  //             title={`${formatMessage({ id: 'app.content.contributors' })}: ${item.username}`}
+  //             key={item.username}
+  //           >
+  //             <a
+  //               href={`https://github.com/${item.username}`}
+  //               target="_blank"
+  //               rel="noopener noreferrer"
+  //             >
+  //               <Avatar src={item.url}>{item.username}</Avatar>
+  //             </a>
+  //           </Tooltip>
+  //         )
+  //       }
+  //       repo="ant-design"
+  //       owner="ant-design"
+  //     />
+  //   );
+  // }
 
   renderMainContent({ theme, setIframeTheme }) {
     const { localizedPageData, demos, location } = this.props;
@@ -387,14 +387,14 @@ class MainContent extends Component {
             theme={theme}
             setIframeTheme={setIframeTheme}
           />
-          {this.renderContributors()}
+          {/*{this.renderContributors()}*/}
         </>
       );
     }
     return (
       <>
         <Article {...this.props} content={localizedPageData} />
-        {this.renderContributors()}
+        {/*{this.renderContributors()}*/}
       </>
     );
   }
@@ -444,15 +444,15 @@ class MainContent extends Component {
             <section className={mainContainerClass}>
               {this.renderMainContent({ theme, setIframeTheme })}
             </section>
-            {componentPage && (
-              <div className="fixed-widgets">
-                <Dropdown overlay={this.getThemeSwitchMenu()} placement="topCenter">
-                  <Avatar className="fixed-widgets-avatar" size={44} icon={<ThemeIcon />} />
-                </Dropdown>
-              </div>
-            )}
+            {/*{componentPage && (*/}
+            {/*  <div className="fixed-widgets">*/}
+            {/*    <Dropdown overlay={this.getThemeSwitchMenu()} placement="topCenter">*/}
+            {/*      <Avatar className="fixed-widgets-avatar" size={44} icon={<ThemeIcon />} />*/}
+            {/*    </Dropdown>*/}
+            {/*  </div>*/}
+            {/*)}*/}
             <PrevAndNext prev={prev} next={next} />
-            <Footer location={location} />
+            {/*<Footer location={location} />*/}
           </Col>
         </Row>
       </div>

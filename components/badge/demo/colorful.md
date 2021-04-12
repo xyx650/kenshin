@@ -58,7 +58,7 @@ ReactDOM.render(
 ```
 
 ```css
-.ant-tag {
+.kenshin-tag {
   margin-bottom: 8px;
 }
 ```

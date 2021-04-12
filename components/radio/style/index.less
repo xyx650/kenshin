@@ -1,7 +1,7 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
-@radio-prefix-cls: ~'@{ant-prefix}-radio';
+@radio-prefix-cls: ~'@{kenshin-prefix}-radio';
 @radio-group-prefix-cls: ~'@{radio-prefix-cls}-group';
 @radio-inner-prefix-cls: ~'@{radio-prefix-cls}-inner';
 @radio-duration: 0.3s;
@@ -15,11 +15,11 @@
   font-size: 0;
   line-height: unset;
 
-  .@{ant-prefix}-badge-count {
+  .@{kenshin-prefix}-badge-count {
     z-index: 1;
   }
 
-  > .@{ant-prefix}-badge:not(:first-child) > .@{radio-prefix-cls}-button-wrapper {
+  > .@{kenshin-prefix}-badge:not(:first-child) > .@{radio-prefix-cls}-button-wrapper {
     border-left: none;
   }
 }

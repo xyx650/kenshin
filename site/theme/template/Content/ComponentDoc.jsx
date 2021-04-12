@@ -167,10 +167,10 @@ class ComponentDoc extends React.Component {
           <h1>
             {title[locale] || title}
             {!subtitle ? null : <span className="subtitle">{subtitle}</span>}
-            <EditButton
-              title={<FormattedMessage id="app.content.edit-page" />}
-              filename={filename}
-            />
+            {/*<EditButton*/}
+            {/*  title={<FormattedMessage id="app.content.edit-page" />}*/}
+            {/*  filename={filename}*/}
+            {/*/>*/}
           </h1>
           <ComponentInMarkdown utils={utils} content={content} />
           <h2>

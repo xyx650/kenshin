@@ -49,7 +49,7 @@ ReactDOM.render(<App />, mountNode);
 ```
 
 <style>
-[data-theme='compact'] .ant-drawer-body p {
+[data-theme='compact'] .kenshin-drawer-body p {
   margin-bottom: 0;
 }
 </style>

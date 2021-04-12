@@ -34,16 +34,17 @@ export default ({
   onLangChange,
   onDirectionChange,
 }: NavigationProps) => {
-  const [isGitee, setIsGitee] = React.useState(false);
+  // const [isGitee, setIsGitee] = React.useState(false);
+  const [, setIsGitee] = React.useState(false);
   const menuMode = isMobile ? 'inline' : 'horizontal';
 
   const module = pathname.split('/').slice(0, -1).join('/');
   let activeMenuItem = module || 'home';
-  if (location.pathname === 'changelog' || location.pathname === 'changelog-cn') {
-    activeMenuItem = 'docs/react';
-  } else if (location.pathname === 'docs/resources' || location.pathname === 'docs/resources-cn') {
-    activeMenuItem = 'docs/resources';
-  }
+  // if (location.pathname === 'changelog' || location.pathname === 'changelog-cn') {
+  //   activeMenuItem = 'docs/react';
+  // } else if (location.pathname === 'docs/resources' || location.pathname === 'docs/resources-cn') {
+  //   activeMenuItem = 'docs/resources';
+  // }
 
   let additional: React.ReactNode = null;
   const additionalItems = [
@@ -97,11 +98,11 @@ export default ({
           <FormattedMessage id="app.header.menu.components" />
         </Link>
       </Menu.Item>
-      <Menu.Item key="docs/resources">
-        <Link to={utils.getLocalizedPathname('/docs/resources', isZhCN, location.query)}>
-          <FormattedMessage id="app.header.menu.resource" />
-        </Link>
-      </Menu.Item>
+      {/*<Menu.Item key="docs/resources">*/}
+      {/*  <Link to={utils.getLocalizedPathname('/docs/resources', isZhCN, location.query)}>*/}
+      {/*    <FormattedMessage id="app.header.menu.resource" />*/}
+      {/*  </Link>*/}
+      {/*</Menu.Item>*/}
       {showTechUIButton && (
         <Menu.Item key="tech-ui">
           <a href="https://techui.alipay.com" target="__blank" rel="noopener noreferrer">
@@ -109,11 +110,11 @@ export default ({
           </a>
         </Menu.Item>
       )}
-      {isZhCN && !isGitee && (
-        <Menu.Item key="mirror">
-          <a href="https://ant-design.gitee.io">国内镜像</a>
-        </Menu.Item>
-      )}
+      {/*{isZhCN && !isGitee && (*/}
+      {/*  <Menu.Item key="mirror">*/}
+      {/*    <a href="https://ant-design.gitee.io">国内镜像</a>*/}
+      {/*  </Menu.Item>*/}
+      {/*)}*/}
       {additional}
     </Menu>
   );

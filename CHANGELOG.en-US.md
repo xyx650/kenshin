@@ -1192,7 +1192,7 @@ It is a wrong release which same as `4.10.3`, don't use it.
 - 🐞 Fix Steps `subtitle` transition style. [#24593](https://github.com/ant-design/ant-design/pull/24593)
 - 🐞 Fix Alert close icon `padding` style. [#24471](https://github.com/ant-design/ant-design/pull/24471)
 - 🐞 Fix Tree `@tree-directory-selected-bg` don't work. [#24468](https://github.com/ant-design/ant-design/pull/24468) [@morenyang](https://github.com/morenyang)
-- 🐞 Fix `@ant-prefix` don't work on some styles. [#24459](https://github.com/ant-design/ant-design/pull/24459) [@morenyang](https://github.com/morenyang)
+- 🐞 Fix `@kenshin-prefix` don't work on some styles. [#24459](https://github.com/ant-design/ant-design/pull/24459) [@morenyang](https://github.com/morenyang)
 - 💄 Descriptions add less variables `@descriptions-item-trailing-colon` and etc. [#24032](https://github.com/ant-design/ant-design/pull/24032) [@hengkx](https://github.com/hengkx)
 - 🌐 Localization
   - 🇮🇪 Add Irish(ga_IE) locale. [#24609](https://github.com/ant-design/ant-design/pull/24609) [@AbhijeetGaware](https://github.com/AbhijeetGaware)

@@ -10,7 +10,7 @@
 @import './status';
 @import './mixin';
 
-@form-prefix-cls: ~'@{ant-prefix}-form';
+@form-prefix-cls: ~'@{kenshin-prefix}-form';
 @form-item-prefix-cls: ~'@{form-prefix-cls}-item';
 @form-font-height: ceil(@font-size-base * @line-height-base);
 
@@ -67,7 +67,7 @@
   }
 
   &-hidden,
-  &-hidden.@{ant-prefix}-row {
+  &-hidden.@{kenshin-prefix}-row {
     // https://github.com/ant-design/ant-design/issues/26141
     display: none;
   }
@@ -162,7 +162,7 @@
     flex-direction: column;
     flex-grow: 1;
 
-    &:first-child:not([class^=~"'@{ant-prefix}-col-'"]):not([class*=~"' @{ant-prefix}-col-'"]) {
+    &:first-child:not([class^=~"'@{kenshin-prefix}-col-'"]):not([class*=~"' @{kenshin-prefix}-col-'"]) {
       width: 100%;
     }
   }
@@ -190,7 +190,7 @@
     .explainAndExtraDistance((@form-item-margin-bottom - @form-font-height) / 2);
   }
 
-  .@{ant-prefix}-input-textarea-show-count {
+  .@{kenshin-prefix}-input-textarea-show-count {
     &::after {
       margin-bottom: -22px;
     }
@@ -198,7 +198,7 @@
 }
 
 .show-help-motion(@className, @keyframeName, @duration: @animation-duration-slow) {
-  @name: ~'@{ant-prefix}-@{className}';
+  @name: ~'@{kenshin-prefix}-@{className}';
   .make-motion(@name, @keyframeName, @duration);
   .@{name}-enter,
   .@{name}-appear {

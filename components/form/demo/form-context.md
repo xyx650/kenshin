@@ -155,11 +155,11 @@ ReactDOM.render(<Demo />, mountNode);
   margin-bottom: 8px;
 }
 
-#components-form-demo-form-context .user .ant-avatar {
+#components-form-demo-form-context .user .kenshin-avatar {
   margin-right: 8px;
 }
 
-.ant-row-rtl #components-form-demo-form-context .user .ant-avatar {
+.kenshin-row-rtl #components-form-demo-form-context .user .kenshin-avatar {
   margin-right: 0;
   margin-left: 8px;
 }

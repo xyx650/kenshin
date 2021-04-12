@@ -3,7 +3,7 @@
 
 @input-affix-margin: 4px;
 
-.@{ant-prefix}-input {
+.@{kenshin-prefix}-input {
   &-affix-wrapper {
     .input();
     display: inline-flex;
@@ -11,7 +11,7 @@
     &:not(&-disabled):hover {
       .hover();
       z-index: 1;
-      .@{ant-prefix}-input-search-with-button & {
+      .@{kenshin-prefix}-input-search-with-button & {
         z-index: 0;
       }
     }
@@ -22,12 +22,12 @@
     }
 
     &-disabled {
-      .@{ant-prefix}-input[disabled] {
+      .@{kenshin-prefix}-input[disabled] {
         background: transparent;
       }
     }
 
-    > input.@{ant-prefix}-input {
+    > input.@{kenshin-prefix}-input {
       padding: 0;
       border: none;
       outline: none;
