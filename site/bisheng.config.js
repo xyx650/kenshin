@@ -28,7 +28,6 @@ function alertBabelConfig(rules) {
 }
 
 module.exports = {
-  root: './',
   port: 8001,
   hash: true,
   source: {
