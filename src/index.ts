@@ -1,6 +1,6 @@
-import Foo from './foo';
-import Button from './button';
-import Loading from './loading';
-import Empty from './empty';
+import Rate from './rate'
+import ColorPicker from './ColorPicker'
+// import Loading from './loading';
+// import Empty from './empty';
 
-export { Foo, Button, Loading, Empty };
+export { Rate, ColorPicker }

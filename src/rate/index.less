@@ -1,0 +1,48 @@
+@import "../_styles/common/index";
+
+
+@rate-prefix-cls: ~'@{prefix}-rate';
+
+@{rate-prefix-cls} {
+  height: var(--rate-height);
+  line-height: 1;
+}
+
+@{rate-prefix-cls}__item {
+  display: inline-block;
+  position: relative;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+@{rate-prefix-cls}__icon {
+  position: relative;
+  display: inline-block;
+  font-size: var(--rate-icon-size);
+  margin-right: var(--rate-icon-margin);
+  color: var(--rate-icon-color);
+  transition: .3s;
+
+  &.hover {
+    transform: scale(1.15);
+  }
+
+  .path2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+@{rate-prefix-cls}__decimal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  overflow: hidden;
+}
+
+@{rate-prefix-cls}__text {
+  font-size: var(--rate-font-size);
+  vertical-align: middle;
+}
