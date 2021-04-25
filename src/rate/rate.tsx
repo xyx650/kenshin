@@ -1,5 +1,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
+import type { BaseComponentType } from '@/_base/component'
+import { classNames, className, style } from '@/_base/component'
 import './index.less'
 
 type classMap = {
@@ -42,8 +44,6 @@ export type rateProps = {
   textColor: string;
   disabled: boolean;
   value: number;
-
-
   textTemplate: string;
   lowThreshold: number;
   highThreshold: number;
@@ -54,9 +54,9 @@ export type rateProps = {
   voidIconClass: string;
   disabledVoidIconClass: string;
   allowHalf: boolean;
-  className?: string;
-  style?: { [key: string]: string },
   onChange?: (value: number) => void;
+  style?: BaseComponentType['style'];
+  className?: BaseComponentType['className'];
 }
 
 export default class Rate extends React.Component<rateProps, rateState> {
@@ -273,19 +273,18 @@ export default class Rate extends React.Component<rateProps, rateState> {
     })
   }
 
-  classNames(...args: string[]) {
-    return classnames(args)
-  }
+  style = style
+  className = className
+  classNames = classNames
+  // className(...args: string[]) {
+  //   const { className } = this.props
+  //   return this.classNames.apply(this, args.concat([className!]))
+  // }
 
-  className(...args: string[]) {
-    const { className } = this.props
-    return this.classNames.apply(this, args.concat([className!]))
-  }
-
-  style(args: rateProps['style'] = {}) {
-    const { style } = this.props
-    return Object.assign({}, args, style)
-  }
+  // style(args: rateProps['style'] = {}) {
+  //   const { style } = this.props
+  //   return Object.assign({}, args, style)
+  // }
 
 
   render() {
@@ -320,10 +319,10 @@ export default class Rate extends React.Component<rateProps, rateState> {
       }
       {
         showText ?
-          <span className="kenshin-rate__text" style={{ color: textColor }}>
+          <span className='kenshin-rate__text' style={{ color: textColor }}>
             {this.showText()}
           </span> :
-        null
+          null
       }
     </div>
   }

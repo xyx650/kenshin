@@ -1,6 +1,11 @@
 import Rate from './rate'
-import ColorPicker from './ColorPicker'
-// import Loading from './loading';
-// import Empty from './empty';
+import ColorPicker from './colorPicker'
+import Button from './button'
+import Slider from './slider'
+import Input from './input'
+import Progress from './progress'
 
-export { Rate, ColorPicker }
+export {
+  Rate, ColorPicker, Button,
+  Input, Slider,Progress
+}

@@ -17,5 +17,5 @@ export default defineConfig({
   hash: true,
   history: { type: 'hash' },
   publicPath: './',
-  dynamicImport: {},
+  dynamicImport: {}
 });

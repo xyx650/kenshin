@@ -1,12 +1,12 @@
-## Rate 评分
+## Slider 滑块
 
 Demo:
 
 ```tsx
 import React from 'react';
-import { Rate } from 'kenshin';
+import { Slider } from 'kenshin';
 
-export default () => <Rate />;
+export default () => <Slider value={50}/>;
 ```
 
 <API></API>

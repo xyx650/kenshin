@@ -1,16 +1,14 @@
 import * as React from 'react'
 import draggable from './draggable'
 import Component from '@/_base/component'
-import type { DragOptions } from '@/colorPicker/types'
+import type { DragOptions, ColorType } from '@/colorPicker/types'
+import { childContext } from '@/colorPicker/pickerDropdown'
 
 
 type HueSliderProps = {
   vertical: boolean;
-  color: {
-    value: number;
-    set: (key: string, val: number) => void;
-    get: (key: string) => number
-  }
+  color: ColorType,
+  onChange?: (color: ColorType) => void
 }
 
 type HueSliderState = {
@@ -32,7 +30,6 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
     }
   }
 
-
   componentDidMount() {
     const { bar, thumb } = this
     const dragConfig: DragOptions = {
@@ -45,7 +42,7 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
   }
 
   handleClick(e: MouseEvent) {
-    const thumb = this.thumb
+    const thumb = this.thumb.current!
     const target = e.target
     // if (target !== thumb) {
     this.handleDrag(e)
@@ -69,7 +66,7 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
       top = Math.max(thumb.offsetHeight / 2, top)
       hue = Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 360)
     }
-    color.set('hue', hue)
+    color.set('hue', hue!.toString())
     this.update()
     onChange(color)
   }
@@ -81,7 +78,7 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
     const hue = color.get('hue')
     if (!el) return 0
     const thumb = this.thumb.current!
-    return Math.round(hue * (el.offsetWidth - thumb.offsetWidth / 2) / 360)
+    return Math.round(+hue * (el.offsetWidth - thumb.offsetWidth / 2) / 360)
   }
 
   getThumbTop(): number {
@@ -91,7 +88,7 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
     const hue = color.get('hue')
     if (!el) return 0
     const thumb = this.thumb.current!
-    return Math.round(hue * (el.offsetHeight - thumb.offsetHeight / 2) / 360)
+    return Math.round(+hue * (el.offsetHeight - thumb.offsetHeight / 2) / 360)
   }
 
   update() {
@@ -121,8 +118,8 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
           style={{ left: thumbLeft + 'px', top: thumbTop + 'px' }}
           ref={this.thumb}
         />
-
       </div>
     )
   }
 }
+

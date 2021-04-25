@@ -1,51 +1,45 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import Component from '../_base/component'
+import PickerDropdown from '@/colorPicker/pickerDropdown'
 import Color from './color'
 import './index.less'
+// import 'element-theme-default'
+import type { ColorType } from '@/colorPicker/types'
 
 export type ColorPickerProps = {
-  value?: string,
+  value: string | number | null,
   showAlpha: boolean,
   colorFormat: string,
-  onChange: () => void
+  onChange: (color: string | null) => void
 }
 
-type ColorType = {
-  _hue?: number,
-  _saturation?: number,
-  _value?: number,
-  _alpha?: number,
-  enableAlpha?: boolean,
-  format?: string,
-  value?: string,
-  set: (props: string, value: unknown) => void,
-  get: (props: string) => unknown,
-  toRgb: () => { r: number, g: number, b: number },
-  fromString: (value: string) => void,
-  doOnChange: () => void
-}
 
 export type ColorPickerState = {
-  value?: string,
+  value: string | null | number,
   color: ColorType,
   showPicker: boolean,
   showPanelColor: boolean
 }
 
+
 class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
-  static defaultProps: { onChange?: () => void }
+  static defaultProps: { onChange: () => void }
+
+  private dropdown = React.createRef<PickerDropdown>()
+
+  popperElm: React.RefObject<PickerDropdown>['current'] | undefined
 
   constructor(props: ColorPickerProps) {
     super(props)
-    const color: ColorType = new Color({
+    const color = new Color({
       enableAlpha: this.props.showAlpha,
       format: this.props.colorFormat
-    })
+    } as ColorType)
 
     this.state = {
       value: this.props.value,
-      color: color,
+      color,
       showPicker: false,
       showPanelColor: false
     }
@@ -54,10 +48,10 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
   componentDidMount() {
     const { value, color } = this.state
     if (value) {
-      color.fromString(value)
+      color.fromString!(value.toString())
       this.setState({ color })
     }
-    this.popperElm = this.refs.dropdown
+    this.popperElm = this.dropdown.current!
   }
 
   getChildContext() {
@@ -67,15 +61,15 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
   }
 
   //
-  handleChange(color: ColorType): void {
-    this.setState({ value: color.value!, color })
+  handleChange(color: Color) {
+    this.setState({ value: color.value as string, color })
   }
 
   // 输入后确认
   confirmValue() {
     const { value } = this.state
     const { onChange } = this.props
-    this.setState({ showPicker: false }, () => onChange(value))
+    this.setState({ showPicker: false }, () => onChange(value as string))
   }
 
   // 删除值
@@ -83,9 +77,9 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
     this.setState({
       showPicker: false,
       showPanelColor: false,
-      value: undefined
+      value: null
     }, () => {
-      this.props.onChange()
+      this.props.onChange(null)
       this.resetColor()
     })
   }
@@ -98,7 +92,7 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
   resetColor(): void {
     const { value, color } = this.state
     if (value) {
-      color.fromString(value)
+      color.fromString!(value.toString())
       this.setState({ color })
     }
   }
@@ -142,7 +136,14 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
           </span>
         <span className='kenshin-color-picker__icon kenshin-icon-caret-bottom' />
       </div>
-
+      <PickerDropdown
+        ref={this.dropdown}
+        showPicker={showPicker}
+        color={color}
+        onPick={() => this.confirmValue()}
+        onClear={() => this.clearValue()}
+        showAlpha={showAlpha}
+      />
 
     </div>
   }
@@ -151,5 +152,6 @@ class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
 ColorPicker.defaultProps = {
   onChange() {}
 }
+
 
 export default ColorPicker

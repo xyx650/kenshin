@@ -1,23 +1,25 @@
-const hsv2hsl = function(hue: number, sat: number, val: number) {
-  let sl, l
+import { ColorType } from '@/colorPicker/types'
 
-  l = (2 - sat) * val
-  sl = sat * val
+const hsv2hsl = function(hue: number, sat: number, val: number) {
+  let l = (2 - sat) * val
+  let sl = sat * val
   sl /= l < 1 ? l : 2 - l
   sl = sl || 0
   l /= 2
   return [hue, sl, l]
 }
 
+// is '1.0' or not
 const isOnePointZero = function(n: string | number) {
   return typeof n === 'string' && n.indexOf('.') !== -1 && parseFloat(n) === 1
 }
 
+// a string contains '%'
 const isPercentage = function(n: string | number) {
   return typeof n === 'string' && n.indexOf('%') !== -1
 }
 
-
+//
 const bound01 = function(value: string | number, max: number) {
   if (isOnePointZero(value)) value = '100%'
 
@@ -38,8 +40,6 @@ const bound01 = function(value: string | number, max: number) {
   return value % max / parseFloat(max.toString())
 }
 
-const INT_HEX_MAP = { 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F' }
-
 //十六进制转换
 const toHex = function({ r, g, b }: { r: number; g: number; b: number }) {
   const hexOne = function(value: number) {
@@ -52,15 +52,9 @@ const toHex = function({ r, g, b }: { r: number; g: number; b: number }) {
   return '#' + hexOne(r) + hexOne(g) + hexOne(b)
 }
 
-const HEX_INT_MAP = { A: 10, B: 11, C: 12, D: 13, E: 14, F: 15 }
-
-const parseHexChannel = function(hex) {
-  if (hex.length === 2) {
-    return (HEX_INT_MAP[hex[0].toUpperCase()] || +hex[0]) * 16 +
-      (HEX_INT_MAP[hex[1].toUpperCase()] || +hex[1])
-  }
-
-  return HEX_INT_MAP[hex[1].toUpperCase()] || +hex[1]
+// 16 转 10 进制
+const parseHexChannel = function(hex: string): number {
+  return parseInt(hex, 16)
 }
 
 const hsl2hsv = function(hue: number, sat: number, light: number) {
@@ -88,7 +82,7 @@ const hsl2hsv = function(hue: number, sat: number, light: number) {
 // Converts an RGB color value to HSV
 // *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
 // *Returns:* { h, s, v } in [0,1]
-const rgb2hsv = function(r, g, b) {
+const rgb2hsv = function(r: number, g: number, b: number) {
   r = bound01(r, 255)
   g = bound01(g, 255)
   b = bound01(b, 255)
@@ -115,7 +109,7 @@ const rgb2hsv = function(r, g, b) {
         h = (r - g) / d + 4
         break
     }
-    h /= 6
+    h = (h || 0) / 6
   }
 
   return {
@@ -129,7 +123,7 @@ const rgb2hsv = function(r, g, b) {
 // Converts an HSV color value to RGB.
 // *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
 // *Returns:* { r, g, b } in the set [0, 255]
-const hsv2rgb = function(h, s, v) {
+const hsv2rgb = function(h: number, s: number, v: number) {
   h = bound01(h, 360) * 6
   s = bound01(s, 100)
   v = bound01(v, 100)
@@ -152,7 +146,17 @@ const hsv2rgb = function(h, s, v) {
 }
 
 export default class Color {
-  constructor(options) {
+  _hue: number
+  _saturation: number
+  _value: number
+  _alpha: number | string
+  enableAlpha: boolean
+  format: string
+  value: string | number
+
+  [key: string]: any
+
+  constructor(options: Color) {
     this._hue = 0
     this._saturation = 100
     this._value = 100
@@ -166,21 +170,20 @@ export default class Color {
 
     for (let option in options) {
       if (options.hasOwnProperty(option)) {
-        this[option] = options[option]
+        this[option] = (options as any)[option]
       }
     }
 
     this.doOnChange()
   }
 
-  set(prop, value) {
+  set(prop: string | { [key: string]: string }, value?: string | number) {
     if (arguments.length === 1 && typeof prop === 'object') {
       for (let p in prop) {
         if (prop.hasOwnProperty(p)) {
           this.set(p, prop[p])
         }
       }
-
       return
     }
 
@@ -188,7 +191,7 @@ export default class Color {
     this.doOnChange()
   }
 
-  get(prop) {
+  get(prop: string): string | number {
     return this['_' + prop]
   }
 
@@ -196,17 +199,16 @@ export default class Color {
     return hsv2rgb(this._hue, this._saturation, this._value)
   }
 
-  fromString(value) {
+  fromString(value: string) {
     if (!value) {
       this._hue = 0
       this._saturation = 100
       this._value = 100
-
       this.doOnChange()
       return
     }
 
-    const fromHSV = (h, s, v) => {
+    const fromHSV = (h: number, s: number, v: number) => {
       this._hue = h
       this._saturation = s
       this._value = v
@@ -222,7 +224,7 @@ export default class Color {
         .map((val, index) => index > 2 ? parseFloat(val) : parseInt(val, 10))
 
       if (parts.length === 4) {
-        this._alpha = Math.floor(parseFloat(parts[3]) * 100)
+        this._alpha = Math.floor(parseFloat(parts[3].toString()) * 100)
       }
       if (parts.length >= 3) {
         const { h, s, v } = hsl2hsv(parts[0], parts[1], parts[2])
@@ -236,7 +238,7 @@ export default class Color {
         .map((val, index) => index > 2 ? parseFloat(val) : parseInt(val, 10))
 
       if (parts.length === 4) {
-        this._alpha = Math.floor(parseFloat(parts[3]) * 100)
+        this._alpha = Math.floor(parseFloat(parts[3].toString()) * 100)
       }
       if (parts.length >= 3) {
         fromHSV(parts[0], parts[1], parts[2])
@@ -249,7 +251,7 @@ export default class Color {
         .map((val, index) => index > 2 ? parseFloat(val) : parseInt(val, 10))
 
       if (parts.length === 4) {
-        this._alpha = Math.floor(parseFloat(parts[3]) * 100)
+        this._alpha = Math.floor(parseFloat(parts[3].toString()) * 100)
       }
       if (parts.length >= 3) {
         const { h, s, v } = rgb2hsv(parts[0], parts[1], parts[2])
@@ -269,7 +271,7 @@ export default class Color {
         b = parseHexChannel(hex.substring(4))
       }
 
-      const { h, s, v } = rgb2hsv(r, g, b)
+      const { h, s, v } = rgb2hsv(<number>r, <number>g, <number>b)
       fromHSV(h, s, v)
     }
   }
@@ -281,15 +283,15 @@ export default class Color {
       switch (format) {
         case 'hsl': {
           const hsl = hsv2hsl(_hue, _saturation / 100, _value / 100)
-          this.value = `hsla(${_hue}, ${Math.round(hsl[1] * 100)}%, ${Math.round(hsl[2] * 100)}%, ${_alpha / 100})`
+          this.value = `hsla(${_hue}, ${Math.round(hsl[1] * 100)}%, ${Math.round(hsl[2] * 100)}%, ${+_alpha / 100})`
           break
         }
         case 'hsv':
-          this.value = `hsva(${_hue}, ${Math.round(_saturation)}%, ${Math.round(_value)}%, ${_alpha / 100})`
+          this.value = `hsva(${_hue}, ${Math.round(_saturation)}%, ${Math.round(_value)}%, ${+_alpha / 100})`
           break
         default: {
           const { r, g, b } = hsv2rgb(_hue, _saturation, _value)
-          this.value = `rgba(${r}, ${g}, ${b}, ${_alpha / 100})`
+          this.value = `rgba(${r}, ${g}, ${b}, ${+_alpha / 100})`
         }
       }
     } else {

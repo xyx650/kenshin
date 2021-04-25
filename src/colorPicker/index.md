@@ -6,7 +6,8 @@ Demo:
 import React from 'react';
 import { ColorPicker } from 'kenshin';
 
-export default () => <ColorPicker />;
+
+export default () => <ColorPicker value='#ffffff'/>;
 ```
 
 <API/>

@@ -15,7 +15,7 @@ export default function(element: HTMLDivElement, options: DragOptions) {
     isDragging = false
     options.end?.(e)
   }
-  element.addEventListener('mousedown', function(e) {
+  element?.addEventListener('mousedown', function(e) {
     if (isDragging) return
     document.onselectstart = function() {
       return false

@@ -2,11 +2,11 @@ import * as React from 'react'
 
 import Component from '@/_base/component'
 import draggable from '@/colorPicker/draggable'
-import type { DragOptions, AlphaSliderState } from '@/colorPicker/types'
+import type { DragOptions, AlphaSliderState, ColorType } from '@/colorPicker/types'
 
 type AlphaSliderProps = {
-  color: any,
-  vertical: boolean
+  color: ColorType,
+  vertical?: boolean
 }
 
 export default class AlphaSlider extends Component<AlphaSliderProps, AlphaSliderState> {
@@ -70,7 +70,7 @@ export default class AlphaSlider extends Component<AlphaSliderProps, AlphaSlider
     const alpha = color._alpha
     if (!el) return 0
     const thumb = this.thumb.current!
-    return Math.round(alpha * (el.offsetWidth - thumb.offsetWidth / 2) / 100)
+    return Math.round(+alpha * (el.offsetWidth - thumb.offsetWidth / 2) / 100)
   }
 
   getThumbTop() {
@@ -80,7 +80,7 @@ export default class AlphaSlider extends Component<AlphaSliderProps, AlphaSlider
     const alpha = color._alpha
     if (!el) return 0
     const thumb = this.thumb.current!
-    return Math.round(alpha * (el.offsetHeight - thumb.offsetHeight / 2) / 100)
+    return Math.round(+alpha * (el.offsetHeight - thumb.offsetHeight / 2) / 100)
   }
 
   getBackground() {
