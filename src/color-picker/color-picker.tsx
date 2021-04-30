@@ -1,11 +1,10 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import Component from '../_base/component'
-import PickerDropdown from '@/colorPicker/pickerDropdown'
+import PickerDropdown from './picker-dropdown'
 import Color from './color'
 import './index.less'
-// import 'element-theme-default'
-import type { ColorType } from '@/colorPicker/types'
+import type { ColorType } from './types'
 
 export type ColorPickerProps = {
   value: string | number | null,

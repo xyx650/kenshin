@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Component from '@/_base/component'
-import draggable from '@/colorPicker/draggable'
-import type { ColorType, DragOptions, SvPanelState } from '@/colorPicker/types'
+import draggable from './draggable'
+import type { ColorType, DragOptions, SvPanelState } from './types'
 
 
 export type SvPanelProps = {

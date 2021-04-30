@@ -3,9 +3,14 @@ import Component from '@/_base/component'
 
 export type ViewProps = {
   show: boolean
+  onMouseEnter?: () => void
 }
 
 export default class View extends Component<ViewProps> {
+  onMouseEnter() {
+    this.props.onMouseEnter?.()
+  }
+
   render() {
     const classNames = []
     const { show = true, className = '', children } = this.props

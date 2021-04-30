@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import Component from '@/_base/component'
-import draggable from '@/colorPicker/draggable'
-import type { DragOptions, AlphaSliderState, ColorType } from '@/colorPicker/types'
+import draggable from './draggable'
+import type { DragOptions, AlphaSliderState, ColorType } from './types'
 
 type AlphaSliderProps = {
   color: ColorType,

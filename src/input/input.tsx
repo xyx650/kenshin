@@ -29,7 +29,7 @@ export type InputProps = {
 
   autosize?: boolean | autosizeObj
   rows: number
-  resize?: 'none' | 'both' | 'horizontal' | 'vertical'
+  resize?: React.CSSProperties['resize']
 
   onFocus: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
   onBlur: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
@@ -46,7 +46,7 @@ export type InputProps = {
 }
 
 export type InputState = {
-  textareaStyle: { resize: InputProps['resize'], height?: string }
+  textareaStyle: { resize: React.CSSProperties['resize'], height?: React.CSSProperties['height'] }
 }
 
 
@@ -170,52 +170,45 @@ export default class Input extends Component<InputProps, InputState> {
 
     // 多行文本
     if (type === 'textarea') {
-      return (
-        <div style={this.style()} className={this.className(classname)}>
-          <textarea
-            {...otherProps}
-            ref={this.textarea}
-            className='kenshin-textarea__inner'
-            style={this.state.textareaStyle}
-            rows={rows}
-            onChange={e => this.handleChange(e)}
-            onFocus={this.handleFocus.bind(this)}
-            onBlur={this.handleBlur.bind(this)}
-          />
-        </div>
-      )
-    }
-
-    // 单行文本
-    return (
-      <div
-        style={this.style()}
-        className={this.className(classname)}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {prepend && <div className='kenshin-input-group__prepend'>{prepend}</div>}
-        {
-          typeof icon === 'string' ?
-            <i
-              className={`kenshin-input__icon kenshin-icon-${icon}`}
-              onClick={e => this.handleIconClick(e)}
-            >{prepend}</i>
-            : icon
-        }
-        <input
+      return <div style={this.style()} className={this.className(classname)}>
+        <textarea
           {...otherProps}
-          ref={this.input}
-          type={type}
-          className='kenshin-input__inner'
-          autoComplete={autoComplete}
+          ref={this.textarea}
+          className='kenshin-textarea__inner'
+          style={this.state.textareaStyle}
+          rows={rows}
           onChange={e => this.handleChange(e)}
           onFocus={this.handleFocus.bind(this)}
           onBlur={this.handleBlur.bind(this)}
         />
-        {validating && <i className='kenshin-input__icon kenshin-icon-loading' />}
-        {append && <div className='kenshin-input-group__append'>{append}</div>}
       </div>
-    )
+    }
+
+    // 单行文本
+    return <div
+      style={this.style()}
+      className={this.className(classname)}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {prepend && <div className='kenshin-input-group__prepend'>{prepend}</div>}
+      {
+        typeof icon === 'string'
+          ? <i className={`kenshin-input__icon kenshin-icon-${icon}`} onClick={e => this.handleIconClick(e)}>{prepend}</i>
+          : icon
+      }
+      <input
+        {...otherProps}
+        ref={this.input}
+        type={type}
+        className='kenshin-input__inner'
+        autoComplete={autoComplete}
+        onChange={e => this.handleChange(e)}
+        onFocus={e => this.handleFocus(e)}
+        onBlur={e => this.handleBlur(e)}
+      />
+      {validating && <i className='kenshin-input__icon kenshin-icon-loading' />}
+      {append && <div className='kenshin-input-group__append'>{append}</div>}
+    </div>
   }
 }

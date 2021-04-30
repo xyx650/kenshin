@@ -10,6 +10,7 @@
     "baseUrl": "./",
     "strict": true,
     "skipLibCheck": true,
+    "lib": ["dom"],
     "paths": {
       "@/*": [
         "src/*"

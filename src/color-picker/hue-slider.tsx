@@ -1,8 +1,8 @@
 import * as React from 'react'
 import draggable from './draggable'
 import Component from '@/_base/component'
-import type { DragOptions, ColorType } from '@/colorPicker/types'
-import { childContext } from '@/colorPicker/pickerDropdown'
+import type { DragOptions, ColorType } from './types'
+import { childContext } from './picker-dropdown'
 
 
 type HueSliderProps = {

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import HueSlider from './HueSlider'
+import HueSlider from './hue-slider'
 import View from '@/_base/view'
-import AlphaSlider from '@/colorPicker/alphaSlider'
-import SvPanel from '@/colorPicker/svPanel'
+import AlphaSlider from './alpha-slider'
+import SvPanel from './sv-panel'
 import Component from '@/_base/component'
-import type { ColorType } from '@/colorPicker/types'
+import type { ColorType } from '@/color-picker/types'
 
 type PickerDropdownProps = {
   color: ColorType,

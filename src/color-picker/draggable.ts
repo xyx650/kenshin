@@ -1,4 +1,4 @@
-import type { DragOptions } from '@/colorPicker/types'
+import type { DragOptions } from './types'
 
 let isDragging = false
 

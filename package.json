@@ -61,7 +61,9 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "element-remove": "^1.0.4",
-    "element-theme-default": "^1.4.13"
+    "element-theme-default": "^1.4.13",
+    "popper.js": "^1.16.1",
+    "rc-tooltip": "5.1.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",

@@ -27,8 +27,8 @@ export default class Component<P = {}, S = {}> extends React.Component<P & BaseC
   }
 
   style(args: BaseComponentType['style'] = {}) {
-    const { style } = this.props
-    return Object.assign({}, args, style)
+    const { style = {} } = this.props
+    return { ...args, ...style }
   }
 }
 
@@ -42,6 +42,6 @@ export function className(this: React.Component<BaseComponentType>, ...args: Arg
 }
 
 export function style(this: React.Component<BaseComponentType>, args: BaseComponentType['style'] = {}) {
-  const { style } = this.props
-  return Object.assign({}, args, style)
+  const { style = {} } = this.props
+  return { ...args, ...style }
 }

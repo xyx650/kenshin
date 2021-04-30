@@ -1,0 +1,368 @@
+.kenshin-input, .kenshin-input__inner {
+  width: 100%;
+  display: inline-block
+}
+
+.kenshin-input {
+  position: relative;
+  font-size: 14px
+}
+
+.kenshin-input.is-disabled .kenshin-input__inner {
+  background-color: #eef1f6;
+  border-color: #d1dbe5;
+  color: #bbb;
+  cursor: not-allowed
+}
+
+.kenshin-input.is-disabled .kenshin-input__inner::-webkit-input-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-input.is-disabled .kenshin-input__inner::-moz-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-input.is-disabled .kenshin-input__inner:-ms-input-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-input.is-disabled .kenshin-input__inner::placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-input.is-active .kenshin-input__inner {
+  outline: 0;
+  border-color: #20a0ff
+}
+
+.kenshin-input__inner {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #bfcbd9;
+  box-sizing: border-box;
+  color: #1f2d3d;
+  font-size: inherit;
+  height: 36px;
+  line-height: 1;
+  outline: 0;
+  padding: 3px 10px;
+  transition: border-color .2s cubic-bezier(.645, .045, .355, 1)
+}
+
+.kenshin-input__inner::-webkit-input-placeholder {
+  color: #97a8be
+}
+
+.kenshin-input__inner::-moz-placeholder {
+  color: #97a8be
+}
+
+.kenshin-input__inner:-ms-input-placeholder {
+  color: #97a8be
+}
+
+.kenshin-input__inner::placeholder {
+  color: #97a8be
+}
+
+.kenshin-input__inner:hover {
+  border-color: #8391a5
+}
+
+.kenshin-input__inner:focus {
+  outline: 0;
+  border-color: #20a0ff
+}
+
+.kenshin-input__icon {
+  position: absolute;
+  width: 35px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  text-align: center;
+  color: #bfcbd9;
+  transition: all .3s
+}
+
+.kenshin-input__icon:after {
+  content: '';
+  height: 100%;
+  width: 0;
+  display: inline-block;
+  vertical-align: middle
+}
+
+.kenshin-input__icon + .kenshin-input__inner {
+  padding-right: 35px
+}
+
+.kenshin-input__icon.is-clickable:hover {
+  cursor: pointer;
+  color: #8391a5
+}
+
+.kenshin-input__icon.is-clickable:hover + .kenshin-input__inner {
+  border-color: #8391a5
+}
+
+.kenshin-input--large {
+  font-size: 16px
+}
+
+.kenshin-input--large .kenshin-input__inner {
+  height: 42px
+}
+
+.kenshin-input--small {
+  font-size: 13px
+}
+
+.kenshin-input--small .kenshin-input__inner {
+  height: 30px
+}
+
+.kenshin-input--mini {
+  font-size: 12px
+}
+
+.kenshin-input--mini .kenshin-input__inner {
+  height: 22px
+}
+
+.kenshin-input-group {
+  line-height: normal;
+  display: inline-table;
+  width: 100%;
+  border-collapse: separate
+}
+
+.kenshin-input-group > .kenshin-input__inner {
+  vertical-align: middle;
+  display: table-cell
+}
+
+.kenshin-input-group__append, .kenshin-input-group__prepend {
+  background-color: #fbfdff;
+  color: #97a8be;
+  vertical-align: middle;
+  display: table-cell;
+  position: relative;
+  border: 1px solid #bfcbd9;
+  border-radius: 4px;
+  padding: 0 10px;
+  width: 1px;
+  white-space: nowrap
+}
+
+.kenshin-input-group--prepend .kenshin-input__inner, .kenshin-input-group__append {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0
+}
+
+.kenshin-input-group--append .kenshin-input__inner, .kenshin-input-group__prepend {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0
+}
+
+.kenshin-input-group__append .kenshin-button, .kenshin-input-group__append .kenshin-select, .kenshin-input-group__prepend .kenshin-button, .kenshin-input-group__prepend .kenshin-select {
+  display: block;
+  margin: -10px
+}
+
+.kenshin-input-group__append button.kenshin-button, .kenshin-input-group__append div.kenshin-select .kenshin-input__inner, .kenshin-input-group__append div.kenshin-select:hover .kenshin-input__inner, .kenshin-input-group__prepend button.kenshin-button, .kenshin-input-group__prepend div.kenshin-select .kenshin-input__inner, .kenshin-input-group__prepend div.kenshin-select:hover .kenshin-input__inner {
+  border-color: transparent;
+  background-color: transparent;
+  color: inherit;
+  border-top: 0;
+  border-bottom: 0
+}
+
+.kenshin-input-group__append .kenshin-button, .kenshin-input-group__append .kenshin-input, .kenshin-input-group__prepend .kenshin-button, .kenshin-input-group__prepend .kenshin-input {
+  font-size: inherit
+}
+
+.kenshin-input-group__prepend {
+  border-right: 0
+}
+
+.kenshin-input-group__append {
+  border-left: 0
+}
+
+.kenshin-textarea {
+  display: inline-block;
+  width: 100%;
+  vertical-align: bottom
+}
+
+.kenshin-textarea.is-disabled .kenshin-textarea__inner {
+  background-color: #eef1f6;
+  border-color: #d1dbe5;
+  color: #bbb;
+  cursor: not-allowed
+}
+
+.kenshin-textarea.is-disabled .kenshin-textarea__inner::-webkit-input-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-textarea.is-disabled .kenshin-textarea__inner::-moz-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-textarea.is-disabled .kenshin-textarea__inner:-ms-input-placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-textarea.is-disabled .kenshin-textarea__inner::placeholder {
+  color: #bfcbd9
+}
+
+.kenshin-textarea__inner {
+  display: block;
+  resize: vertical;
+  padding: 5px 7px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 14px;
+  color: #1f2d3d;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #bfcbd9;
+  border-radius: 4px;
+  transition: border-color .2s cubic-bezier(.645, .045, .355, 1)
+}
+
+.kenshin-textarea__inner::-webkit-input-placeholder {
+  color: #97a8be
+}
+
+.kenshin-textarea__inner::-moz-placeholder {
+  color: #97a8be
+}
+
+.kenshin-textarea__inner:-ms-input-placeholder {
+  color: #97a8be
+}
+
+.kenshin-textarea__inner::placeholder {
+  color: #97a8be
+}
+
+.kenshin-textarea__inner:hover {
+  border-color: #8391a5
+}
+
+.kenshin-textarea__inner:focus {
+  outline: 0;
+  border-color: #20a0ff
+}
+
+.kenshin-input-number {
+  display: inline-block;
+  width: 180px;
+  position: relative;
+  line-height: normal
+}
+
+.kenshin-input-number .kenshin-input {
+  display: block
+}
+
+.kenshin-input-number .kenshin-input__inner {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 82px
+}
+
+.kenshin-input-number.is-without-controls .kenshin-input__inner {
+  padding-right: 10px
+}
+
+.kenshin-input-number.is-disabled .kenshin-input-number__decrease, .kenshin-input-number.is-disabled .kenshin-input-number__increase {
+  border-color: #d1dbe5;
+  color: #d1dbe5
+}
+
+.kenshin-input-number.is-disabled .kenshin-input-number__decrease:hover, .kenshin-input-number.is-disabled .kenshin-input-number__increase:hover {
+  color: #d1dbe5;
+  cursor: not-allowed
+}
+
+.kenshin-input-number__decrease, .kenshin-input-number__increase {
+  height: auto;
+  border-left: 1px solid #bfcbd9;
+  width: 36px;
+  line-height: 34px;
+  top: 1px;
+  text-align: center;
+  color: #97a8be;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1
+}
+
+.kenshin-input-number__decrease:hover, .kenshin-input-number__increase:hover {
+  color: #20a0ff
+}
+
+.kenshin-input-number__decrease:hover:not(.is-disabled) ~ .kenshin-input .kenshin-input__inner:not(.is-disabled), .kenshin-input-number__increase:hover:not(.is-disabled) ~ .kenshin-input .kenshin-input__inner:not(.is-disabled) {
+  border-color: #20a0ff
+}
+
+.kenshin-input-number__decrease.is-disabled, .kenshin-input-number__increase.is-disabled {
+  color: #d1dbe5;
+  cursor: not-allowed
+}
+
+.kenshin-input-number__increase {
+  right: 0
+}
+
+.kenshin-input-number__decrease {
+  right: 37px
+}
+
+.kenshin-input-number--large {
+  width: 200px
+}
+
+.kenshin-input-number--large .kenshin-input-number__decrease, .kenshin-input-number--large .kenshin-input-number__increase {
+  line-height: 40px;
+  width: 42px;
+  font-size: 16px
+}
+
+.kenshin-input-number--large .kenshin-input-number__decrease {
+  right: 43px
+}
+
+.kenshin-input-number--large .kenshin-input__inner {
+  padding-right: 94px
+}
+
+.kenshin-input-number--small {
+  width: 130px
+}
+
+.kenshin-input-number--small .kenshin-input-number__decrease, .kenshin-input-number--small .kenshin-input-number__increase {
+  line-height: 28px;
+  width: 30px;
+  font-size: 13px
+}
+
+.kenshin-input-number--small .kenshin-input-number__decrease {
+  right: 31px
+}
+
+.kenshin-input-number--small .kenshin-input__inner {
+  padding-right: 70px
+}

@@ -1,0 +1,42 @@
+.kenshin-divider {
+  background-color: #DCDFE6;
+  position: relative;
+}
+.kenshin-divider--horizontal {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 24px 0;
+}
+
+.kenshin-divider--vertical {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin: 0 8px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.kenshin-divider__text {
+  position: absolute;
+  background-color: #FFFFFF;
+  padding: 0 20px;
+  font-weight: 500;
+  color: #303133;
+  font-size: 14px;
+}
+.kenshin-divider__text.is-left {
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.kenshin-divider__text.is-center {
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.kenshin-divider__text.is-right {
+  right: 20px;
+  transform: translateY(-50%);
+}
