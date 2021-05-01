@@ -13325,9 +13325,9 @@ rc-tree@^4.0.0, rc-tree@~4.1.0:
     rc-virtual-list "^3.0.1"
 
 rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2, rc-trigger@^5.2.1:
-  version "5.2.3"
-  resolved "http://mingjie.ltd:4873/rc-trigger/-/rc-trigger-5.2.3.tgz#8c55046ab432d7b52d51c69afb57ebb5bbe37e17"
-  integrity sha512-6Fokao07HUbqKIDkDRFEM0AGZvsvK0Fbp8A/KFgl1ngaqfO1nY037cISCG1Jm5fxImVsXp9awdkP7Vu5cxjjog==
+  version "5.2.6"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.2.6.tgz#ae5f320a36400f9399ae571399d76326ce25ec09"
+  integrity sha512-XHsO7IBBDDIlBV++BTrmw2kCVNpNZQZCkT7d/edGWAsCxUTSYntw4gBXavicw/L0iT+rox8m5dgyZmMbmxoQJQ==
   dependencies:
     "@babel/runtime" "^7.11.2"
     classnames "^2.2.6"
