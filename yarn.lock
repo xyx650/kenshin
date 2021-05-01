@@ -13121,9 +13121,9 @@ rc-menu@^8.0.1, rc-menu@^8.6.1, rc-menu@~8.10.0:
     shallowequal "^1.1.0"
 
 rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.2.0, rc-motion@^2.3.0, rc-motion@^2.3.4, rc-motion@^2.4.0:
-  version "2.4.1"
-  resolved "http://mingjie.ltd:4873/rc-motion/-/rc-motion-2.4.1.tgz#323f47c8635e6b2bc0cba2dfad25fc415b58e1dc"
-  integrity sha512-TWLvymfMu8SngPx5MDH8dQ0D2RYbluNTfam4hY/dNNx9RQ3WtGuZ/GXHi2ymLMzH+UNd6EEFYkOuR5JTTtm8Xg==
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/rc-motion/-/rc-motion-2.4.3.tgz#2afd129da8764ee0372ba83442949d8ecb1c7ad2"
+  integrity sha512-GZLLFXHl/VqTfI7bSZNNZozcblNmDka1AAoQig7EZ6s0rWg5y0RlgrcHWO+W+nrOVbYfJDxoaQUoP2fEmvCWmA==
   dependencies:
     "@babel/runtime" "^7.11.1"
     classnames "^2.2.1"
