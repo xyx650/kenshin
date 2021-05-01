@@ -1,4 +1,5 @@
 @import "prefix";
+
 @font-face {
   font-family: 'kenshin-icons';
   src: url('../font/kenshin-icons.woff?t=1472440741') format('woff'), /* chrome, firefox */
@@ -7,7 +8,8 @@
   font-style: normal;
 }
 
-[class^="~@{prefix}-icon-"], [class*=" @{prefix}-icon-"] {
+[class^="@{prefix}-icon-"],
+[class*=" @{prefix}-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'kenshin-icons' !important;
   speak: none;
