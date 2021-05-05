@@ -3,8 +3,8 @@ import HueSlider from './hue-slider'
 import View from '@/_base/view'
 import AlphaSlider from './alpha-slider'
 import SvPanel from './sv-panel'
-import Component from '@/_base/component'
 import type { ColorType } from '@/color-picker/types'
+import { colorPickerContext } from '@/color-picker/context'
 
 type PickerDropdownProps = {
   color: ColorType,
@@ -12,48 +12,48 @@ type PickerDropdownProps = {
   showAlpha: boolean;
   onPick: () => void;
   onClear: () => void;
-  onChange?: (color: ColorType) => void
+  onChange: (color: string | null) => void
 }
-export const childContext = React.createContext({
-  onChange(color: ColorType) {
 
-  }
-})
-export default class PickerDropdown extends Component<PickerDropdownProps> {
+const PickerDropdown: React.FC<PickerDropdownProps> = (props) => {
 
-  private hue = React.createRef<HueSlider>()
-  private sl = React.createRef<SvPanel>()
-  private alpha = React.createRef<AlphaSlider>()
+  const { showPicker, color, showAlpha, onClear, onPick } = props
 
-  constructor(props: PickerDropdownProps) {
-    super(props)
-  }
+  const currentColor = color.value
 
-  render() {
-    const { color, showAlpha, onPick, onClear, showPicker } = this.props
-    const currentColor = color.value
-    return (
-      <View show={showPicker}>
-        <div className='kenshin-color-dropdown kenshin-color-picker__panel'>
-          <div className='kenshin-color-dropdown__main-wrapper'>
-            <HueSlider color={color} vertical onChange={(color: ColorType) => {this.props.onChange!(color)}} ref={this.hue} />
-            <SvPanel color={color} onChange={(color: ColorType) => this.props.onChange!(color)} ref={this.sl} />
-          </div>
-          {showAlpha && <AlphaSlider ref={this.alpha} color={color} />}
-          <div className='kenshin-color-dropdown__btns'>
-            <span className='kenshin-color-dropdown__value'>{currentColor}</span>
-            <a
-              href='JavaScript:'
-              className='kenshin-color-dropdown__link-btn'
-              onClick={() => onClear()}
-            >清空</a>
-            <button
-              className='kenshin-color-dropdown__btn'
-              onClick={() => onPick()}
-            >确定</button>
-          </div>
-        </div>
-      </View>
-    )
-  }
+  const { onChange } = React.useContext(colorPickerContext)
+
+
+  return <View show={showPicker}>
+    <div className='kenshin-color-dropdown kenshin-color-picker__panel'>
+      <div className='kenshin-color-dropdown__main-wrapper'>
+        <HueSlider
+          color={color}
+          vertical
+          onChange={onChange}
+        />
+        <SvPanel color={color} onChange={onChange} />
+      </div>
+      {showAlpha && <AlphaSlider color={color} />}
+      <div className='kenshin-color-dropdown__btns'>
+        <span className='kenshin-color-dropdown__value'>{currentColor}</span>
+        <span
+          className='kenshin-color-dropdown__link-btn'
+          onClick={() => onClear()}
+        >清空</span>
+        <button
+          className='kenshin-color-dropdown__btn'
+          onClick={() => onPick()}
+        >确定
+        </button>
+      </div>
+    </div>
+  </View>
 }
+PickerDropdown.defaultProps = {
+  onChange(color: string | null) {},
+  onPick() {},
+  onClear() {}
+}
+
+export default PickerDropdown

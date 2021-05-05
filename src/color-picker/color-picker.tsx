@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import Component from '../_base/component'
+import { colorPickerContext } from '@/color-picker/context'
 import PickerDropdown from './picker-dropdown'
 import Color from './color'
 import './index.less'
@@ -14,142 +14,117 @@ export type ColorPickerProps = {
 }
 
 
-export type ColorPickerState = {
-  value: string | null | number,
-  color: ColorType,
-  showPicker: boolean,
-  showPanelColor: boolean
-}
+const ColorPicker: React.FC<ColorPickerProps> = props => {
+  const {
+    showAlpha,
+    colorFormat,
+    onChange = (color: string | null) => {}
+  } = props
 
+  const [value, setValue] = React.useState(props.value)
+  const [color, setColor] = React.useState(new Color({
+    enableAlpha: showAlpha,
+    format: colorFormat
+  } as Color))
+  const [showPicker, setShowPicker] = React.useState(false)
+  const [showPanelColor, setShowPanelColor] = React.useState(false)
 
-class ColorPicker extends Component<ColorPickerProps, ColorPickerState> {
-  static defaultProps: { onChange: () => void }
-
-  private dropdown = React.createRef<PickerDropdown>()
-
-  popperElm: React.RefObject<PickerDropdown>['current'] | undefined
-
-  constructor(props: ColorPickerProps) {
-    super(props)
-    const color = new Color({
-      enableAlpha: this.props.showAlpha,
-      format: this.props.colorFormat
-    } as ColorType)
-
-    this.state = {
-      value: this.props.value,
-      color,
-      showPicker: false,
-      showPanelColor: false
-    }
-  }
-
-  componentDidMount() {
-    const { value, color } = this.state
+  // 挂载后设置值
+  React.useEffect(() => {
+    console.log('value', value)
     if (value) {
-      color.fromString!(value.toString())
-      this.setState({ color })
+      color.fromString(value.toString())
+      setColor(color)
     }
-    this.popperElm = this.dropdown.current!
-  }
+  }, [])
 
-  getChildContext() {
-    return {
-      onChange: this.handleChange.bind(this)
-    }
-  }
-
-  //
-  handleChange(color: Color) {
-    this.setState({ value: color.value as string, color })
-  }
-
-  // 输入后确认
-  confirmValue() {
-    const { value } = this.state
-    const { onChange } = this.props
-    this.setState({ showPicker: false }, () => onChange(value as string))
-  }
-
-  // 删除值
-  clearValue() {
-    this.setState({
-      showPicker: false,
-      showPanelColor: false,
-      value: null
-    }, () => {
-      this.props.onChange(null)
-      this.resetColor()
-    })
-  }
-
-  hide() {
-    this.setState({ showPicker: false }, () => this.resetColor())
-  }
-
-  // 重置颜色
-  resetColor(): void {
-    const { value, color } = this.state
-    if (value) {
-      color.fromString!(value.toString())
-      this.setState({ color })
+  let displayedColor
+  if (!value && !showPanelColor) {
+    displayedColor = 'transparent'
+  } else {
+    const { r, g, b } = color.toRgb()
+    const alpha = color.get('alpha')
+    if (typeof alpha === 'number') {
+      displayedColor = showAlpha
+        ? `rgba(${r}, ${g}, ${b}, ${alpha / 100})`
+        : `rgb(${r}, ${g}, ${b})`
     }
   }
 
   // 隐藏组件
-  handleClickOutside(): void {
-    this.setState({ showPicker: false })
+  const handleClickOutside = () => {
+    setShowPicker(false)
   }
 
-
-  render() {
-    const { showAlpha } = this.props
-    const { value, color, showPicker, showPanelColor } = this.state
-
-    let displayedColor
-    if (!value && !showPanelColor) {
-      displayedColor = 'transparent'
-    } else {
-      const { r, g, b } = color.toRgb()
-      const alpha = color.get('alpha')
-      if (typeof alpha === 'number') {
-        displayedColor = showAlpha
-          ? `rgba(${r}, ${g}, ${b}, ${alpha / 100})`
-          : `rgb(${r}, ${g}, ${b})`
-      }
+  // 重置颜色
+  const resetColor = () => {
+    if (value) {
+      color.fromString(value.toString())
+      setColor(color)
     }
+  }
 
-    return <div className='kenshin-color-picker'>
-      <div
-        className='kenshin-color-picker__trigger'
-        onClick={() => this.setState({ showPicker: !showPicker })}
-      >
-        <span
-          className={this.classNames({
-            'kenshin-color-picker__color': true,
-            'is-alpha': showAlpha
-          })}
-        >
-          <span className='kenshin-color-picker__color-inner' style={{ backgroundColor: displayedColor }} />
-          {!value && !showPanelColor && <span className='kenshin-color-picker__empty kenshin-icon-close' />}
-          </span>
+  // 删除值
+  const clearValue = () => {
+    setShowPicker(false)
+    setValue(null)
+    setShowPanelColor(false)
+
+    onChange(null)
+    resetColor()
+
+    // this.setState({
+    //   showPicker: false,
+    //   showPanelColor: false,
+    //   value: null
+    // }, () => {
+    //   this.props.onChange(null)
+    //   this.resetColor()
+    // })
+  }
+
+  const hide = () => {
+    setShowPicker(false)
+    resetColor()
+    // this.setState({ showPicker: false }, () => this.resetColor())
+  }
+
+  //
+  const handleChange = (color: Color) => {
+    setValue(color.value)
+    setColor(color)
+  }
+
+  // 输入后确认
+  const confirmValue = () => {
+    // this.setState({ showPicker: false }, () => onChange(value as string))
+    setShowPicker(false)
+    onChange(value as string)
+  }
+
+  return <colorPickerContext.Provider value={{ onChange: handleChange }}>
+    <div className='kenshin-color-picker'>
+      <div className='kenshin-color-picker__trigger' onClick={() => setShowPicker(!showPicker)}>
+      <span className={classnames({ 'kenshin-color-picker__color': true, 'is-alpha': showAlpha })}>
+        <span className='kenshin-color-picker__color-inner' style={{ backgroundColor: displayedColor }} />
+        {!value && !showPanelColor && <span className='kenshin-color-picker__empty kenshin-icon-close' />}
+        </span>
         <span className='kenshin-color-picker__icon kenshin-icon-caret-bottom' />
       </div>
       <PickerDropdown
-        ref={this.dropdown}
         showPicker={showPicker}
         color={color}
-        onPick={() => this.confirmValue()}
-        onClear={() => this.clearValue()}
+        onPick={confirmValue}
+        onClear={clearValue}
         showAlpha={showAlpha}
+        onChange={color => props.onChange(color)}
       />
-
     </div>
-  }
+  </colorPickerContext.Provider>
 }
 
 ColorPicker.defaultProps = {
-  onChange() {}
+  onChange(color: string | null) {}
 }
 
 

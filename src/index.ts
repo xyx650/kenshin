@@ -8,6 +8,7 @@ import Divider from './divider'
 import Tooltip from './tooltip'
 import Loading from './loading'
 import InputNumber from './input-number'
+import Radio from './radio'
 
 export {
   Rate,
@@ -19,5 +20,6 @@ export {
   Divider,
   Tooltip,
   Loading,
-  InputNumber
+  InputNumber,
+  Radio
 }

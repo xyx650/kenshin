@@ -1,60 +1,51 @@
 import * as React from 'react'
+import classnames from 'classnames'
 import draggable from './draggable'
-import Component from '@/_base/component'
 import type { DragOptions, ColorType } from './types'
-import { childContext } from './picker-dropdown'
+import { colorPickerContext } from '@/color-picker/context'
 
 
 type HueSliderProps = {
   vertical: boolean;
   color: ColorType,
-  onChange?: (color: ColorType) => void
+  onChange: (color: ColorType) => void
 }
 
-type HueSliderState = {
-  thumbLeft: number;
-  thumbTop: number
-}
+const HueSlider: React.FC<HueSliderProps> = (props) => {
+  const { vertical, color } = props
+  const $el = React.useRef<HTMLDivElement>(null)
+  const $bar = React.useRef<HTMLDivElement>(null)
+  const $thumb = React.useRef<HTMLDivElement>(null)
 
+  // state
+  const [thumbLeft, setThumbLeft] = React.useState(0)
+  const [thumbTop, setThumbTop] = React.useState(0)
 
-export default class HueSlider extends Component<HueSliderProps, HueSliderState> {
-  private $el = React.createRef<HTMLDivElement>()
-  private thumb = React.createRef<HTMLDivElement>()
-  private bar = React.createRef<HTMLDivElement>()
+  const context = React.useContext(colorPickerContext)
 
-  constructor(props: HueSliderProps) {
-    super(props)
-    this.state = {
-      thumbLeft: 0,
-      thumbTop: 0
-    }
-  }
-
-  componentDidMount() {
-    const { bar, thumb } = this
+  // componentDidMount
+  React.useEffect(() => {
     const dragConfig: DragOptions = {
-      drag: (event) => {this.handleDrag(event)},
-      end: (event) => {this.handleDrag(event)}
+      drag: (e) => {handleDrag(e)},
+      end: (e) => {handleDrag(e)}
     }
-    draggable(bar.current!, dragConfig)
-    draggable(thumb.current!, dragConfig)
-    this.update()
-  }
+    draggable($bar.current!, dragConfig)
+    draggable($thumb.current!, dragConfig)
+    update()
+  }, [])
 
-  handleClick(e: MouseEvent) {
-    const thumb = this.thumb.current!
+  const handleClick = (e: MouseEvent) => {
+    const thumb = $thumb.current
     const target = e.target
-    // if (target !== thumb) {
-    this.handleDrag(e)
-    // }
+    if (target !== thumb) {
+      handleDrag(e)
+    }
   }
-
-  handleDrag(e: MouseEvent) {
-    const rect = this.$el.current!.getBoundingClientRect()
-    const thumb = this.thumb.current!
-    const { vertical, color } = this.props
-    const { onChange } = this.context
-    let hue
+  const handleDrag = (e: MouseEvent) => {
+    const rect = $el.current!.getBoundingClientRect()
+    const thumb = $thumb.current!
+    const { onChange } = context
+    let hue: number
     if (!vertical) {
       let left = e.clientX - rect.left
       left = Math.min(left, rect.width - thumb.offsetWidth / 2)
@@ -66,60 +57,52 @@ export default class HueSlider extends Component<HueSliderProps, HueSliderState>
       top = Math.max(thumb.offsetHeight / 2, top)
       hue = Math.round((top - thumb.offsetHeight / 2) / (rect.height - thumb.offsetHeight) * 360)
     }
-    color.set('hue', hue!.toString())
-    this.update()
+    color.set('hue', hue)
+    update()
     onChange(color)
   }
 
-  getThumbLeft(): number {
-    const { vertical, color } = this.props
+  const getThumbLeft = () => {
     if (vertical) return 0
-    const el = this.$el.current
+    const el = $el.current
     const hue = color.get('hue')
     if (!el) return 0
-    const thumb = this.thumb.current!
+    const thumb = $thumb.current!
     return Math.round(+hue * (el.offsetWidth - thumb.offsetWidth / 2) / 360)
   }
 
-  getThumbTop(): number {
-    const { vertical, color } = this.props
-    if (!vertical) return 0
-    const el = this.$el.current
+  const getThumbTop = () => {
+    if (!vertical) {return 0}
+    const el = $el.current
     const hue = color.get('hue')
-    if (!el) return 0
-    const thumb = this.thumb.current!
+    if (!el) {return 0}
+    const thumb = $thumb.current!
     return Math.round(+hue * (el.offsetHeight - thumb.offsetHeight / 2) / 360)
   }
 
-  update() {
-    this.setState({
-      thumbLeft: this.getThumbLeft(),
-      thumbTop: this.getThumbTop()
-    })
+  const update = () => {
+    const top = getThumbTop()
+    const left = getThumbLeft()
+    setThumbTop(top)
+    setThumbLeft(left)
   }
 
-
-  render() {
-    const { vertical } = this.props
-    const { thumbLeft, thumbTop } = this.state
-    return (
-      <div
-        ref={this.$el}
-        className={this.classNames({ 'kenshin-color-hue-slider': true, 'is-vertical': vertical })}
-        style={{ float: 'right' }}
-      >
-        <div
-          className='kenshin-color-hue-slider__bar'
-          onClick={e => this.handleClick(e.nativeEvent)}
-          ref='bar'
-        />
-        <div
-          className='kenshin-color-hue-slider__thumb'
-          style={{ left: thumbLeft + 'px', top: thumbTop + 'px' }}
-          ref={this.thumb}
-        />
-      </div>
-    )
-  }
+  return <div
+    ref={$el}
+    className={classnames('kenshin-color-hue-slider', { 'is-vertical': vertical })}
+    style={{ float: 'right' }}
+  >
+    <div
+      className='kenshin-color-hue-slider__bar'
+      onClick={e => handleClick(e.nativeEvent)}
+      ref={$bar}
+    />
+    <div
+      className='kenshin-color-hue-slider__thumb'
+      style={{ left: thumbLeft + 'px', top: thumbTop + 'px' }}
+      ref={$thumb}
+    />
+  </div>
 }
 
+export default HueSlider

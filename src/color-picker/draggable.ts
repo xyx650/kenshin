@@ -4,7 +4,7 @@ let isDragging = false
 
 export default function(element: HTMLDivElement, options: DragOptions) {
   const moveFn = function(e: MouseEvent) {
-    options.drag?.(e)
+    options.drag(e)
   }
   const upFn = function(e: MouseEvent) {
     document.removeEventListener('mousemove', moveFn)
@@ -13,9 +13,9 @@ export default function(element: HTMLDivElement, options: DragOptions) {
     document.ondragstart = null
 
     isDragging = false
-    options.end?.(e)
+    options.end(e)
   }
-  element?.addEventListener('mousedown', function(e) {
+  element.addEventListener('mousedown', function(e) {
     if (isDragging) return
     document.onselectstart = function() {
       return false

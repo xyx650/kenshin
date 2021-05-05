@@ -63,10 +63,14 @@
     "element-remove": "^1.0.4",
     "element-theme-default": "^1.4.13",
     "popper.js": "^1.16.1",
-    "rc-tooltip": "5.1.0"
+    "rc-tooltip": "5.1.0",
+    "react-click-outside": "^3.0.1",
+    "throttle-debounce": "^3.0.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
+    "@types/react-click-outside": "^3.0.3",
+    "@types/throttle-debounce": "^2.1.0",
     "@umijs/test": "^3.0.5",
     "classnames": "^2.2.6",
     "dumi": "^1.1.13",
