@@ -88,6 +88,7 @@ export default class Progress extends Component<ProgressProps> {
   // 计算 icon 样式
   iconClass() {
     const { type, status } = this.props
+    console.log('status',status)
     return type === 'line'
       ? status === 'success' ? 'kenshin-icon-circle-check' : 'kenshin-icon-circle-cross'
       : status === 'success' ? 'kenshin-icon-check' : 'kenshin-icon-close'

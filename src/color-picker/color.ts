@@ -1,5 +1,3 @@
-import { ColorType } from './types'
-
 const hsv2hsl = function(hue: number, sat: number, val: number) {
   let l = (2 - sat) * val
   let sl = sat * val

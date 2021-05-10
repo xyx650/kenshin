@@ -63,7 +63,10 @@
     "element-remove": "^1.0.4",
     "element-theme-default": "^1.4.13",
     "popper.js": "^1.16.1",
+    "rc-resize-observer": "^1.0.0",
+    "rc-slider": "^9.7.2",
     "rc-tooltip": "5.1.0",
+    "rc-util": "^5.12.1",
     "react-click-outside": "^3.0.1",
     "throttle-debounce": "^3.0.1"
   },

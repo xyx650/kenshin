@@ -1,7 +1,6 @@
 import * as React from 'react'
-import Component from '@/_base/component'
 import calcTextareaHeight from '@/input/calcTextareaHeight'
-import './index.less'
+import classnames from 'classnames'
 
 // autosize 对象类型
 interface autosizeObj {
@@ -9,206 +8,206 @@ interface autosizeObj {
   maxRows: number
 }
 
-export type InputProps = {
-  type: 'text' | 'textarea'
-  icon: React.ReactNode | string
-  disabled: boolean
-  name: string
-  placeholder: string
-  readOnly: boolean
-  autoFocus: boolean
-  maxLength: number
-  minLength: number
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLTextAreaElement | HTMLInputElement>, 'size' | 'type' | 'onChange'> {
+  type?: 'text' | 'textarea'
+  icon?: React.ReactNode | string
+  disabled?: boolean
+  name?: string
+  placeholder?: string
+  readOnly?: boolean
+  autoFocus?: boolean
+  maxLength?: number
+  minLength?: number
   defaultValue?: string
   value: string
-  trim: boolean
+  trim?: boolean
 
-  size: 'large' | 'small' | 'mini'
-  prepend: React.ReactNode
-  append: React.ReactNode
+  size?: 'large' | 'small' | 'mini'
+  prepend?: React.ReactNode
+  append?: React.ReactNode
 
   autosize?: boolean | autosizeObj
-  rows: number
+  rows?: number
   resize?: React.CSSProperties['resize']
 
-  onFocus: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
-  onBlur: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
-  onChange: (val: string) => void
+  // onFocus?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
+  // onBlur?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
+  onChange?: (val: string) => void
   onIconClick?: (e: React.MouseEvent<HTMLElement>) => void
-  onMouseEnter: (e: React.MouseEvent<HTMLElement>) => void
-  onMouseLeave: (e: React.MouseEvent<HTMLElement>) => void
+  onMouseEnter?: (e: React.MouseEvent<HTMLElement>) => void
+  onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void
 
-  autoComplete: string
-  inputSelect: () => void
+  autoComplete?: string
+  inputSelect?: () => void
 
-  form: string
-  validating: boolean
+  form?: string
+  validating?: boolean,
+
+  style?: React.CSSProperties
+  className?: string
 }
 
-export type InputState = {
-  textareaStyle: { resize: React.CSSProperties['resize'], height?: React.CSSProperties['height'] }
-}
+export type InputState = { resize: React.CSSProperties['resize'], height?: React.CSSProperties['height'] }
 
 
-export default class Input extends Component<InputProps, InputState> {
-  private input = React.createRef<HTMLInputElement>()
-  private textarea = React.createRef<HTMLTextAreaElement>()
+const Input: React.FC<InputProps> = (props) => {
+  const {
+    type = 'text',
+    size,
+    prepend,
+    append,
+    icon,
+    autoComplete,
+    validating,
+    rows,
+    onMouseEnter,
+    onMouseLeave,
+    trim,
+    ...otherProps
+  } = props
 
-  static defaultProps = {
-    type: 'text',
-    autosize: false,
-    rows: 2,
-    trim: false,
-    autoComplete: 'off'
-  }
+  const [textareaStyle, setTextareaStyle] = React.useState<InputState>({ resize: props.resize })
+  const textarea = React.useRef<HTMLTextAreaElement>(null)
+  const input = React.useRef<HTMLInputElement>(null)
 
-  constructor(props: InputProps) {
-    super(props)
+  // componentDidMount
+  React.useEffect(() => {
+    resizeTextarea()
+  }, [])
 
-    this.state = {
-      textareaStyle: { resize: props.resize }
-    }
-  }
 
-  componentDidMount() {
-    this.resizeTextarea()
-  }
-
-  resizeTextarea() {
-    const { autosize, type } = this.props
-
-    if (typeof autosize === 'boolean' || type !== 'textarea') {
+  const resizeTextarea = () => {
+    if (typeof props.autosize === 'boolean' || type !== 'textarea') {
       return
     }
+    const minRows = props.autosize!.minRows
+    const maxRows = props.autosize!.maxRows
+    const textareaCalcStyle = calcTextareaHeight(textarea.current!, minRows, maxRows)
+    // const textareaCalcStyle = calcTextareaHeight(ref?.current!, minRows, maxRows)
 
-    const minRows = autosize!.minRows
-    const maxRows = autosize!.maxRows
-    const textareaCalcStyle = calcTextareaHeight(this.textarea.current!, minRows, maxRows)
-
-    this.setState({
-      textareaStyle: { ...this.state.textareaStyle, ...textareaCalcStyle }
-    })
+    setTextareaStyle({ ...textareaStyle, ...textareaCalcStyle })
   }
 
-  focus() {
+
+  const focus = () => {
     setTimeout(() => {
-      (this.input.current || this.textarea.current)!.focus()
+      (input.current || textarea.current)!.focus()
     })
   }
 
-  blur() {
+  const blur = () => {
     setTimeout(() => {
-      (this.input.current || this.textarea.current)!.blur()
+      (input.current || textarea.current)!.blur()
     })
   }
 
-  fixControlledValue(value?: string | null): string {
+  const fixControlledValue = (value?: string | null) => {
     if (typeof value === 'undefined' || value === null) {
       return ''
     }
     return value
   }
 
-  handleFocus(e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    this.props.onFocus?.(e)
+
+  const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    props.onFocus?.(e)
   }
 
-  handleBlur(e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    const { onBlur } = this.props
-    this.props.trim && this.handleTrim()
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const { onBlur } = props
+    props.trim && handleTrim()
     onBlur?.(e)
   }
 
-  handleTrim() {
-    this.input.current!.value = this.input.current!.value.trim()
-    this.props.onChange?.(this.input.current!.value.trim())
+  const handleTrim = () => {
+    input.current!.value = input.current!.value.trim()
+    props.onChange?.(input.current!.value.trim())
   }
 
-  handleIconClick(e: React.MouseEvent<HTMLElement>) {
-    this.props.onIconClick?.(e)
+  const handleIconClick = (e: React.MouseEvent<HTMLElement>) => {
+    props.onIconClick?.(e)
   }
 
-  handleChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    const { onChange } = this.props
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const { onChange } = props
 
     onChange?.(e.target.value)
-    this.resizeTextarea()
+    resizeTextarea()
   }
 
-  render() {
-    const {
-      type,
-      size,
-      prepend,
-      append,
-      icon,
-      autoComplete,
-      validating,
-      rows,
-      onMouseEnter,
-      onMouseLeave,
-      trim,
-      ...otherProps
-    } = this.props
 
-    const classname = this.classNames(type === 'textarea' ? 'kenshin-textarea' : 'kenshin-input', size && `kenshin-input--${size}`, {
-      'is-disabled': this.props.disabled,
-      'kenshin-input-group': prepend || append,
-      'kenshin-input-group--append': !!append,
-      'kenshin-input-group--prepend': !!prepend
-    })
+  const classname = classnames(type === 'textarea' ? 'kenshin-textarea' : 'kenshin-input', size &&
+    `kenshin-input--${size}`, {
+    'is-disabled': props.disabled, 'kenshin-input-group': prepend || append,
+    'kenshin-input-group--append': !!append, 'kenshin-input-group--prepend': !!prepend
+  })
+  if ('value' in props) {
+    otherProps.value = fixControlledValue(props.value)
+    delete otherProps.defaultValue
+  }
+  delete otherProps.resize
+  delete otherProps.style
+  delete otherProps.autosize
+  delete otherProps.onIconClick
 
-    if ('value' in this.props) {
-      otherProps.value = this.fixControlledValue(this.props.value)
-      delete otherProps.defaultValue
-    }
-
-    delete otherProps.resize
-    delete otherProps.style
-    delete otherProps.autosize
-    delete otherProps.onIconClick
-
-    // 多行文本
-    if (type === 'textarea') {
-      return <div style={this.style()} className={this.className(classname)}>
+  // 多行文本
+  if (type === 'textarea') {
+    return <div style={props.style} className={classnames(classname)}>
         <textarea
           {...otherProps}
-          ref={this.textarea}
+          ref={textarea}
           className='kenshin-textarea__inner'
-          style={this.state.textareaStyle}
+          style={textareaStyle}
           rows={rows}
-          onChange={e => this.handleChange(e)}
-          onFocus={this.handleFocus.bind(this)}
-          onBlur={this.handleBlur.bind(this)}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
-      </div>
-    }
-
-    // 单行文本
-    return <div
-      style={this.style()}
-      className={this.className(classname)}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      {prepend && <div className='kenshin-input-group__prepend'>{prepend}</div>}
-      {
-        typeof icon === 'string'
-          ? <i className={`kenshin-input__icon kenshin-icon-${icon}`} onClick={e => this.handleIconClick(e)}>{prepend}</i>
-          : icon
-      }
-      <input
-        {...otherProps}
-        ref={this.input}
-        type={type}
-        className='kenshin-input__inner'
-        autoComplete={autoComplete}
-        onChange={e => this.handleChange(e)}
-        onFocus={e => this.handleFocus(e)}
-        onBlur={e => this.handleBlur(e)}
-      />
-      {validating && <i className='kenshin-input__icon kenshin-icon-loading' />}
-      {append && <div className='kenshin-input-group__append'>{append}</div>}
     </div>
   }
+
+  // 单行文本
+  return <div
+    style={props.style}
+    className={classnames(classname)}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  > {prepend && <div className='kenshin-input-group__prepend'>{prepend}</div>}
+    {
+      typeof icon === 'string'
+        ? <i
+          className={`kenshin-input__icon kenshin-icon-${icon}`}
+          onClick={handleIconClick}
+        >{prepend}</i>
+        : icon
+    }
+    <input
+      {...otherProps}
+      ref={input}
+      type={type}
+      className='kenshin-input__inner'
+      autoComplete={autoComplete}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    />
+    {validating && <i className='kenshin-input__icon kenshin-icon-loading' />}
+    {append && <div className='kenshin-input-group__append'>{append}</div>}
+  </div>
 }
+
+Input.defaultProps = {
+  type: 'text',
+  autosize: false,
+  rows: 2,
+  trim: false,
+  autoComplete: 'off'
+}
+
+export default Input
+
+
+
+
+

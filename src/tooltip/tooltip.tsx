@@ -16,7 +16,7 @@ export type TooltipProps = {
   placement: 'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
 
   // 触发方式 'focus', 'click', 'hover'
-  trigger: string[]
+  trigger?: string[]
   children?: React.ReactElement
 }
 
@@ -24,10 +24,9 @@ const Tooltip: React.FC<TooltipProps> = props => {
   const {
     children,
     content,
-    trigger,
+    trigger = ['hover'],
     ...restProps
   } = props
-  console.log(restProps)
   return <RcTooltip {...restProps} overlay={<span>{content}</span>} trigger={trigger}>
     {children}
   </RcTooltip>

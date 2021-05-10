@@ -9,6 +9,9 @@ import Tooltip from './tooltip'
 import Loading from './loading'
 import InputNumber from './input-number'
 import Radio from './radio'
+import Affix from './affix'
+import Tag from './tag'
+import Switch from './switch'
 
 export {
   Rate,
@@ -21,5 +24,8 @@ export {
   Tooltip,
   Loading,
   InputNumber,
-  Radio
+  Radio,
+  Affix,
+  Tag,
+  Switch
 }

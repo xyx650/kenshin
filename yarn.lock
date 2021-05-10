@@ -3310,7 +3310,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.x, classnames@^2.2.1, classnames@^2.2.6:
+classnames@2.x, classnames@^2.2.1, classnames@^2.2.5, classnames@^2.2.6:
   version "2.3.1"
   resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.3.1.tgz?cache=0&sync_timestamp=1617400318265&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fclassnames%2Fdownload%2Fclassnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha1-38+jiR4wbsHa0QXQ6I9EF7hTXo4=
@@ -9325,13 +9325,24 @@ rc-motion@^2.0.0, rc-motion@^2.0.1:
 
 rc-resize-observer@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.npm.taobao.org/rc-resize-observer/download/rc-resize-observer-1.0.0.tgz?cache=0&sync_timestamp=1608864858155&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-resize-observer%2Fdownload%2Frc-resize-observer-1.0.0.tgz#97fb89856f62fec32ab6e40933935cf58e2e102d"
+  resolved "https://registry.nlark.com/rc-resize-observer/download/rc-resize-observer-1.0.0.tgz#97fb89856f62fec32ab6e40933935cf58e2e102d"
   integrity sha1-l/uJhW9i/sMqtuQJM5Nc9Y4uEC0=
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
     rc-util "^5.0.0"
     resize-observer-polyfill "^1.5.1"
+
+rc-slider@^9.7.2:
+  version "9.7.2"
+  resolved "https://registry.npm.taobao.org/rc-slider/download/rc-slider-9.7.2.tgz?cache=0&sync_timestamp=1616675519253&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-slider%2Fdownload%2Frc-slider-9.7.2.tgz#282f571f7582752ebaa33964e441184f4e79ad74"
+  integrity sha1-KC9XH3WCdS66ozlk5EEYT055rXQ=
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    classnames "^2.2.5"
+    rc-tooltip "^5.0.1"
+    rc-util "^5.0.0"
+    shallowequal "^1.1.0"
 
 rc-tabs@^11.7.1:
   version "11.7.3"
@@ -9353,6 +9364,14 @@ rc-tooltip@5.1.0:
     "@babel/runtime" "^7.11.2"
     rc-trigger "^5.0.0"
 
+rc-tooltip@^5.0.1:
+  version "5.1.1"
+  resolved "https://registry.nlark.com/rc-tooltip/download/rc-tooltip-5.1.1.tgz?cache=0&sync_timestamp=1620376922725&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frc-tooltip%2Fdownload%2Frc-tooltip-5.1.1.tgz#94178ed162d0252bc4993b725f5dc2ac0fccf154"
+  integrity sha1-lBeO0WLQJSvEmTtyX13CrA/M8VQ=
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    rc-trigger "^5.0.0"
+
 rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2:
   version "5.2.5"
   resolved "https://registry.npm.taobao.org/rc-trigger/download/rc-trigger-5.2.5.tgz?cache=0&sync_timestamp=1618373442700&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Frc-trigger%2Fdownload%2Frc-trigger-5.2.5.tgz#b9a37a0d709b23a1b3a5d7f1727183e6f66773df"
@@ -9368,6 +9387,15 @@ rc-util@^5.0.0, rc-util@^5.2.1, rc-util@^5.3.0, rc-util@^5.5.0, rc-util@^5.7.0:
   version "5.9.8"
   resolved "https://registry.npm.taobao.org/rc-util/download/rc-util-5.9.8.tgz#dfcacc1f7b7c45fa18ab786e2b530dd0509073f1"
   integrity sha1-38rMH3t8RfoYq3huK1MN0FCQc/E=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    react-is "^16.12.0"
+    shallowequal "^1.1.0"
+
+rc-util@^5.12.1:
+  version "5.12.1"
+  resolved "https://registry.nlark.com/rc-util/download/rc-util-5.12.1.tgz?cache=0&sync_timestamp=1619675784669&other_urls=https%3A%2F%2Fregistry.nlark.com%2Frc-util%2Fdownload%2Frc-util-5.12.1.tgz#026e889546ad957bd8201512951923821f6dab63"
+  integrity sha1-Am6IlUatlXvYIBUSlRkjgh9tq2M=
   dependencies:
     "@babel/runtime" "^7.12.5"
     react-is "^16.12.0"

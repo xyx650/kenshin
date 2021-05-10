@@ -4,8 +4,8 @@ import Input from '../input'
 import { accAdd, accSub } from './util'
 import './index.less'
 
-export type InputNumberProps = {
-  defaultValue: number,
+export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onInput' | 'onChange' | 'size'> {
+  defaultValue?: number,
   value: number | string,
   step: number | string,
   max: number | string,
@@ -18,10 +18,10 @@ export type InputNumberProps = {
 }
 
 
-const InputNumber: React.FC<InputNumberProps> = props => {
+const InputNumber:React.FC<InputNumberProps> = props => {
   const [value, setValue] = React.useState(props.value)
   const [inputActive, setInputActive] = React.useState(false)
-  const input = React.useRef<Input>(null)
+  // const input = React.useRef<Input>(null)
 
   const { controls, disabled, size, max, min } = props
 
@@ -33,7 +33,7 @@ const InputNumber: React.FC<InputNumberProps> = props => {
   }, [value, inputActive])
 
 
-  const onKeyDown = (e: React.KeyboardEvent<Input>) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     switch (e.keyCode) {
       case 38: // KeyUp
@@ -152,7 +152,6 @@ const InputNumber: React.FC<InputNumberProps> = props => {
         </span>
       }
       <Input
-        ref={input}
         className={classnames({ 'is-active': inputActive })}
         value={String(value)}
         disabled={disabled}

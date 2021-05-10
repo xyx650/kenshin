@@ -5,8 +5,8 @@ Demo:
 ```tsx
 import React from 'react';
 import { Slider } from 'kenshin';
-
-export default () => <Slider value={50}/>;
+const [value, setValue] = React.useState(50)
+export default () => <Slider defaultValue={value} />
 ```
 
 <API></API>

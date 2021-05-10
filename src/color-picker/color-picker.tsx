@@ -4,7 +4,6 @@ import { colorPickerContext } from '@/color-picker/context'
 import PickerDropdown from './picker-dropdown'
 import Color from './color'
 import './index.less'
-import type { ColorType } from './types'
 
 export type ColorPickerProps = {
   value: string | number | null,
@@ -31,7 +30,6 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
 
   // 挂载后设置值
   React.useEffect(() => {
-    console.log('value', value)
     if (value) {
       color.fromString(value.toString())
       setColor(color)
