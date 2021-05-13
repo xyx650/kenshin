@@ -9,7 +9,7 @@ const [value, setValue] = React.useState(50)
 export default () => <Slider defaultValue={value} />
 ```
 
-<API></API>
+<API/>
 
 <style>
 

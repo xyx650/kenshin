@@ -4,14 +4,14 @@ import classNames from 'classnames'
 import './index.less'
 
 export type ButtonProps = {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
-  type: string
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  type?: string
   size: string,
   icon?: string,
-  nativeType: 'button' | 'submit' | 'reset'
-  loading: boolean
-  disabled: boolean
-  plain: boolean
+  nativeType?: 'button' | 'submit' | 'reset'
+  loading?: boolean
+  disabled?: boolean
+  plain?: boolean
   className?: string
   style?: React.CSSProperties
 }

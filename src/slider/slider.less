@@ -1,35 +1,13 @@
 @import url('../_styles/common/prefix');
+@import url('../_styles/common/vars');
+@import url('../_styles/common/mixin');
 
 
 @slider-prefix-cls: ~'@{prefix}-slider';
 
-@primary-color: #1890ff;
-@slider-margin: 10px 6px 10px;
-@slider-rail-background-color: hsv(0, 0, 96%);
-@border-radius-base: 2px;
-@slider-track-background-color: #91d5ff;
-@slider-handle-size: 14px;
-@slider-handle-margin-top: -5px;
-@slider-handle-background-color: #fff;
-@slider-handle-border-width: 2px;
-@slider-handle-color: #91d5ff;
-@slider-handle-shadow: 0;
-@slider-handle-color-tooltip-open: @primary-color;
-@component-background: #fff;
-@slider-disabled-color: fade(#000, 25%);
-@slider-dot-border-color-active: tint(@primary-color, 50%);
-@slider-dot-border-color: hsv(0, 0, 94%);
-@text-color: fade(#000, 85%);
-@text-color-secondary: fade(#000, 45%);
-@font-size-base: 14px;
-//@slider-handle-color: @primary-3;
-//@slider-handle-color-hover: @primary-4;
-@slider-handle-color-focus: tint(@primary-color, 20%);
-@slider-handle-color-focus-shadow: fade(@primary-color, 12%);
-@slider-handle-color-tooltip-open: @primary-color;
 
 .@{slider-prefix-cls} {
-  //.reset-component();
+  .reset-component();
 
   position: relative;
   height: 12px;

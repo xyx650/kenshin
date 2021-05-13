@@ -22,7 +22,7 @@ export type SwitchProps = {
   onValue: number | string | boolean
   offValue: number | string | boolean
   name: string,
-  onChange?: (val: number | string | boolean) => void
+  onChange?: (value: number | string | boolean) => void
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void
   allowFocus: boolean
@@ -44,6 +44,7 @@ const Switch: React.FC<SwitchProps> = props => {
   const { name, disabled, onText, offText, onValue, onIconClass, offIconClass, allowFocus } = props
   const { value, coreWidth, buttonStyle } = state
 
+  // 判断是否初次渲染
   const isFirst = React.useRef(false)
 
   // update
@@ -60,7 +61,6 @@ const Switch: React.FC<SwitchProps> = props => {
   // didMount
   React.useEffect(() => {
     if (props.width === 0) {
-      // setState({ ...state, coreWidth: hasText() ? 58 : 46 })
       state.coreWidth = hasText() ? 58 : 46
     }
     updateSwitch()
@@ -94,13 +94,6 @@ const Switch: React.FC<SwitchProps> = props => {
       ...state,
       value: e.target.checked ? props.onValue : props.offValue
     })
-    //   () => {
-    //   this.updateSwitch()
-    //
-    //   if (this.props.onChange) {
-    //     this.props.onChange(this.state.value)
-    //   }
-    // }
   }
 
   const setFocus = () => {
@@ -116,6 +109,7 @@ const Switch: React.FC<SwitchProps> = props => {
   }
 
 
+  // 是否包含文本
   const hasText = () => props.onText || props.offText
 
 

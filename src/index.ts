@@ -12,6 +12,9 @@ import Radio from './radio'
 import Affix from './affix'
 import Tag from './tag'
 import Switch from './switch'
+import Image from './image'
+import Alert from './alert'
+import Popconfirm from './popconfirm'
 
 export {
   Rate,
@@ -27,5 +30,8 @@ export {
   Radio,
   Affix,
   Tag,
-  Switch
+  Switch,
+  Image,
+  Alert,
+  Popconfirm
 }

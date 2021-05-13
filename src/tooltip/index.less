@@ -1,137 +1,208 @@
-.kenshin-tooltip__popper {
-  position: absolute;
-  border-radius: 4px;
-  padding: 10px;
-  z-index: 2000;
-  font-size: 12px;
-  line-height: 1.2
-}
+@import url('../_styles/common/prefix');
+@import url('../_styles/common/vars');
+@import url('../_styles/common/mixin');
 
-.kenshin-tooltip__popper .popper__arrow, .kenshin-tooltip__popper .popper__arrow::after {
+@tooltip-prefix-cls: ~'@{prefix}-tooltip';
+
+@tooltip-arrow-shadow-width: 3px;
+
+@tooltip-arrow-rotate-width: sqrt(@tooltip-arrow-width * @tooltip-arrow-width * 2) + @tooltip-arrow-shadow-width * 2;
+
+@tooltip-arrow-offset-vertical: 5px; // 8 - 3px
+@tooltip-arrow-offset-horizontal: 13px; // 16 - 3px
+
+// Base class
+.@{prefix}-tooltip{
+
+  .reset-component();
+
   position: absolute;
+  z-index: @zindex-tooltip;
   display: block;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid
-}
+  max-width: @tooltip-max-width;
+  visibility: visible;
 
-.kenshin-tooltip__popper .popper__arrow {
-  border-width: 6px
-}
+  &-hidden {
+    display: none;
+  }
 
-.kenshin-tooltip__popper .popper__arrow::after {
-  content: " ";
-  border-width: 5px
-}
+  &-placement-top,
+  &-placement-topLeft,
+  &-placement-topRight {
+    padding-bottom: @tooltip-distance;
+  }
 
-.kenshin-tooltip__popper[x-placement^=top] {
-  margin-bottom: 12px
-}
+  &-placement-right,
+  &-placement-rightTop,
+  &-placement-rightBottom {
+    padding-left: @tooltip-distance;
+  }
 
-.kenshin-tooltip__popper[x-placement^=top] .popper__arrow {
-  bottom: -6px;
-  border-top-color: #1f2d3d;
-  border-bottom-width: 0
-}
+  &-placement-bottom,
+  &-placement-bottomLeft,
+  &-placement-bottomRight {
+    padding-top: @tooltip-distance;
+  }
 
-.kenshin-tooltip__popper[x-placement^=top] .popper__arrow::after {
-  bottom: 1px;
-  margin-left: -5px;
-  border-top-color: #1f2d3d;
-  border-bottom-width: 0
-}
+  &-placement-left,
+  &-placement-leftTop,
+  &-placement-leftBottom {
+    padding-right: @tooltip-distance;
+  }
 
-.kenshin-tooltip__popper[x-placement^=bottom] {
-  margin-top: 12px
-}
+  // Wrapper for the tooltip content
+  &-inner {
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+    color: @tooltip-color;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: @tooltip-bg;
+    border-radius: @border-radius-base;
+    box-shadow: @box-shadow-base;
+  }
 
-.kenshin-tooltip__popper[x-placement^=bottom] .popper__arrow {
-  top: -6px;
-  border-top-width: 0;
-  border-bottom-color: #1f2d3d
-}
+  // Arrows
+  &-arrow {
+    position: absolute;
+    display: block;
+    width: @tooltip-arrow-rotate-width;
+    height: @tooltip-arrow-rotate-width;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
 
-.kenshin-tooltip__popper[x-placement^=bottom] .popper__arrow::after {
-  top: 1px;
-  margin-left: -5px;
-  border-top-width: 0;
-  border-bottom-color: #1f2d3d
-}
+    &-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: @tooltip-arrow-width;
+      height: @tooltip-arrow-width;
+      margin: auto;
+      background-color: @tooltip-bg;
+      content: '';
+      pointer-events: auto;
+    }
+  }
 
-.kenshin-tooltip__popper[x-placement^=right] {
-  margin-left: 12px
-}
+  &-placement-top &-arrow,
+  &-placement-topLeft &-arrow,
+  &-placement-topRight &-arrow {
+    bottom: @tooltip-distance - @tooltip-arrow-rotate-width;
 
-.kenshin-tooltip__popper[x-placement^=right] .popper__arrow {
-  left: -6px;
-  border-right-color: #1f2d3d;
-  border-left-width: 0
-}
+    &-content {
+      box-shadow: @tooltip-arrow-shadow-width @tooltip-arrow-shadow-width 7px fade(@black, 7%);
+      transform: translateY((-@tooltip-arrow-rotate-width / 2)) rotate(45deg);
+    }
+  }
 
-.kenshin-tooltip__popper[x-placement^=right] .popper__arrow::after {
-  bottom: -5px;
-  left: 1px;
-  border-right-color: #1f2d3d;
-  border-left-width: 0
-}
+  &-placement-top &-arrow {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.kenshin-tooltip__popper[x-placement^=left] {
-  margin-right: 12px
-}
+  &-placement-topLeft &-arrow {
+    left: @tooltip-arrow-offset-horizontal;
+  }
 
-.kenshin-tooltip__popper[x-placement^=left] .popper__arrow {
-  right: -6px;
-  border-right-width: 0;
-  border-left-color: #1f2d3d
-}
+  &-placement-topRight &-arrow {
+    right: @tooltip-arrow-offset-horizontal;
+  }
 
-.kenshin-tooltip__popper[x-placement^=left] .popper__arrow::after {
-  right: 1px;
-  bottom: -5px;
-  margin-left: -5px;
-  border-right-width: 0;
-  border-left-color: #1f2d3d
-}
+  &-placement-right &-arrow,
+  &-placement-rightTop &-arrow,
+  &-placement-rightBottom &-arrow {
+    left: @tooltip-distance - @tooltip-arrow-rotate-width;
 
-.kenshin-tooltip__popper.is-light {
-  background: #fff;
-  border: 1px solid #1f2d3d
-}
+    &-content {
+      box-shadow: -@tooltip-arrow-shadow-width @tooltip-arrow-shadow-width 7px fade(@black, 7%);
+      transform: translateX((@tooltip-arrow-rotate-width / 2)) rotate(45deg);
+    }
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=top] .popper__arrow {
-  border-top-color: #1f2d3d
-}
+  &-placement-right &-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=top] .popper__arrow::after {
-  border-top-color: #fff
-}
+  &-placement-rightTop &-arrow {
+    top: @tooltip-arrow-offset-vertical;
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=bottom] .popper__arrow {
-  border-bottom-color: #1f2d3d
-}
+  &-placement-rightBottom &-arrow {
+    bottom: @tooltip-arrow-offset-vertical;
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=bottom] .popper__arrow::after {
-  border-bottom-color: #fff
-}
+  &-placement-left &-arrow,
+  &-placement-leftTop &-arrow,
+  &-placement-leftBottom &-arrow {
+    right: @tooltip-distance - @tooltip-arrow-rotate-width;
 
-.kenshin-tooltip__popper.is-light[x-placement^=left] .popper__arrow {
-  border-left-color: #1f2d3d
-}
+    &-content {
+      box-shadow: @tooltip-arrow-shadow-width -@tooltip-arrow-shadow-width 7px fade(@black, 7%);
+      transform: translateX((-@tooltip-arrow-rotate-width / 2)) rotate(45deg);
+    }
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=left] .popper__arrow::after {
-  border-left-color: #fff
-}
+  &-placement-left &-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=right] .popper__arrow {
-  border-right-color: #1f2d3d
-}
+  &-placement-leftTop &-arrow {
+    top: @tooltip-arrow-offset-vertical;
+  }
 
-.kenshin-tooltip__popper.is-light[x-placement^=right] .popper__arrow::after {
-  border-right-color: #fff
-}
+  &-placement-leftBottom &-arrow {
+    bottom: @tooltip-arrow-offset-vertical;
+  }
 
-.kenshin-tooltip__popper.is-dark {
-  background: #1f2d3d;
-  color: #fff
-}
+  &-placement-bottom &-arrow,
+  &-placement-bottomLeft &-arrow,
+  &-placement-bottomRight &-arrow {
+    top: @tooltip-distance - @tooltip-arrow-rotate-width;
+
+    &-content {
+      box-shadow: -@tooltip-arrow-shadow-width -@tooltip-arrow-shadow-width 7px fade(@black, 7%);
+      transform: translateY((@tooltip-arrow-rotate-width / 2)) rotate(45deg);
+    }
+  }
+
+  &-placement-bottom &-arrow {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-placement-bottomLeft &-arrow {
+    left: @tooltip-arrow-offset-horizontal;
+  }
+
+  &-placement-bottomRight &-arrow {
+    right: @tooltip-arrow-offset-horizontal;
+  }
+};
+
+//@preset-colors: pink, magenta, red, volcano, orange, yellow, gold, cyan, lime, green, blue, geekblue,
+//purple;
+
+.generator-tooltip-preset-color(@i: length(@preset-colors)) when (@i > 0) {
+  .generator-tooltip-preset-color(@i - 1);
+  @color: extract(@preset-colors, @i);
+  @lightColor: '@{color}-base';
+  .@{tooltip-prefix-cls}-@{color} {
+    .@{tooltip-prefix-cls}-inner {
+      background-color: @@lightColor;
+    }
+    .@{tooltip-prefix-cls}-arrow {
+      &-content {
+        background-color: @@lightColor;
+      }
+    }
+  }
+};
+.generator-tooltip-preset-color();
