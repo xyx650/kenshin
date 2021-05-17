@@ -1,17 +1,15 @@
-## Slider 滑块
-
-Demo:
+## Popconfirm 气泡确认框
 
 ```tsx
 import React from 'react';
-import { Popconfirm } from 'kenshin';
+import { Popconfirm, Button } from 'kenshin';
 
 export default () => <Popconfirm
-  title="Are you sure to delete this task?"
-  okText="Yes"
-  cancelText="No"
+  title="确认删除？"
+  okText="是"
+  cancelText="否"
 >
-  <a href="#">Delete</a>
+  <Button type='danger'>删除</Button>
 </Popconfirm>
 ```
 

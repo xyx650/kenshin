@@ -1,3 +1,13 @@
+@html-selector: html;
+@link-color: @primary-color;
+@link-decoration: none;
+@link-hover-decoration: none;
+@link-focus-decoration: none;
+@link-focus-outline: 0;
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+@disabled-color: fade(#000, 25%);
+@text-selection-bg: @primary-color;
+
 @white: #fff;
 @black: #000;
 @primary-color: #1890ff;
@@ -28,6 +38,28 @@ purple;
 @slider-handle-color-focus: tint(@primary-color, 20%);
 @slider-handle-color-focus-shadow: fade(@primary-color, 12%);
 @slider-handle-color-tooltip-open: @primary-color;
+
+
+@popover-arrow-width: 6px;
+@zindex-popoconfirm: 1060;
+@zindex-popover: 1030;
+@popover-distance: @popover-arrow-width + 4px;
+@popover-bg: @component-background;
+@box-shadow-base: @shadow-2;
+@shadow-color: rgba(0, 0, 0, 0.15);
+@popover-min-width: 177px;
+@popover-min-height: 32px;
+@popover-padding-horizontal: @padding-md;
+@padding-lg: 24px;
+@padding-md: 16px;
+@padding-sm: 12px;
+@padding-xs: 8px;
+@padding-xss: 4px;
+@heading-color: fade(@black, 85%);
+@border-color-split: hsv(0, 0, 94%);
+@popover-color: @text-color;
+@warning-color: @gold-base;
+
 
 @image-bg: #f5f5f5;
 @image-color: #fff;

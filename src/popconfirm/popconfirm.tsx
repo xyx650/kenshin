@@ -1,10 +1,12 @@
 import * as React from 'react'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import KeyCode from 'rc-util/lib/KeyCode'
+import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled'
 import Button from '@/button'
 import Tooltip, { AbstractTooltipProps } from '../tooltip'
 import classnames from 'classnames'
 import { cloneElement } from '@/_util/reactNode'
+import './index.less'
 
 
 type RenderFunction = () => React.ReactNode;
@@ -99,6 +101,7 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
         <Button
           onClick={onConfirm}
           size='small'
+          type='primary'
         >
           {okText || '确定'}
         </Button>
@@ -114,21 +117,21 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
     ...restProps
   } = props
 
+  const prefixCls = 'kenshin-popover'
   const prefixClsConfirm = customizePrefixCls || 'kenshin-popconfirm'
   const overlayClassNames = classnames(prefixClsConfirm, overlayClassName)
 
-  const overlay = renderOverlay('kenshin-popover')
-
+  const overlay = renderOverlay(prefixCls)
 
   return <Tooltip
     {...restProps}
-    prefixCls='kenshin-popover'
+    prefixCls={prefixCls}
     placement={placement}
     onVisibleChange={onVisibleChange}
     visible={visible}
     overlay={overlay}
     overlayClassName={overlayClassNames}
-    ref={ref as any}
+    ref={ref}
     transitionName={props.transitionName || 'kenshin-zoom-big'}
   >
     {cloneElement(children, {
@@ -147,7 +150,7 @@ Popconfirm.defaultProps = {
   placement: 'top',
   trigger: 'click',
   // okType: 'primary' as PopconfirmProps['okType'],
-  // icon: <ExclamationCircleFilled />,
+  icon: <ExclamationCircleFilled />,
   disabled: false
 }
 

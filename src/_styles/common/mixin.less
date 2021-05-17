@@ -1,5 +1,22 @@
 @import "vars";
 @import "prefix";
+
+[class^="@{prefix}-"],
+[class*=" @{prefix}-"] {
+  &::-ms-clear,
+  input::-ms-clear,
+  input::-ms-reveal {
+    display: none;
+  }
+
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box; // 1
+  }
+}
+
 .box(@position: absolute) {
   position: @position;
   top: 0;
@@ -51,7 +68,6 @@
 }
 
 
-
 .motion-common(@duration: @animation-duration-base) {
   animation-duration: @duration;
   animation-fill-mode: both;
@@ -87,8 +103,6 @@
 }
 
 
-
-
 // fade
 .fade-motion(@className, @keyframeName) {
   @name: ~'@{prefix}-@{className}';
@@ -122,10 +136,6 @@
     opacity: 0;
   }
 }
-
-
-
-
 
 
 // zoom
