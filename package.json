@@ -8,10 +8,10 @@
     "frontend",
     "component"
   ],
-  "homepage": "https://github.com/learners",
+  "homepage": "https://github.com/xyx650/kenshin",
   "repository": {
     "type": "git",
-    "url": "git@github.com:learners/kenshin.git"
+    "url": "git@github.com:xyx650/kenshin.git"
   },
   "license": "MIT",
   "author": "learners",
@@ -62,7 +62,6 @@
     "@ant-design/icons": "^4.6.2",
     "babel-polyfill": "^6.26.0",
     "element-remove": "^1.0.4",
-    "element-theme-default": "^1.4.13",
     "popper.js": "^1.16.1",
     "rc-image": "^5.2.4",
     "rc-resize-observer": "^1.0.0",

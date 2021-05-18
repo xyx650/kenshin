@@ -51,7 +51,7 @@ export interface InputProps
 export type InputState = { resize: React.CSSProperties['resize'], height?: React.CSSProperties['height'] }
 
 
-const Input: React.FC<InputProps> = (props) => {
+const Input: React.FC<InputProps> = props => {
   const {
     type = 'text',
     size,

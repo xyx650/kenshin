@@ -15,6 +15,8 @@ import Switch from './switch'
 import Image from './image'
 import Alert from './alert'
 import Popconfirm from './popconfirm'
+import Card from './card'
+import Collapse from './collapse'
 
 export {
   Rate,
@@ -33,5 +35,7 @@ export {
   Switch,
   Image,
   Alert,
-  Popconfirm
+  Popconfirm,
+  Card,
+  Collapse
 }

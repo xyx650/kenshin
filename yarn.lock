@@ -4258,11 +4258,6 @@ element-remove@^1.0.4:
   resolved "https://registry.npm.taobao.org/element-remove/download/element-remove-1.0.4.tgz#e587c53176bb196310bc99a75f45fe6eda016c21"
   integrity sha1-5YfFMXa7GWMQvJmnX0X+btoBbCE=
 
-element-theme-default@^1.4.13:
-  version "1.4.13"
-  resolved "https://registry.npm.taobao.org/element-theme-default/download/element-theme-default-1.4.13.tgz#70f9b754f9a1059d20c3225fe12eb55cc1e8abf9"
-  integrity sha1-cPm3VPmhBZ0gwyJf4S61XMHoq/k=
-
 elliptic@^6.5.3:
   version "6.5.4"
   resolved "https://registry.npm.taobao.org/elliptic/download/elliptic-6.5.4.tgz#da37cebd31e79a1367e941b592ed1fbebd58abbb"
