@@ -1,11 +1,13 @@
 import * as React from 'react'
 import RcTooltip from 'rc-tooltip'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
-import { TooltipProps as RcTooltipProps } from 'rc-tooltip/lib/Tooltip'
+import type { TooltipProps as RcTooltipProps } from 'rc-tooltip/lib/Tooltip'
 import { cloneElement, isValidElement } from '@/_util/reactNode'
-import { placements as Placements } from 'rc-tooltip/lib/placements'
-import { PresetColorType, PresetColorTypes } from '@/_util/colors'
-import getPlacements, { AdjustOverflow, PlacementsConfig } from './placements'
+import type { placements as Placements } from 'rc-tooltip/lib/placements'
+import { PresetColorTypes } from '@/_util/colors'
+import type { PresetColorType } from '@/_util/colors'
+import getPlacements from './placements'
+import type { AdjustOverflow } from './placements'
 import classnames from 'classnames'
 import 'rc-tooltip/assets/bootstrap.css'
 import './index.less'
@@ -69,7 +71,7 @@ export interface TooltipPropsWithTitle extends AbstractTooltipProps {
 export declare type TooltipProps = TooltipPropsWithTitle | TooltipPropsWithOverlay;
 
 // 将对象根据 keys 拆分成两个对象
-const splitObject = <T extends object, K extends keyof T>(obj: T, keys: K[]) => {
+const splitObject = <T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]) => {
   const picked = {} as Pick<T, K>
   const omitted: Partial<T> = { ...obj }
   keys.forEach(key => {
@@ -86,7 +88,7 @@ const PresetColorRegex = new RegExp(`^(${PresetColorTypes.join('|')})(-inverse)?
 // 获取兼容的子级
 function getDisabledCompatibleChildren(element: React.ReactElement, prefixCls: string) {
   if (element.type === 'button' && element.props.disabled) {
-    const { picked, omitted } = splitObject(element.props.style as React.CSSProperties, [
+    const { picked, omitted } = splitObject(element.props.style, [
       'position',
       'left',
       'right',
@@ -97,6 +99,7 @@ function getDisabledCompatibleChildren(element: React.ReactElement, prefixCls: s
       'zIndex'
     ])
     const spanStyle = {
+      // @ts-ignore
       display: 'inline-block',
       ...picked,
       cursor: 'not-allowed',
@@ -129,7 +132,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
 
   const isNoTitle = () => {
     const { title, overlay } = props
-    return !title && !overlay && title !== 0 // overlay for old version compatibility
+    return !title && !overlay && title !== 0
   }
 
   const onVisibleChange = (vis: boolean) => {
@@ -176,6 +179,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     } else if (placement.indexOf('right') >= 0 || placement.indexOf('Left') >= 0) {
       transformOrigin.left = `${-align.offset[0]}px`
     }
+    // eslint-disable-next-line no-param-reassign
     domNode.style.transformOrigin = `${transformOrigin.left} ${transformOrigin.top}`
   }
 
@@ -237,7 +241,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     overlayInnerStyle={formattedOverlayInnerStyle}
     arrowContent={<span className={`${prefixCls}-arrow-content`} style={arrowContentStyle} />}
     motion={{
-      motionName: props.transitionName || rootPrefixCls + '-zoom-big-fast',
+      motionName: props.transitionName || `${rootPrefixCls}-zoom-big-fast`,
       motionDeadline: 1000
     }}
   >

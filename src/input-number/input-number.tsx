@@ -18,7 +18,7 @@ export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInp
 }
 
 
-const InputNumber:React.FC<InputNumberProps> = props => {
+const InputNumber: React.FC<InputNumberProps> = props => {
   const [value, setValue] = React.useState(props.value)
   const [inputActive, setInputActive] = React.useState(false)
   // const input = React.useRef<Input>(null)

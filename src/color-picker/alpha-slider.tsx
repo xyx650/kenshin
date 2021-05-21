@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { colorPickerContext } from '@/color-picker/context'
 
 import draggable from './draggable'
-import type { DragOptions, AlphaSliderState, ColorType } from './types'
+import type { DragOptions, ColorType } from './types'
 import { useState } from 'react'
 
 type AlphaSliderProps = {
@@ -25,6 +25,12 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
 
   const context = React.useContext(colorPickerContext)
 
+  const update = () => {
+    setThumbLeft(getThumbLeft())
+    setThumbTop(getThumbTop())
+    setBackground(getBackground())
+  }
+
   React.useEffect(() => {
     const dragConfig: DragOptions = {
       drag: e => {handleDrag(e)},
@@ -33,11 +39,14 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
     draggable($bar.current!, dragConfig)
     draggable($thumb.current!, dragConfig)
     update()
+    // eslint-disable-next-line
   }, [])
+
+
 
   const handleClick = (e: MouseEvent) => {
     const thumb = $thumb.current
-    const target = e.target
+    const {target} = e
     if (target !== thumb) {
       handleDrag(e)
     }
@@ -90,13 +99,6 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
     return undefined
   }
 
-  const update = () => {
-    setThumbLeft(getThumbLeft())
-    setThumbTop(getThumbTop())
-    setBackground(getBackground())
-  }
-
-
   return <div
     ref={$el}
     className={classnames('kenshin-color-alpha-slider', { 'is-vertical': vertical })}
@@ -110,7 +112,7 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
     <div
       className='kenshin-color-alpha-slider__thumb'
       ref={$thumb}
-      style={{ left: thumbLeft + 'px', top: thumbTop + 'px' }}
+      style={{ left: `${thumbLeft  }px`, top: `${thumbTop  }px` }}
     />
   </div>
 }

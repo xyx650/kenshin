@@ -74,6 +74,7 @@ const Input: React.FC<InputProps> = props => {
   // componentDidMount
   React.useEffect(() => {
     resizeTextarea()
+    // eslint-disable-next-line
   }, [])
 
 
@@ -81,10 +82,9 @@ const Input: React.FC<InputProps> = props => {
     if (typeof props.autosize === 'boolean' || type !== 'textarea') {
       return
     }
-    const minRows = props.autosize!.minRows
-    const maxRows = props.autosize!.maxRows
+    const { minRows } = props.autosize!
+    const { maxRows } = props.autosize!
     const textareaCalcStyle = calcTextareaHeight(textarea.current!, minRows, maxRows)
-    // const textareaCalcStyle = calcTextareaHeight(ref?.current!, minRows, maxRows)
 
     setTextareaStyle({ ...textareaStyle, ...textareaCalcStyle })
   }
@@ -103,10 +103,7 @@ const Input: React.FC<InputProps> = props => {
   }
 
   const fixControlledValue = (value?: string | null) => {
-    if (typeof value === 'undefined' || value === null) {
-      return ''
-    }
-    return value
+    return value || ''
   }
 
 

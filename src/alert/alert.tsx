@@ -15,7 +15,7 @@ export type AlertProps = {
   className?: string
 }
 
-const TYPE_CLASSES_MAP: { [type: string]: string } = {
+const TYPE_CLASSES_MAP: Record<string, string> = {
   'success': 'kenshin-icon-circle-check',
   'warning': 'kenshin-icon-warning',
   'error': 'kenshin-icon-circle-cross'
@@ -30,15 +30,16 @@ const Alert: React.FC<AlertProps> = props => {
     title,
     description,
     closeText,
-    showIcon
+    showIcon,
+    onClose
   } = props
 
   // 关闭时触发 onClose
   React.useEffect(() => {
     if (!visible) {
-      props.onClose?.()
+      onClose?.()
     }
-  }, [visible])
+  }, [visible, onClose])
 
   const close = () => {
     setVisible(false)

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import CollapseItem, { CollapseItemProps } from './collapse-item'
+import CollapseItem from './collapse-item'
+import type { CollapseItemProps } from './collapse-item'
 import './collapse.less'
 
 export interface CollapseProps {
@@ -15,15 +16,13 @@ export interface ComputedCollapse extends React.FC<CollapseProps> {
   Item: typeof CollapseItem
 }
 
-
 const Collapse: ComputedCollapse = props => {
-  const { value } = props
+  const { value, onChange } = props
   const [activeNames, setActiveNames] = React.useState(([] as string[]).concat(value))
 
-
   React.useEffect(() => {
-    props.onChange?.(activeNames.slice(0))
-  }, [activeNames])
+    onChange?.(activeNames.slice())
+  }, [activeNames, onChange])
 
 
   const handleItemClick = (name: string) => {
@@ -45,7 +44,7 @@ const Collapse: ComputedCollapse = props => {
     const name = (child as React.ReactElement<CollapseItemProps>).props.name || key.toString()
     return React.cloneElement(child as React.ReactElement<CollapseItemProps>, {
       isActive: activeNames.includes(name),
-      key,
+      key: key.toString(),
       name,
       onClick: handleItemClick
     })
