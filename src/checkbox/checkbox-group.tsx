@@ -46,13 +46,11 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = props => {
     if (displayName !== 'Checkbox' && displayName !== 'CheckboxButton') {
       return null
     }
-
-    // @ts-ignore
     return React.cloneElement(child, {
       ...child.props,
       key: index.toString(),
-      checked: child.props.checked || options.indexOf(child.props.value as string) >= 0 ||
-        options.indexOf(child.props.label || '') >= 0,
+      checked: child.props.checked || options.indexOf(child.props.value as string | number) >= 0 ||
+        options.indexOf(child.props.label as string | number) >= 0,
       // @ts-ignore
       onChange: onChange.bind(child, child.props.value ?
         child.props.value : child.props.value === 0 ? 0 : child.props.label)
@@ -65,7 +63,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = props => {
     </checkboxContext.Provider>
   </div>
 }
-
 
 export default CheckboxGroup
 
