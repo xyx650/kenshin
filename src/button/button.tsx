@@ -1,19 +1,18 @@
 import * as React from 'react'
-import Component from '@/_base/component'
 import classNames from 'classnames'
-import './index.less'
+// import './index.less'
 
 export type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  type?: string
-  size: string,
-  icon?: string,
-  nativeType?: 'button' | 'submit' | 'reset'
-  loading?: boolean
-  disabled?: boolean
-  plain?: boolean
-  className?: string
-  style?: React.CSSProperties
+  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text' | 'default';
+  size?: 'large' | 'small' | 'mini';
+  icon?: string;
+  nativeType?: 'button' | 'submit' | 'reset';
+  loading?: boolean;
+  disabled?: boolean;
+  plain?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = props => {
