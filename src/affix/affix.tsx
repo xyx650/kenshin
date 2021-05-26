@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import omit from 'rc-util/lib/omit'
 import ResizeObserver from 'rc-resize-observer'
 import { throttleByAnimationFrameDecorator } from '@/_util/throttleByAnimationFrameDecorator'
+import { prefixCls as prefix } from '@/config'
 
 import {
   addObserveTarget,
@@ -24,6 +25,7 @@ export type AffixProps = {
   children: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
+  prefixCls?: string;
 }
 
 enum AffixStatus {
@@ -225,8 +227,8 @@ export default class Affix extends React.Component<AffixProps, AffixState> {
 
   render() {
     const { affixStyle, placeholderStyle } = this.state
-    const { children } = this.props
-    const className = classnames({ 'kenshin-affix': affixStyle })
+    const { children, prefixCls = prefix } = this.props
+    const className = classnames({ [`${prefixCls}-affix`]: affixStyle })
 
     // 挑选 props 属性
     const props = omit(this.props, ['offsetTop', 'offsetBottom', 'target', 'onChange'])

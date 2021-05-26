@@ -46,7 +46,7 @@ const CollapseTransition: React.FC<CollapseTransitionProps> = props => {
 
     el.style.display = 'block'
     if (el.scrollHeight !== 0) {
-      el.style.height = el.scrollHeight + 'px'
+      el.style.height = `${el.scrollHeight  }px`
       el.style.paddingTop = el.dataset.oldPaddingTop!
       el.style.paddingBottom = el.dataset.oldPaddingBottom!
     } else {
@@ -76,7 +76,7 @@ const CollapseTransition: React.FC<CollapseTransitionProps> = props => {
 
     el.style.display = 'block'
     if (el.scrollHeight !== 0) {
-      el.style.height = el.scrollHeight + 'px'
+      el.style.height = `${el.scrollHeight  }px`
     }
     el.style.overflow = 'hidden'
   }

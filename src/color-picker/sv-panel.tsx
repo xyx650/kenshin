@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { colorPickerContext } from '@/color-picker/context'
 import draggable from './draggable'
-import type { ColorType, DragOptions, SvPanelState } from './types'
+import type { ColorType, DragOptions } from './types'
+import { prefixCls as prefix } from '@/config'
 
 
 export type SvPanelProps = {
@@ -47,7 +48,7 @@ const SvPanel: React.FC<SvPanelProps> = (props) => {
     const el = $el.current!
     let { width, height } = el.getBoundingClientRect()
     if (!height) height = width * 3 / 4
-    setBackground('hsl(' + color.get('hue') + ', 100%, 50%)')
+    setBackground(`hsl(${color.get('hue')}, 100%, 50%)`)
     setCursorTop((100 - +value) * height / 100)
     setCursorLeft(+saturation * width / 100)
   }
@@ -64,32 +65,23 @@ const SvPanel: React.FC<SvPanelProps> = (props) => {
     left = Math.min(left, rect.width)
     top = Math.max(0, top)
     top = Math.min(top, rect.height)
-    // this.setState({
-    //   cursorLeft: left,
-    //   cursorTop: top,
-    //   background: 'hsl(' + color.get('hue') + ', 100%, 50%)'
-    // }, () => {
-    //   color.set({
-    //     saturation: (left / rect.width * 100).toString(),
-    //     value: (100 - top / rect.height * 100).toString()
-    //   })
-    //   onChange(color)
-    // })
-    setBackground('hsl(' + color.get('hue') + ', 100%, 50%)')
+
+    setBackground(`hsl(${color.get('hue')}, 100%, 50%)`)
     setCursorTop(top)
     setCursorLeft(left)
+    onChange(color)
   }
 
   return <div
-    className='kenshin-color-svpanel'
+    className={`${prefix}-color-svpanel`}
     style={{ backgroundColor: background }}
     ref={$el}
   >
-    <div className='kenshin-color-svpanel__white' />
-    <div className='kenshin-color-svpanel__black' />
+    <div className={`${prefix}-color-svpanel__white`} />
+    <div className={`${prefix}-color-svpanel__black`} />
     <div
-      className='kenshin-color-svpanel__cursor'
-      style={{ top: cursorTop + 'px', left: cursorLeft + 'px' }}
+      className={`${prefix}-color-svpanel__cursor`}
+      style={{ top: `${cursorTop}px`, left: `${cursorLeft}px` }}
     >
       <div />
     </div>

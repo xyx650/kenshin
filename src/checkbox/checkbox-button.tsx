@@ -3,6 +3,7 @@ import type { CheckboxProps } from './checkbox'
 import classnames from 'classnames'
 import { checkboxContext } from './context'
 import { useCheckbox } from './hooks'
+import { prefixCls as prefix } from '@/config'
 
 // CheckboxButtonProps
 export type CheckboxButtonProps = CheckboxProps
@@ -20,14 +21,16 @@ const CheckboxButton: React.FC<CheckboxButtonProps> = props => {
 
   const { groupProps } = React.useContext(checkboxContext)
 
-  return <label style={props.style} className={classnames('kenshin-checkbox-button',
-    groupProps.size ? `kenshin-checkbox-button--${groupProps.size}` : '', {
+  const { prefixCls = prefix } = props
+
+  return <label style={props.style} className={classnames(`${prefixCls}-checkbox-button`,
+    groupProps.size ? `${prefixCls}-checkbox-button--${groupProps.size}` : '', {
       'is-disabled': props.disabled,
       'is-checked': checked,
       'is-focus': focus
     })}>
     <input
-      className='kenshin-checkbox-button__original'
+      className={`${prefixCls}-checkbox-button__original`}
       type='checkbox'
       checked={checked}
       disabled={props.disabled}
@@ -35,7 +38,7 @@ const CheckboxButton: React.FC<CheckboxButtonProps> = props => {
       onBlur={onBlur}
       onChange={onChange}
     />
-    <span className='kenshin-checkbox-button__inner' style={checked ? {
+    <span className={`${prefixCls}-checkbox-button__inner`} style={checked ? {
       boxShadow: `-1px 0 0 0 ${groupProps.fill}`,
       backgroundColor: groupProps.fill || '',
       borderColor: groupProps.fill || '',

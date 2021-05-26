@@ -1,24 +1,26 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import View from '@/_base/view'
+import { prefixCls as prefix } from '@/config'
 import './index.less'
 
-export type AlertProps = {
-  onClose?: () => void,
-  title: string,
-  description?: string,
-  type: 'success' | 'warning' | 'error' | 'info',
-  closable?: boolean,
-  closeText?: string,
-  showIcon?: boolean
-  style?: React.CSSProperties
-  className?: string
+export interface AlertProps {
+  onClose?: () => void;
+  title: string;
+  description?: string;
+  type: 'success' | 'warning' | 'error' | 'info';
+  closable?: boolean;
+  closeText?: string;
+  showIcon?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  prefixCls?: string;
 }
 
 const TYPE_CLASSES_MAP: Record<string, string> = {
-  'success': 'kenshin-icon-circle-check',
-  'warning': 'kenshin-icon-warning',
-  'error': 'kenshin-icon-circle-cross'
+  'success': `${prefix}-icon-circle-check`,
+  'warning': `${prefix}-icon-warning`,
+  'error': `${prefix}-icon-circle-cross`
 }
 
 const Alert: React.FC<AlertProps> = props => {
@@ -31,7 +33,8 @@ const Alert: React.FC<AlertProps> = props => {
     description,
     closeText,
     showIcon,
-    onClose
+    onClose,
+    prefixCls = prefix
   } = props
 
   // 关闭时触发 onClose
@@ -47,21 +50,21 @@ const Alert: React.FC<AlertProps> = props => {
 
 
   return <View show={visible}>
-    <div style={props.style} className={classnames('kenshin-alert', `kenshin-alert--${type}`)}>
+    <div style={props.style} className={classnames(`${prefixCls}-alert`, `${prefixCls}-alert--${type}`)}>
       {
         showIcon &&
         <i className={classnames(
-          'kenshin-alert__icon',
-          TYPE_CLASSES_MAP[type] || 'kenshin-icon-information',
+          `${prefixCls}-alert__icon`,
+          TYPE_CLASSES_MAP[type] || `${prefixCls}-icon-information`,
           { 'is-big': description })}
         />
       }
-      <div className='kenshin-alert__content'>
-        {title && <span className={classnames('kenshin-alert__title', { 'is-bold': description })}>{title}</span>}
-        {description && <p className='kenshin-alert__description'>{description}</p>}
+      <div className={`${prefixCls}-alert__content`}>
+        {title && <span className={classnames(`${prefixCls}-alert__title`, { 'is-bold': description })}>{title}</span>}
+        {description && <p className={`${prefixCls}-alert__description`}>{description}</p>}
         <View show={closable}>
           <i
-            className={classnames('kenshin-alert__closebtn', closeText ? 'is-customed' : 'kenshin-icon-close')}
+            className={classnames(`${prefixCls}-alert__closebtn`, closeText ? 'is-customed' : `${prefixCls}-icon-close`)}
             onClick={close}
           >{closeText}</i>
         </View>

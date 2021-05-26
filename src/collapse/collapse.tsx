@@ -2,6 +2,7 @@ import * as React from 'react'
 import classnames from 'classnames'
 import CollapseItem from './collapse-item'
 import type { CollapseItemProps } from './collapse-item'
+import { prefixCls as prefix } from '@/config'
 import './collapse.less'
 
 export interface CollapseProps {
@@ -9,7 +10,8 @@ export interface CollapseProps {
   value: string | string[];
   onChange?: (activeNames: string[]) => void;
   style?: React.CSSProperties;
-  className?: string
+  className?: string;
+  prefixCls?: string;
 }
 
 export interface ComputedCollapse extends React.FC<CollapseProps> {
@@ -17,7 +19,7 @@ export interface ComputedCollapse extends React.FC<CollapseProps> {
 }
 
 const Collapse: ComputedCollapse = props => {
-  const { value, onChange } = props
+  const { value, onChange, prefixCls = prefix } = props
   const [activeNames, setActiveNames] = React.useState(([] as string[]).concat(value))
 
   React.useEffect(() => {
@@ -50,7 +52,7 @@ const Collapse: ComputedCollapse = props => {
     })
   })
 
-  return <div className={classnames('kenshin-collapse', props.className)} style={props.style}>
+  return <div className={classnames(`${prefixCls}-collapse`, props.className)} style={props.style}>
     {content}
   </div>
 }

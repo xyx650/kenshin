@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import { useCheckbox } from './hooks'
 import CheckboxGroup from './checkbox-group'
 import CheckboxButton from './checkbox-button'
+import { prefixCls as prefix } from '@/config'
 import './checkbox.less'
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
@@ -26,6 +27,7 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   onChange?: (checked: boolean) => void;
   style?: React.CSSProperties;
   className?: string;
+  prefixCls?: string;
 }
 
 const Checkbox: React.FC<CheckboxProps> & {
@@ -49,7 +51,7 @@ const Checkbox: React.FC<CheckboxProps> & {
 
   const first = React.useRef(false)
 
-  const { onChange: parentChange } = props
+  const { onChange: parentChange, prefixCls = prefix } = props
 
   // 触发 onChange
   React.useEffect(() => {
@@ -69,16 +71,16 @@ const Checkbox: React.FC<CheckboxProps> & {
   }, [getLabel, props.checked, props.focus])
 
 
-  return <label style={props.style} className={classnames('kenshin-checkbox', props.className)}>
-    <span className={classnames('kenshin-checkbox__input', {
+  return <label style={props.style} className={classnames(`${prefixCls}-checkbox`, props.className)}>
+    <span className={classnames(`${prefixCls}-checkbox__input`, {
       'is-disabled': props.disabled,
       'is-checked': checked,
       'is-indeterminate': props.indeterminate,
       'is-focus': focus
     })}>
-      <span className='kenshin-checkbox__inner' />
+      <span className={`${prefixCls}-checkbox__inner`} />
       <input
-        className='kenshin-checkbox__original'
+        className={`${prefixCls}-checkbox__original`}
         type='checkbox'
         checked={checked}
         disabled={props.disabled}
@@ -87,7 +89,7 @@ const Checkbox: React.FC<CheckboxProps> & {
         onChange={onChange}
       />
     </span>
-    <span className='kenshin-checkbox__label'>
+    <span className={`${prefixCls}-checkbox__label`}>
       {props.children || label}
     </span>
   </label>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { DragOptions } from './types'
 
 let isDragging = false

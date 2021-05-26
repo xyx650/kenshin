@@ -2,6 +2,7 @@ import * as React from 'react'
 import classnames from 'classnames'
 import type { CheckboxProps } from './checkbox'
 import { checkboxContext } from './context'
+import { prefixCls as prefix } from '@/config'
 
 
 export interface CheckboxGroupProps {
@@ -14,13 +15,14 @@ export interface CheckboxGroupProps {
   onChange?: (value: (string | number)[]) => void;
   style?: React.CSSProperties;
   className?: string;
+  prefixCls?: string;
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = props => {
 
   const [options, setOptions] = React.useState<(string | number)[]>(props.value || [])
 
-  const { value } = props
+  const { value, prefixCls = prefix } = props
 
   // WillReceiveProps update hook
   React.useEffect(() => {
@@ -57,7 +59,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = props => {
     })
   })
 
-  return <div style={props.style} className={classnames('kenshin-checkbox-group', props.className)}>
+  return <div style={props.style} className={classnames(`${prefixCls}-checkbox-group`, props.className)}>
     <checkboxContext.Provider value={{ options, groupProps: props }}>
       {children}
     </checkboxContext.Provider>

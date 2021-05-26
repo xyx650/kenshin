@@ -1,53 +1,45 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import type { BaseComponentType } from '@/_base/component'
-import { classNames, className, style } from '@/_base/component'
+import { prefixCls as prefix } from '@/config'
 import './index.less'
 
 type classMap = {
-  lowClass: string;
-  mediumClass: string;
-  highClass: string;
-  voidClass: string;
+  lowClass: string,
+  mediumClass: string,
+  highClass: string,
+  voidClass: string,
   disabledVoidClass: string
 }
 
 type colorMap = {
-  lowColor: string;
-  mediumColor: string;
-  highColor: string;
-  voidColor: string;
+  lowColor: string,
+  mediumColor: string,
+  highColor: string,
+  voidColor: string,
   disabledVoidColor: string
 }
 
-export type rateState = {
-  pointerAtLeftHalf: boolean;
-  currentValue: number;
-  hoverIndex: number;
-  value: number
-}
 
-
-export type rateProps = {
+export interface RateProps {
   /**
    * @description       icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色
    */
-  colors: [string, string, string];
+  colors?: [string, string, string];
   /**
    * @description       辅助文字数组
    */
-  texts: [string, string, string, string, string];
+  texts?: [string, string, string, string, string];
   /**
    * @description       是否显示文字
    */
-  showText: boolean;
-  textColor: string;
-  disabled: boolean;
+  showText?: boolean;
+  textColor?: string;
+  disabled?: boolean;
   value: number;
-  textTemplate: string;
-  lowThreshold: number;
-  highThreshold: number;
-  max: number;
+  textTemplate?: string;
+  lowThreshold?: number;
+  highThreshold?: number;
+  max?: number;
   voidColor: string;
   disabledVoidColor: string;
   iconClasses: [string, string, string];
@@ -55,97 +47,85 @@ export type rateProps = {
   disabledVoidIconClass: string;
   allowHalf: boolean;
   onChange?: (value: number) => void;
-  style?: BaseComponentType['style'];
-  className?: BaseComponentType['className'];
+  style?: React.CSSProperties;
+  className?: string;
+  prefixCls?: string;
 }
 
-export default class Rate extends React.Component<rateProps, rateState> {
-  static defaultProps: rateProps
-  classMap: classMap
-  colorMap: colorMap
 
-  constructor(props: rateProps) {
-    super(props)
-    this.state = {
-      pointerAtLeftHalf: false,
-      currentValue: this.props.value! - 1,
-      hoverIndex: -1,
-      value: -1
-    }
-    const {
-      iconClasses,
-      voidIconClass,
-      disabledVoidIconClass,
-      colors,
-      voidColor,
-      disabledVoidColor
-    } = this.props
+const Rate: React.FC<RateProps> = props => {
 
-    this.classMap = {
-      lowClass: iconClasses![0],
-      mediumClass: iconClasses![1],
-      highClass: iconClasses![2],
-      voidClass: voidIconClass!,
-      disabledVoidClass: disabledVoidIconClass!
-    }
+  const [pointerAtLeftHalf, setPointerAtLeftHalf] = React.useState(false)
+  const [currentValue, setCurrentValue] = React.useState((props.value ?? 0) - 1)
+  const [hoverIndex, setHoverIndex] = React.useState(-1)
+  const [value, setValue] = React.useState(-1)
 
-    this.colorMap = {
-      lowColor: colors![0],
-      mediumColor: colors![1],
-      highColor: colors![2],
-      voidColor: voidColor!,
-      disabledVoidColor: disabledVoidColor!
-    }
+  React.useEffect(() => {
+    props.value && setValue(props.value)
+  }, [props.value])
+
+  const {
+    iconClasses = ['kenshin-icon-star-on', 'kenshin-icon-star-on', 'kenshin-icon-star-on'],
+    voidIconClass = 'kenshin-icon-star-off',
+    disabledVoidIconClass = 'kenshin-icon-star-on',
+    colors = ['#F7BA2A', '#F7BA2A', '#F7BA2A'],
+    voidColor = '#C6D1DE',
+    disabledVoidColor = '#EFF2F7',
+    max = 5,
+    textColor = '#1F2D3D',
+    disabled = false,
+    prefixCls = prefix
+  } = props
+
+  const classMap: classMap = {
+    lowClass: iconClasses[0],
+    mediumClass: iconClasses[1],
+    highClass: iconClasses[2],
+    voidClass: voidIconClass,
+    disabledVoidClass: disabledVoidIconClass
   }
 
-  // 更新 state
-  static getDerivedStateFromProps(nextProps: rateProps, curState: rateState) {
-    return nextProps.value && nextProps.value !== curState.value ? {
-      ...curState,
-      value: nextProps.value
-    } : null
+  const colorMap: colorMap = {
+    lowColor: colors[0],
+    mediumColor: colors[1],
+    highColor: colors[2],
+    voidColor,
+    disabledVoidColor
   }
 
-  hasClass(target: Element, classname: string) {
-    return target.classList.contains(classname)
-  }
+  const hasClass = (target: HTMLElement, classname: string) => target.classList.contains(classname)
 
   // 设置当前值
-  setCurrentValue(e: any, value: number) {
-    const { disabled, allowHalf } = this.props
-    // const { pointerAtLeftHalf, currentValue, hoverIndex } = this.state
+  const setCurrentVal = (e: React.MouseEvent<HTMLElement, MouseEvent>, v: number) => {
+    const { disabled, allowHalf } = props
+
     if (disabled) {
       return
     }
     if (allowHalf) {
       e.persist()
-      let target = e.target
-      if (this.hasClass(target, 'el-rate__item')) {
-        target = target.querySelector('.el-rate__icon')
+      let target: HTMLSpanElement = e.target as HTMLElement
+      if (hasClass(target, 'el-rate__item')) {
+        target = target.querySelector('.el-rate__icon')!
       }
-      if (this.hasClass(target, 'el-rate__decimal')) {
-        target = target.parentNode
+      if (hasClass(target, 'el-rate__decimal')) {
+        target = target.parentNode as HTMLElement
       }
-      this.setState({
-        pointerAtLeftHalf: (e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth,
-        currentValue: ((e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth) ? value - 0.5 : value
-      })
+
+      setPointerAtLeftHalf((e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth)
+      setCurrentValue(((e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth) ? v - 0.5 : v)
     } else {
-      this.setState({
-        currentValue: value
-      })
+      setCurrentValue(v)
     }
-    this.setState({
-      hoverIndex: value
-    })
+    setHoverIndex(v)
   }
 
-  getValueFromMap(value: number, map: classMap | colorMap): string {
-    const { lowThreshold, highThreshold } = this.props
+  const getValueFromMap = (value: number, map: classMap | colorMap) => {
+    const { lowThreshold = 2, highThreshold = 4 } = props
     let result: string
-    if (value <= lowThreshold! - 1) {
+    if (value <= lowThreshold - 1) {
       result = 'lowColor' in map ? map.lowColor : map.lowClass
-    } else if (value >= highThreshold! - 1) {
+    } else if (value >= highThreshold - 1) {
       result = 'highColor' in map ? map.highColor : map.highClass
     } else {
       result = 'mediumColor' in map ? map.mediumColor : map.mediumClass
@@ -153,23 +133,22 @@ export default class Rate extends React.Component<rateProps, rateState> {
     return result
   }
 
-  getIconStyle(item: number): { color: string } {
-    const { disabled } = this.props
-    const { currentValue } = this.state
+
+  const getIconStyle = (item: number): { color: string } => {
+    const { disabled } = props
     const voidColor = disabled
-      ? this.colorMap.disabledVoidColor
-      : this.colorMap.voidColor
+      ? colorMap.disabledVoidColor
+      : colorMap.voidColor
     return {
-      color: item <= currentValue ? this.activeColor() : voidColor
+      color: item <= currentValue ? activeColor() : voidColor
     }
   }
 
   // 小数值情况
-  showDecimalIcon(item: number): boolean {
-    const { disabled, allowHalf, value } = this.props
-    const { pointerAtLeftHalf, currentValue } = this.state
+  const showDecimalIcon = (item: number) => {
+    const { disabled, allowHalf, value } = props
     const showWhenDisabled = disabled &&
-      this.valueDecimal() > 0 &&
+      valueDecimal() > 0 &&
       item - 1 < value! - 1 &&
       item > value! - 1
     const showWhenAllowHalf = allowHalf &&
@@ -178,154 +157,119 @@ export default class Rate extends React.Component<rateProps, rateState> {
     return showWhenDisabled || showWhenAllowHalf
   }
 
-  classes(): string[] {
-    const { currentValue } = this.state
-    const { max } = this.props
-    const result = []
+
+  const classes = () => {
+    const { max = 5 } = props
+    const result = [] as string[]
     let i = 0
-    // const threshold = currentValue
-    // if (allowHalf && currentValue !== Math.floor(currentValue)) {
-    //   threshold
-    // }
+    // eslint-disable-next-line no-plusplus
     for (; i <= currentValue; i++) {
-      result.push(this.activeClass())
+      result.push(activeClass())
     }
-    for (; i < max!; i++) {
-      result.push(this.voidClass())
+    // eslint-disable-next-line no-plusplus
+    for (; i < max; i++) {
+      result.push(voidClass())
     }
     return result
   }
 
-  valueDecimal(): number {
-    const { value } = this.props
-    return value! * 100 - Math.floor(value!) * 100
-  }
+  const valueDecimal = () => props.value! * 100 - Math.floor(props.value!) * 100
 
-  decimalIconClass(): string {
-    return this.getValueFromMap(this.props.value!, this.classMap)
-  }
+  const decimalIconClass = () => getValueFromMap(props.value!, classMap)
 
-  voidClass(): string {
-    return this.props.disabled
-      ? this.classMap.disabledVoidClass
-      : this.classMap.voidClass
-  }
+  const voidClass = () => props.disabled
+    ? classMap.disabledVoidClass
+    : classMap.voidClass
 
-  activeClass(): string {
-    return this.getValueFromMap(this.state.currentValue, this.classMap)
-  }
 
-  activeColor(): string {
-    return this.getValueFromMap(this.state.currentValue, this.colorMap)
-  }
+  const activeClass = () => getValueFromMap(currentValue, classMap)
 
-  selectValue(value: number): void {
-    const { disabled, allowHalf, onChange } = this.props
-    const { pointerAtLeftHalf, currentValue } = this.state
+  const activeColor = () => getValueFromMap(currentValue, colorMap)
+
+  const selectValue = (value: number) => {
+    const { disabled, allowHalf, onChange } = props
     if (disabled) {
       return
     }
-    (allowHalf && pointerAtLeftHalf) ?
-      this.setState({ value: currentValue }, () => onChange?.(currentValue + 1)) :
-      this.setState({ currentValue: value, value }, () => onChange?.(currentValue + 1))
+    if (allowHalf && pointerAtLeftHalf) {
+      setValue(currentValue)
+    } else {
+      setCurrentValue(value)
+      setValue(value)
+    }
+    onChange?.(currentValue + 1)
   }
 
-  decimalStyle(): { color: string, width: string } {
-    const { disabled, allowHalf } = this.props
+  const decimalStyle = () => {
+    const { disabled, allowHalf } = props
     let width = ''
     if (disabled) {
-      width = `${this.valueDecimal() < 50 ? 0 : 50}%`
+      width = `${valueDecimal() < 50 ? 0 : 50}%`
     }
     if (allowHalf) {
       width = '50%'
     }
     return {
-      color: this.activeColor(),
+      color: activeColor(),
       width
     }
   }
 
-  showText(): string {
-    const { disabled, texts, textTemplate, value } = this.props
-    const { currentValue } = this.state
+  const showText = () => {
+    const { disabled, texts, textTemplate = '{value}', value } = props
     let result: string
     if (disabled) {
-      result = textTemplate!.replace(/{\s*value\s*}/, value! + '')
+      result = textTemplate.replace(/{\s*value\s*}/, `${value}`)
     } else {
       result = texts![Math.ceil(currentValue)]
     }
     return result
   }
 
+
   // 重置
-  resetCurrentValue() {
-    const { disabled, allowHalf } = this.props
-    const { value } = this.state
+  const resetCurrentValue = () => {
+    const { disabled, allowHalf } = props
     if (disabled) {
       return
     }
-    allowHalf && this.setState({
-      pointerAtLeftHalf: value !== Math.floor(value)
-    })
-    this.setState({
-      currentValue: value,
-      hoverIndex: -1
-    })
+    allowHalf && setPointerAtLeftHalf(value !== Math.floor(value))
+    setCurrentValue(value)
+    setHoverIndex(-1)
   }
 
-  style = style
-  className = className
-  classNames = classNames
-  // className(...args: string[]) {
-  //   const { className } = this.props
-  //   return this.classNames.apply(this, args.concat([className!]))
-  // }
-
-  // style(args: rateProps['style'] = {}) {
-  //   const { style } = this.props
-  //   return Object.assign({}, args, style)
-  // }
-
-
-  render() {
-    const { showText, textColor, disabled, max } = this.props
-    const { hoverIndex } = this.state
-
-    return <div style={this.style()} className={this.className('kenshin-rate')}>
-      {
-        [...Array(max)].map((_, i) => (
-          <span
-            className='kenshin-rate__item'
-            style={{ cursor: disabled ? 'auto' : 'pointer' }}
-            onClick={() => this.selectValue(i)}
-            onMouseMove={(e) => this.setCurrentValue(e, i)}
-            onMouseLeave={() => this.resetCurrentValue()}
-            key={i}
-          >
+  return <div style={props.style} className={classnames(`${prefixCls}-rate`, props.className)}>
+    {
+      [...Array(max)].map((_, i) => (
+        <span
+          className={classnames(`${prefixCls}-rate__item`)}
+          style={{ cursor: disabled ? 'auto' : 'pointer' }}
+          onClick={() => selectValue(i)}
+          onMouseMove={(e) => setCurrentVal(e, i)}
+          onMouseLeave={() => resetCurrentValue()}
+          key={i.toString()}
+        >
             <i
-              style={this.getIconStyle(i)}
+              style={getIconStyle(i)}
               className={hoverIndex === i
-                ? `hover kenshin-rate__icon ${this.classes()[i]}`
-                : `kenshin-rate__icon ${this.classes()[i]}`}
+                ? `hover ${prefixCls}-rate__icon ${classes()[i]}`
+                : `${prefixCls}-rate__icon ${classes()[i]}`}
             >
               {
-                this.showDecimalIcon(i) ?
-                  <i style={this.decimalStyle()} className={`kenshin-rate__decimal ${this.decimalIconClass()}`} /> :
-                  null
+                showDecimalIcon(i) &&
+                <i style={decimalStyle()} className={`${prefixCls}-rate__decimal ${decimalIconClass()}`} />
               }
             </i>
           </span>
-        ))
-      }
-      {
-        showText ?
-          <span className='kenshin-rate__text' style={{ color: textColor }}>
-            {this.showText()}
-          </span> :
-          null
-      }
-    </div>
-  }
+      ))
+    }
+    {
+      props.showText &&
+      <span className={classnames(`${prefixCls}-rate__text`)} style={{ color: textColor }}>
+        {showText()}
+      </span>
+    }
+  </div>
 }
 
 Rate.defaultProps = {
@@ -347,3 +291,4 @@ Rate.defaultProps = {
   textTemplate: '{value}'
 }
 
+export default Rate

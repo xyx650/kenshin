@@ -1,78 +1,84 @@
 import * as React from 'react'
-import Component from '@/_base/component'
+import { prefixCls as prefix } from '../config'
+import classnames from 'classnames'
 import './index.less'
 
-// svg 路径接口类型
-export type PathStyle = {
-  // 它是一个<length>和<percentage>数列，数与数之间用逗号或者空白隔开，指定短划线和缺口的长度
-  strokeDasharray: string
-  // dash模式到路径开始的距离
-  strokeDashoffset: string
-  transition: string
+export interface ProgressProps {
+  /**
+   * @description 进度条类型
+   */
+  type?: 'line' | 'circle';
+  /**
+   * @description 百分比
+   */
+  percentage: number;
+  /**
+   * @description 进度条当前状态
+   */
+  status?: 'success' | 'exception';
+  /**
+   * @description 进度条的宽度，单位 px
+   */
+  strokeWidth?: number;
+  /**
+   * @description 环形进度条画布宽度
+   */
+  width?: number;
+  /**
+   * @description 进度条显示文字内置在进度条内
+   */
+  textInside?: boolean;
+  /**
+   * @description 显示进度条文字内容
+   */
+  showText?: boolean;
+  prefixCls?: string;
+  style?: React.CSSProperties;
 }
 
-export type ProgressProps = {
-  // 	进度条类型
-  type: 'line' | 'circle'
-  // 百分比
-  percentage: number
-  // 进度条当前状态
-  status: string
-  // 进度条的宽度，单位 px
-  strokeWidth: number
-  // 环形进度条画布宽度
-  width: number
-  // 进度条显示文字内置在进度条内
-  textInside: number
-  // 显示进度条文字内容
-  showText: number
-}
+const Progress: React.FC<ProgressProps> = props => {
+  const {
+    showText = true,
+    strokeWidth = 6,
+    width = 126,
+    type = 'line',
+    status,
+    textInside = false,
+    percentage = 0,
+    prefixCls = prefix
+  } = props
 
-export default class Progress extends Component<ProgressProps> {
-  static defaultProps = {
-    type: 'line',
-    percentage: 0,
-    strokeWidth: 6,
-    width: 126,
-    showText: true,
-    textInside: false
-  }
-
-  constructor(props: ProgressProps) {
-    super(props)
-  }
 
   // 相对描边宽度
-  relativeStrokeWidth() {
-    const { strokeWidth, width } = this.props
-    return (strokeWidth / width * 100).toFixed(1)
+  const relativeStrokeWidth = () => {
+    return (strokeWidth / width * 100).toFixed(1) as string
   }
 
   // 轨迹
-  trackPath() {
-    const radius = parseInt((50 - parseFloat(this.relativeStrokeWidth()) / 2).toString(), 10)
+  const trackPath = () => {
+    const radius = parseInt((50 - parseFloat(relativeStrokeWidth()) / 2).toString(), 10)
     return `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${radius * 2} a ${radius} ${radius} 0 1 1 0 -${radius * 2}`
   }
 
   // 计算周长
-  perimeter() {
-    const radius = 50 - parseFloat(this.relativeStrokeWidth()) / 2
+  const perimeter = () => {
+    const radius = 50 - parseFloat(relativeStrokeWidth()) / 2
     return 2 * Math.PI * radius
   }
 
-  circlePathStyle(): PathStyle {
-    const perimeter = this.perimeter()
+  const circlePathStyle = () => {
+    const _perimeter = perimeter()
     return {
-      strokeDasharray: `${perimeter}px,${perimeter}px`,
-      strokeDashoffset: (1 - this.props.percentage / 100) * perimeter + 'px',
+      strokeDasharray: `${_perimeter}px,${_perimeter}px`,
+      strokeDashoffset: `${(1 - props.percentage / 100) * _perimeter}px`,
       transition: 'stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease'
     }
   }
 
   // stroke 颜色
-  stroke() {
-    let ret
-    switch (this.props.status) {
+  const stroke = () => {
+    let ret: string
+    switch (props.status) {
       case 'success':
         ret = '#13ce66'
         break
@@ -86,95 +92,86 @@ export default class Progress extends Component<ProgressProps> {
   }
 
   // 计算 icon 样式
-  iconClass() {
-    const { type, status } = this.props
-    console.log('status',status)
-    return type === 'line'
-      ? status === 'success' ? 'kenshin-icon-circle-check' : 'kenshin-icon-circle-cross'
-      : status === 'success' ? 'kenshin-icon-check' : 'kenshin-icon-close'
-  }
+  const iconClass = () => type === 'line'
+    ? status === 'success' ? `${prefixCls}-icon-circle-check` : `${prefixCls}-icon-circle-cross`
+    : status === 'success' ? `${prefixCls}-icon-check` : `${prefixCls}-icon-close`
+
 
   // 文本尺寸
-  progressTextSize() {
-    const { type, strokeWidth, width } = this.props
-    return type === 'line' ? 12 + strokeWidth * 0.4 : width * 0.111111 + 2
-  }
+  const progressTextSize = () => type === 'line' ? 12 + strokeWidth * 0.4 : width * 0.111111 + 2
 
 
-  render() {
-    const {
-      type,
-      percentage,
-      status,
-      strokeWidth,
-      textInside,
-      width,
-      showText
-    } = this.props
-
-    const progress = type === 'line'
-      ? <div className='kenshin-progress-bar'>
+  const progress = type === 'line'
+    ? <div className={classnames(`${prefixCls}-progress-bar`)}>
+      <div
+        className={classnames(`${prefixCls}-progress-bar__outer`)}
+        style={{ height: `${strokeWidth}px` }}
+      >
         <div
-          className='kenshin-progress-bar__outer'
-          style={{ height: `${strokeWidth}px` }}
+          className={classnames(`${prefixCls}-progress-bar__inner`)}
+          style={{ width: `${percentage}%` }}
         >
-          <div
-            className='kenshin-progress-bar__inner'
-            style={{ width: `${percentage}%` }}
-          >
-            {showText &&
-            textInside &&
-            <div className='kenshin-progress-bar__innerText'>
-              {`${percentage}%`}
-            </div>}
-          </div>
+          {showText &&
+          textInside &&
+          <div className={classnames(`${prefixCls}-progress-bar__innerText`)}>
+            {`${percentage}%`}
+          </div>}
         </div>
       </div>
-      : <div
-        className='kenshin-progress-circle'
-        style={{ height: `${width}px`, width: `${width}px` }}
-      >
-        <svg viewBox='0 0 100 100'>
-          <path
-            className='kenshin-progress-circle__track'
-            d={this.trackPath()}
-            stroke='#e5e9f2'
-            strokeWidth={this.relativeStrokeWidth()}
-            fill='none'
-          />
-          <path
-            className='kenshin-progress-circle__path'
-            d={this.trackPath()}
-            strokeLinecap='round'
-            stroke={this.stroke()}
-            strokeWidth={this.relativeStrokeWidth()}
-            fill='none'
-            style={this.circlePathStyle()}
-          />
-        </svg>
-      </div>
+    </div>
+    : <div
+      className={classnames(`${prefixCls}-progress-circle`)}
+      style={{ height: `${width}px`, width: `${width}px` }}
+    >
+      <svg viewBox='0 0 100 100'>
+        <path
+          className={classnames(`${prefixCls}-progress-circle__track`)}
+          d={trackPath()}
+          stroke='#e5e9f2'
+          strokeWidth={relativeStrokeWidth()}
+          fill='none'
+        />
+        <path
+          className={classnames(`${prefixCls}-progress-circle__path`)}
+          d={trackPath()}
+          strokeLinecap='round'
+          stroke={stroke()}
+          strokeWidth={relativeStrokeWidth()}
+          fill='none'
+          style={circlePathStyle()}
+        />
+      </svg>
+    </div>
 
-    const progressInfo = showText &&
-      !textInside &&
-      <div
-        className='kenshin-progress__text'
-        style={{ fontSize: `${this.progressTextSize()}px` }}
-      >
-        {status ? <i className={this.iconClass()} /> : `${percentage}%`}
-      </div>
-    return (
-      <div
-        style={this.style()}
-        className={this.className('kenshin-progress', `kenshin-progress--${type}`, {
-          [`is-${status}`]: !!status,
-          'kenshin-progress--without-text': !showText,
-          'kenshin-progress--text-inside': textInside
-        })}
-      >
-        {progress}
-        {progressInfo}
-      </div>
-    )
-  }
+  const progressInfo = showText && !textInside &&
+    <div
+      className={classnames(`${prefixCls}-progress__text`)}
+      style={{ fontSize: `${progressTextSize()}px` }}
+    >
+      {status ? <i className={iconClass()} /> : `${percentage}%`}
+    </div>
 
+  return <div
+    style={props.style}
+    className={classnames(`${prefixCls}-progress`, `${prefixCls}-progress--${type}`, {
+      [`is-${status}`]: !!status,
+      [`${prefixCls}-progress--without-text`]: !showText,
+      [`${prefixCls}-progress--text-inside`]: textInside
+    })}
+  >
+    {progress}
+    {progressInfo}
+  </div>
 }
+
+Progress.defaultProps = {
+  type: 'line',
+  percentage: 0,
+  strokeWidth: 6,
+  width: 126,
+  showText: true,
+  textInside: false
+}
+
+export default Progress
+

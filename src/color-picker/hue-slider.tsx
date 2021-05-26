@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import draggable from './draggable'
 import type { DragOptions, ColorType } from './types'
 import { colorPickerContext } from '@/color-picker/context'
+import {prefixCls as prefix} from '@/config'
 
 
 type HueSliderProps = {
@@ -36,7 +37,7 @@ const HueSlider: React.FC<HueSliderProps> = (props) => {
 
   const handleClick = (e: MouseEvent) => {
     const thumb = $thumb.current
-    const target = e.target
+    const { target } = e
     if (target !== thumb) {
       handleDrag(e)
     }
@@ -89,17 +90,17 @@ const HueSlider: React.FC<HueSliderProps> = (props) => {
 
   return <div
     ref={$el}
-    className={classnames('kenshin-color-hue-slider', { 'is-vertical': vertical })}
+    className={classnames(`${prefix}-color-hue-slider`, { 'is-vertical': vertical })}
     style={{ float: 'right' }}
   >
     <div
-      className='kenshin-color-hue-slider__bar'
+      className={`${prefix}-color-hue-slider__bar`}
       onClick={e => handleClick(e.nativeEvent)}
       ref={$bar}
     />
     <div
-      className='kenshin-color-hue-slider__thumb'
-      style={{ left: thumbLeft + 'px', top: thumbTop + 'px' }}
+      className={`${prefix}-color-hue-slider__thumb`}
+      style={{ left: `${thumbLeft}px`, top: `${thumbTop}px` }}
       ref={$thumb}
     />
   </div>

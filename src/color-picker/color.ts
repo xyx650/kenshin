@@ -1,3 +1,4 @@
+/* eslint-disable */
 const hsv2hsl = function(hue: number, sat: number, val: number) {
   let l = (2 - sat) * val
   let sl = sat * val
@@ -38,7 +39,7 @@ const bound01 = function(value: string | number, max: number) {
   return value % max / parseFloat(max.toString())
 }
 
-//十六进制转换
+// 十六进制转换
 const toHex = function({ r, g, b }: { r: number; g: number; b: number }) {
   const hexOne = function(value: number) {
     value = Math.min(Math.round(value), 255)
@@ -47,7 +48,7 @@ const toHex = function({ r, g, b }: { r: number; g: number; b: number }) {
 
   if (isNaN(r) || isNaN(g) || isNaN(b)) return ''
 
-  return '#' + hexOne(r) + hexOne(g) + hexOne(b)
+  return `#${  hexOne(r)  }${hexOne(g)  }${hexOne(b)}`
 }
 
 // 16 转 10 进制
@@ -56,8 +57,8 @@ const parseHexChannel = function(hex: string): number {
 }
 
 const hsl2hsv = function(hue: number, sat: number, light: number) {
-  sat = sat / 100
-  light = light / 100
+  sat /= 100
+  light /= 100
   let smin = sat
   const lmin = Math.max(light, 0.01)
   let sv
@@ -87,8 +88,8 @@ const rgb2hsv = function(r: number, g: number, b: number) {
 
   const max = Math.max(r, g, b)
   const min = Math.min(r, g, b)
-  let h, s
-  let v = max
+  let h; let s
+  const v = max
 
   const d = max - min
   s = max === 0 ? 0 : d / max
@@ -166,7 +167,7 @@ export default class Color {
 
     options = options || {}
 
-    for (let option in options) {
+    for (const option in options) {
       if (options.hasOwnProperty(option)) {
         this[option] = (options as any)[option]
       }
@@ -175,9 +176,10 @@ export default class Color {
     this.doOnChange()
   }
 
-  set(prop: string | { [key: string]: string }, value?: string | number) {
+  set(prop: string | Record<string, string>, value?: string | number) {
     if (arguments.length === 1 && typeof prop === 'object') {
-      for (let p in prop) {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const p in prop) {
         if (prop.hasOwnProperty(p)) {
           this.set(p, prop[p])
         }
@@ -185,12 +187,12 @@ export default class Color {
       return
     }
 
-    this['_' + prop] = value
+    this[`_${prop}`] = value
     this.doOnChange()
   }
 
   get(prop: string): string | number {
-    return this['_' + prop]
+    return this[`_${prop}`]
   }
 
   toRgb() {
@@ -257,7 +259,7 @@ export default class Color {
       }
     } else if (value.indexOf('#') !== -1) {
       const hex = value.replace('#', '').trim()
-      let r, g, b
+      let r; let g; let b
 
       if (hex.length === 3) {
         r = parseHexChannel(hex[0] + hex[0])

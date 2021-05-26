@@ -1,6 +1,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import CollapseTransition from './collapse-transition'
+import { prefixCls as prefix } from '@/config'
 import './collapse-item.less'
 
 export type CollapseItemProps = {
@@ -13,14 +14,14 @@ export type CollapseItemProps = {
 const CollapseItem: React.FC<CollapseItemProps> = props => {
   const { title, isActive, onClick, name } = props
 
-  return <div className={classnames('kenshin-collapse-item', { 'is-active': isActive })}>
-    <div className='kenshin-collapse-item__header' onClick={() => onClick(name)}>
-      <i className='kenshin-collapse-item__header__arrow kenshin-icon-arrow-right' />
+  return <div className={classnames(`${prefix}-collapse-item`, { 'is-active': isActive })}>
+    <div className={`${prefix}-collapse-item__header`} onClick={() => onClick(name)}>
+      <i className={`${prefix}-collapse-item__header__arrow ${prefix}-icon-arrow-right`} />
       {title}
     </div>
     <CollapseTransition isShow={isActive}>
-      <div className="kenshin-collapse-item__wrap">
-        <div className="kenshin-collapse-item__content">
+      <div className={`${prefix}-collapse-item__wrap`}>
+        <div className={`${prefix}-collapse-item__content`}>
           {props.children}
         </div>
       </div>

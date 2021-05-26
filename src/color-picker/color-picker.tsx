@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import { colorPickerContext } from '@/color-picker/context'
 import PickerDropdown from './picker-dropdown'
 import Color from './color'
+import { prefixCls as prefix } from '@/config'
 import './index.less'
 
 export type ColorPickerProps = {
@@ -10,6 +11,9 @@ export type ColorPickerProps = {
   showAlpha: boolean,
   colorFormat: string,
   onChange: (color: string | null) => void
+  prefixCls?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 
@@ -17,7 +21,8 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
   const {
     showAlpha,
     colorFormat,
-    onChange = (color: string | null) => {}
+    onChange = (color: string | null) => {},
+    prefixCls = prefix
   } = props
 
   const [value, setValue] = React.useState(props.value)
@@ -101,13 +106,13 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
   }
 
   return <colorPickerContext.Provider value={{ onChange: handleChange }}>
-    <div className='kenshin-color-picker'>
-      <div className='kenshin-color-picker__trigger' onClick={() => setShowPicker(!showPicker)}>
-      <span className={classnames({ 'kenshin-color-picker__color': true, 'is-alpha': showAlpha })}>
-        <span className='kenshin-color-picker__color-inner' style={{ backgroundColor: displayedColor }} />
-        {!value && !showPanelColor && <span className='kenshin-color-picker__empty kenshin-icon-close' />}
+    <div className={classnames(`${prefixCls}-color-picker`, props.className)} style={props.style}>
+      <div className={`${prefixCls}-color-picker__trigger`} onClick={() => setShowPicker(!showPicker)}>
+      <span className={classnames(`${prefixCls}-color-picker__color`, { 'is-alpha': showAlpha })}>
+        <span className={`${prefixCls}-color-picker__color-inner`} style={{ backgroundColor: displayedColor }} />
+        {!value && !showPanelColor && <span className={`${prefixCls}-color-picker__empty ${prefixCls}-icon-close`} />}
         </span>
-        <span className='kenshin-color-picker__icon kenshin-icon-caret-bottom' />
+        <span className={`${prefixCls}-color-picker__icon ${prefixCls}-icon-caret-bottom`} />
       </div>
       <PickerDropdown
         showPicker={showPicker}

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
+import { prefixCls as prefix } from '@/config'
 import './index.less'
 
 export interface CardProps {
@@ -7,14 +8,15 @@ export interface CardProps {
   bodyStyle?: React.CSSProperties;
   className?: string;
   style?: React.CSSProperties;
+  prefixCls?: string;
 }
 
 
 const Card: React.FC<CardProps> = props => {
-  const { header, bodyStyle, children } = props
-  return <div style={props.style} className={classnames('kenshin-card', props.className)}>
-    {header && <div className={classnames('kenshin-card__header')}>{header}</div>}
-    <div className='kenshin-card__body' style={bodyStyle}>
+  const { header, bodyStyle, children, prefixCls = prefix } = props
+  return <div style={props.style} className={classnames(`${prefixCls}-card`, props.className)}>
+    {header && <div className={classnames(`${prefixCls}-card__header`)}>{header}</div>}
+    <div className={`${prefixCls}-card__body`} style={bodyStyle}>
       {children}
     </div>
   </div>

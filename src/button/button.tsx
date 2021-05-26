@@ -1,5 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
+import { prefixCls as prefix } from '@/config'
 import './index.less'
 
 export type ButtonProps = {
@@ -13,6 +14,7 @@ export type ButtonProps = {
   plain?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  prefixCls?: string
 }
 
 const Button: React.FC<ButtonProps> = props => {
@@ -23,12 +25,13 @@ const Button: React.FC<ButtonProps> = props => {
     loading,
     plain,
     nativeType = 'button',
-    children
+    children,
+    prefixCls = prefix
   } = props
   const className = classNames(
-    'kenshin-button',
-    type && `kenshin-button--${type}`,
-    size && `kenshin-button--${size}`,
+    `${prefixCls}-button`,
+    type && `${prefixCls}-button--${type}`,
+    size && `${prefixCls}-button--${size}`,
     {
       'is-disabled': disabled,
       'is-loading': loading,
@@ -46,8 +49,8 @@ const Button: React.FC<ButtonProps> = props => {
     type={nativeType}
     onClick={onClick}
   >
-    {loading && <i className='kenshin-icon-loading' />}
-    {props.icon && !loading && <i className={`kenshin-icon-${props.icon}`} />}
+    {loading && <i className={`${prefixCls}-icon-loading`} />}
+    {props.icon && !loading && <i className={`${prefixCls}-icon-${props.icon}`} />}
     <span>{children}</span>
   </button>
 }

@@ -4,7 +4,8 @@ import { colorPickerContext } from '@/color-picker/context'
 
 import draggable from './draggable'
 import type { DragOptions, ColorType } from './types'
-import { useState } from 'react'
+import {prefixCls as prefix} from '@/config'
+
 
 type AlphaSliderProps = {
   color: ColorType,
@@ -19,9 +20,9 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
   const $bar = React.useRef<HTMLDivElement>(null)
   const $thumb = React.useRef<HTMLDivElement>(null)
 
-  const [thumbLeft, setThumbLeft] = useState(0)
-  const [thumbTop, setThumbTop] = useState(0)
-  const [background, setBackground] = useState<string | undefined>(undefined)
+  const [thumbLeft, setThumbLeft] = React.useState(0)
+  const [thumbTop, setThumbTop] = React.useState(0)
+  const [background, setBackground] = React.useState<string | undefined>(undefined)
 
   const context = React.useContext(colorPickerContext)
 
@@ -101,16 +102,16 @@ const AlphaSlider: React.FC<AlphaSliderProps> = (props) => {
 
   return <div
     ref={$el}
-    className={classnames('kenshin-color-alpha-slider', { 'is-vertical': vertical })}
+    className={classnames(`${prefix}-color-alpha-slider`, { 'is-vertical': vertical })}
   >
     <div
-      className='kenshin-color-alpha-slider__bar'
+      className={`${prefix}-color-alpha-slider__bar`}
       onClick={e => handleClick(e.nativeEvent)}
       ref={$bar}
       style={{ background }}
     />
     <div
-      className='kenshin-color-alpha-slider__thumb'
+      className={`${prefix}-color-alpha-slider__thumb`}
       ref={$thumb}
       style={{ left: `${thumbLeft  }px`, top: `${thumbTop  }px` }}
     />

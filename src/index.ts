@@ -18,6 +18,7 @@ import Popconfirm from './popconfirm'
 import Card from './card'
 import Collapse from './collapse'
 import Checkbox from './checkbox'
+import Comment from './comment'
 
 export {
   Rate,
@@ -39,5 +40,6 @@ export {
   Popconfirm,
   Card,
   Collapse,
-  Checkbox
+  Checkbox,
+  Comment
 }
