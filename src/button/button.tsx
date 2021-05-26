@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-// import './index.less'
+import './index.less'
 
 export type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
