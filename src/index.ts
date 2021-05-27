@@ -19,6 +19,7 @@ import Card from './card'
 import Collapse from './collapse'
 import Checkbox from './checkbox'
 import Comment from './comment'
+import Pagination from './pagination'
 
 export {
   Rate,
@@ -41,5 +42,6 @@ export {
   Card,
   Collapse,
   Checkbox,
-  Comment
+  Comment,
+  Pagination,
 }
