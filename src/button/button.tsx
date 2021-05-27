@@ -1,9 +1,10 @@
 import * as React from 'react'
 import classNames from 'classnames'
 import { prefixCls as prefix } from '@/config'
+import ButtonGroup from './button-group'
 import './index.less'
 
-export type ButtonProps = {
+export interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text' | 'default';
   size?: 'large' | 'small' | 'mini';
@@ -17,7 +18,7 @@ export type ButtonProps = {
   prefixCls?: string
 }
 
-const Button: React.FC<ButtonProps> = props => {
+const Button: React.FC<ButtonProps> & { Group: typeof ButtonGroup } = props => {
   const {
     type = 'default',
     size,
@@ -62,5 +63,7 @@ Button.defaultProps = {
   disabled: false,
   plain: false
 }
+
+Button.Group = ButtonGroup
 
 export default Button

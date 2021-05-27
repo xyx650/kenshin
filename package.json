@@ -69,7 +69,8 @@
     "rc-tooltip": "5.1.0",
     "rc-util": "^5.12.1",
     "react-click-outside": "^3.0.1",
-    "throttle-debounce": "^3.0.1"
+    "throttle-debounce": "^3.0.1",
+    "use-onclickoutside": "^0.3.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.2",
