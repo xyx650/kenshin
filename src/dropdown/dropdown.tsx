@@ -6,7 +6,9 @@ import { prefixCls as prefix } from '@/config'
 // import findDOMNode from 'rc-util/lib/Dom/findDOMNode'
 import type { ButtonProps } from '@/button'
 import Button from '@/button'
-import { dropdownContext } from '@/dropdown/context'
+import { dropdownContext } from './context'
+import DropdownItem from './drop-item'
+import DropdownMenu from './drop-menu'
 
 
 export interface DropdownProps {
@@ -26,7 +28,10 @@ export interface DropdownProps {
 }
 
 
-const Dropdown: React.FC<DropdownProps> = props => {
+const Dropdown: React.FC<DropdownProps> & {
+  Item: typeof DropdownItem;
+  Menu: typeof DropdownMenu;
+} = props => {
   const {
     prefixCls = prefix,
     splitButton,
@@ -153,5 +158,8 @@ Dropdown.defaultProps = {
   trigger: 'hover',
   menuAlign: 'end'
 }
+
+Dropdown.Menu = DropdownMenu
+Dropdown.Item = DropdownItem
 
 export default Dropdown

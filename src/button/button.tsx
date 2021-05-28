@@ -4,7 +4,7 @@ import { prefixCls as prefix } from '@/config'
 import ButtonGroup from './button-group'
 import './index.less'
 
-export interface ButtonProps {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<ButtonProps>, 'type' | 'onClick'> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text' | 'default';
   size?: 'large' | 'small' | 'mini';
@@ -18,7 +18,7 @@ export interface ButtonProps {
   prefixCls?: string
 }
 
-const Button: React.FC<ButtonProps> & { Group: typeof ButtonGroup } = props => {
+const ButtonRF: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
     type = 'default',
     size,
@@ -43,7 +43,10 @@ const Button: React.FC<ButtonProps> & { Group: typeof ButtonGroup } = props => {
       props.onClick?.(e)
     }
   }
+  const buttonRef = (ref as any) || React.createRef<HTMLElement>()
+
   return <button
+    ref={buttonRef}
     style={props.style}
     className={className}
     disabled={disabled}
@@ -55,6 +58,12 @@ const Button: React.FC<ButtonProps> & { Group: typeof ButtonGroup } = props => {
     <span>{children}</span>
   </button>
 }
+
+export interface ComputedButton extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
+  Group: typeof ButtonGroup;
+}
+
+const Button = React.forwardRef(ButtonRF) as ComputedButton
 
 Button.defaultProps = {
   type: 'default',
