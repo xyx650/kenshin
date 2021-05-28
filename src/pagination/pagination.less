@@ -1,25 +1,26 @@
-@then-color: #F6F8FB;
+@then-color: #f6f8fb;
 @font-color: #333;
-@active-color: #4389F9;
+@active-color: #4389f9;
 
 ul.kenshin-pagination {
-  list-style: none;
   display: flex;
   align-items: center;
+  list-style: none;
 
-  [disabled]{
+  [disabled] {
+    opacity: 0.4;
     pointer-events: none;
   }
 
   .rc-pagination-options,
   .rc-pagination-simple-pager {
     input {
+      box-sizing: border-box;
       width: 46px;
       height: 30px;
+      padding: 6px;
       background: @then-color;
       border: 0;
-      padding: 6px;
-      box-sizing: border-box;
 
       &:focus-visible {
         outline: none;
@@ -42,13 +43,12 @@ ul.kenshin-pagination {
       line-height: 32px;
     }
 
-    li+li{
+    li + li {
       margin-left: 12px;
     }
   }
 
   &.small {
-
     .rc-pagination-item,
     .flipIcon {
       min-width: 24px;
@@ -62,7 +62,7 @@ ul.kenshin-pagination {
       line-height: 26px;
     }
 
-    li+li {
+    li + li {
       margin-left: 10px;
     }
   }
@@ -71,40 +71,40 @@ ul.kenshin-pagination {
   .rc-pagination-prev,
   .rc-pagination-next,
   .flipIcon {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex: none;
     position: relative;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+    color: @font-color;
     background: @then-color;
     // background: red;
     border-radius: 2px;
-    overflow: hidden;
     cursor: pointer;
-    color: @font-color;
+    transition: opacity 0.3s;
 
     &.rc-pagination-disabled {
       cursor: not-allowed;
-      color: rgba(51, 51, 51, 0.4);
-
+      opacity: 0.4;
       .svgIcon {
-        stroke: @font-color
+        stroke: @font-color;
       }
     }
   }
-  .flipIcon{
+  .flipIcon {
     width: 100%;
     height: 100%;
   }
-  .rc-pagination-item,.flipIcon {
+  .rc-pagination-item,
+  .flipIcon {
     &:hover,
     &.rc-pagination-item-active {
-      background: @active-color;
       color: #fff;
-      transition: background .3s, color 0.3s;
-
+      background: @active-color;
+      transition: background 0.3s, color 0.3s;
       .svgIcon {
-        stroke: #fff
+        stroke: #fff;
       }
     }
   }
@@ -116,18 +116,17 @@ ul.kenshin-pagination {
   .svgIcon {
     fill: none;
     stroke: @font-color;
-    stroke-width: 1
+    stroke-width: 1;
   }
 }
 
 ul.is-disabled {
-  opacity: 0.4;
   cursor: not-allowed;
+  opacity: 0.4;
 
   .rc-pagination-item,
   .rc-pagination-prev,
   .rc-pagination-next {
     pointer-events: none;
   }
-
 }
