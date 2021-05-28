@@ -23,5 +23,4 @@ lib
 .vscode
 .idea
 
-es
-lib
+*.bak

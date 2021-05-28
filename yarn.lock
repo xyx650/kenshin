@@ -3268,6 +3268,11 @@ arch@^2.1.1:
   resolved "https://registry.npm.taobao.org/arch/download/arch-2.2.0.tgz#1bc47818f305764f23ab3306b0bfc086c5a29d11"
   integrity sha1-G8R4GPMFdk8jqzMGsL/AhsWinRE=
 
+are-passive-events-supported@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.nlark.com/are-passive-events-supported/download/are-passive-events-supported-1.1.1.tgz#3db180a1753a2186a2de50a32cded3ac0979f5dc"
+  integrity sha1-PbGAoXU6IYai3lCjLN7TrAl59dw=
+
 are-we-there-yet@~1.1.2:
   version "1.1.5"
   resolved "https://registry.npm.taobao.org/are-we-there-yet/download/are-we-there-yet-1.1.5.tgz#4b35c2944f062a8bfcda66410760350fe9ddfc21"
@@ -14232,6 +14237,26 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-isomorphic-layout-effect@^1.0.0:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/use-isomorphic-layout-effect/download/use-isomorphic-layout-effect-1.1.1.tgz#7bb6589170cd2987a152042f9084f9effb75c225"
+  integrity sha1-e7ZYkXDNKYehUgQvkIT57/t1wiU=
+
+use-latest@^1.0.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/use-latest/download/use-latest-1.2.0.tgz#a44f6572b8288e0972ec411bdd0840ada366f232"
+  integrity sha1-pE9lcrgojgly7EEb3QhAraNm8jI=
+  dependencies:
+    use-isomorphic-layout-effect "^1.0.0"
+
+use-onclickoutside@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.nlark.com/use-onclickoutside/download/use-onclickoutside-0.3.2.tgz#1681704055463295a34236dee43d5911c6c3c418"
+  integrity sha1-FoFwQFVGMpWjQjbe5D1ZEcbDxBg=
+  dependencies:
+    are-passive-events-supported "^1.1.0"
+    use-latest "^1.0.0"
 
 use-subscription@1.5.1:
   version "1.5.1"

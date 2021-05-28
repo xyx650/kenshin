@@ -1,7 +1,7 @@
 @import "../_styles/common/index";
+@import "../_styles/common/prefix";
 
-
-.kenshin-button {
+.@{prefix}-button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -19,430 +19,350 @@
   -ms-user-select: none;
   padding: 10px 15px;
   font-size: 14px;
-  border-radius: 4px
+  border-radius: 4px;
+
+  & + .@{prefix}-button {
+    margin-left: 10px;
+  }
+
+  &:focus,
+  &:hover {
+    color: #20a0ff;
+    border-color: #20a0ff;
+  }
+
+  &:active {
+    color: #1d90e6;
+    border-color: #1d90e6;
+    outline: 0;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  [class*=kenshin-icon-] + span {
+    margin-left: 5px;
+  }
+
+  &.is-loading {
+    position: relative;
+    pointer-events: none;
+  }
+
+  &.is-loading:before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: inherit;
+    background-color: rgba(255, 255, 255, .35);
+  }
+
+  &.is-disabled,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: #bfcbd9;
+    cursor: not-allowed;
+    background-image: none;
+    background-color: #eef1f6;
+    border-color: #d1dbe5;
+  }
+
+  &.is-disabled {
+    &.@{prefix}-button--text {
+      background-color: transparent;
+    }
+  }
+
+  &.is-disabled.is-plain,
+  &.is-disabled.is-plain:focus,
+  &.is-disabled.is-plain:hover {
+    background-color: #fff;
+    border-color: #d1dbe5;
+    color: #bfcbd9;
+  }
+
+  &.is-active {
+    color: #1d90e6;
+    border-color: #1d90e6;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #20a0ff;
+    color: #20a0ff;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #1d90e6;
+    color: #1d90e6;
+    outline: 0;
+  }
 }
 
-.kenshin-button + .kenshin-button {
-  margin-left: 10px
-}
-
-.kenshin-button:focus, .kenshin-button:hover {
-  color: #20a0ff;
-  border-color: #20a0ff
-}
-
-.kenshin-button:active {
-  color: #1d90e6;
-  border-color: #1d90e6;
-  outline: 0
-}
-
-.kenshin-button::-moz-focus-inner {
-  border: 0
-}
-
-.kenshin-button [class*=kenshin-icon-] + span {
-  margin-left: 5px
-}
-
-.kenshin-button.is-loading {
-  position: relative;
-  pointer-events: none
-}
-
-.kenshin-button.is-loading:before {
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  left: -1px;
-  top: -1px;
-  right: -1px;
-  bottom: -1px;
-  border-radius: inherit;
-  background-color: rgba(255, 255, 255, .35)
-}
-
-.kenshin-button.is-disabled, .kenshin-button.is-disabled:focus, .kenshin-button.is-disabled:hover {
-  color: #bfcbd9;
-  cursor: not-allowed;
-  background-image: none;
-  background-color: #eef1f6;
-  border-color: #d1dbe5
-}
-
-.kenshin-button.is-disabled.kenshin-button--text {
-  background-color: transparent
-}
-
-.kenshin-button.is-disabled.is-plain, .kenshin-button.is-disabled.is-plain:focus, .kenshin-button.is-disabled.is-plain:hover {
-  background-color: #fff;
-  border-color: #d1dbe5;
-  color: #bfcbd9
-}
-
-.kenshin-button.is-active {
-  color: #1d90e6;
-  border-color: #1d90e6
-}
-
-.kenshin-button.is-plain:focus, .kenshin-button.is-plain:hover {
-  background: #fff;
-  border-color: #20a0ff;
-  color: #20a0ff
-}
-
-.kenshin-button.is-plain:active {
-  background: #fff;
-  border-color: #1d90e6;
-  color: #1d90e6;
-  outline: 0
-}
-
-.kenshin-button--primary {
+.@{prefix}--primary {
   color: #fff;
   background-color: #20a0ff;
-  border-color: #20a0ff
-}
-
-.kenshin-button--primary:focus, .kenshin-button--primary:hover {
-  background: #4db3ff;
-  border-color: #4db3ff;
-  color: #fff
-}
-
-.kenshin-button--primary.is-active, .kenshin-button--primary:active {
-  background: #1d90e6;
-  border-color: #1d90e6;
-  color: #fff
-}
-
-.kenshin-button--primary:active {
-  outline: 0
-}
-
-.kenshin-button--primary.is-plain {
-  background: #fff;
-  border: 1px solid #bfcbd9;
-  color: #1f2d3d
-}
-
-.kenshin-button--primary.is-plain:focus, .kenshin-button--primary.is-plain:hover {
-  background: #fff;
   border-color: #20a0ff;
-  color: #20a0ff
+
+  &:focus,
+  &:hover {
+    background: #4db3ff;
+    border-color: #4db3ff;
+    color: #fff;
+  }
+
+  &.is-active,
+  &:active {
+    background: #1d90e6;
+    border-color: #1d90e6;
+    color: #fff;
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &.is-plain {
+    background: #fff;
+    border: 1px solid #bfcbd9;
+    color: #1f2d3d;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #20a0ff;
+    color: #20a0ff;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #1d90e6;
+    color: #1d90e6;
+    outline: 0;
+  }
 }
 
-.kenshin-button--primary.is-plain:active {
-  background: #fff;
-  border-color: #1d90e6;
-  color: #1d90e6;
-  outline: 0
-}
-
-.kenshin-button--success {
+.@{prefix}-button--success {
   color: #fff;
   background-color: #13ce66;
-  border-color: #13ce66
-}
-
-.kenshin-button--success:focus, .kenshin-button--success:hover {
-  background: #42d885;
-  border-color: #42d885;
-  color: #fff
-}
-
-.kenshin-button--success.is-active, .kenshin-button--success:active {
-  background: #11b95c;
-  border-color: #11b95c;
-  color: #fff
-}
-
-.kenshin-button--success:active {
-  outline: 0
-}
-
-.kenshin-button--success.is-plain {
-  background: #fff;
-  border: 1px solid #bfcbd9;
-  color: #1f2d3d
-}
-
-.kenshin-button--success.is-plain:focus, .kenshin-button--success.is-plain:hover {
-  background: #fff;
   border-color: #13ce66;
-  color: #13ce66
+
+  &:focus,
+  &:hover {
+    background: #42d885;
+    border-color: #42d885;
+    color: #fff;
+  }
+
+  &.is-active,
+  &:active {
+    background: #11b95c;
+    border-color: #11b95c;
+    color: #fff;
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &.is-plain {
+    background: #fff;
+    border: 1px solid #bfcbd9;
+    color: #1f2d3d;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #13ce66;
+    color: #13ce66;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #11b95c;
+    color: #11b95c;
+    outline: 0;
+  }
 }
 
-.kenshin-button--success.is-plain:active {
-  background: #fff;
-  border-color: #11b95c;
-  color: #11b95c;
-  outline: 0
-}
 
-.kenshin-button--warning {
+.@{prefix}-button--warning {
   color: #fff;
   background-color: #f7ba2a;
-  border-color: #f7ba2a
-}
-
-.kenshin-button--warning:focus, .kenshin-button--warning:hover {
-  background: #f9c855;
-  border-color: #f9c855;
-  color: #fff
-}
-
-.kenshin-button--warning.is-active, .kenshin-button--warning:active {
-  background: #dea726;
-  border-color: #dea726;
-  color: #fff
-}
-
-.kenshin-button--warning:active {
-  outline: 0
-}
-
-.kenshin-button--warning.is-plain {
-  background: #fff;
-  border: 1px solid #bfcbd9;
-  color: #1f2d3d
-}
-
-.kenshin-button--warning.is-plain:focus, .kenshin-button--warning.is-plain:hover {
-  background: #fff;
   border-color: #f7ba2a;
-  color: #f7ba2a
+
+  &:focus,
+  &:hover {
+    background: #f9c855;
+    border-color: #f9c855;
+    color: #fff;
+  }
+
+  &.is-active,
+  &:active {
+    background: #dea726;
+    border-color: #dea726;
+    color: #fff;
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &.is-plain {
+    background: #fff;
+    border: 1px solid #bfcbd9;
+    color: #1f2d3d;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #f7ba2a;
+    color: #f7ba2a;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #dea726;
+    color: #dea726;
+    outline: 0
+  }
 }
 
-.kenshin-button--warning.is-plain:active {
-  background: #fff;
-  border-color: #dea726;
-  color: #dea726;
-  outline: 0
-}
 
-.kenshin-button--danger {
+.@{prefix}-button--danger {
   color: #fff;
   background-color: #ff4949;
-  border-color: #ff4949
-}
-
-.kenshin-button--danger:focus, .kenshin-button--danger:hover {
-  background: #ff6d6d;
-  border-color: #ff6d6d;
-  color: #fff
-}
-
-.kenshin-button--danger.is-active, .kenshin-button--danger:active {
-  background: #e64242;
-  border-color: #e64242;
-  color: #fff
-}
-
-.kenshin-button--danger:active {
-  outline: 0
-}
-
-.kenshin-button--danger.is-plain {
-  background: #fff;
-  border: 1px solid #bfcbd9;
-  color: #1f2d3d
-}
-
-.kenshin-button--danger.is-plain:focus, .kenshin-button--danger.is-plain:hover {
-  background: #fff;
   border-color: #ff4949;
-  color: #ff4949
+
+  &:focus,
+  &:hover {
+    background: #ff6d6d;
+    border-color: #ff6d6d;
+    color: #fff;
+  }
+
+  &.is-active,
+  &:active {
+    background: #e64242;
+    border-color: #e64242;
+    color: #fff;
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &.is-plain {
+    background: #fff;
+    border: 1px solid #bfcbd9;
+    color: #1f2d3d;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #ff4949;
+    color: #ff4949;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #e64242;
+    color: #e64242;
+    outline: 0;
+  }
 }
 
-.kenshin-button--danger.is-plain:active {
-  background: #fff;
-  border-color: #e64242;
-  color: #e64242;
-  outline: 0
-}
 
-.kenshin-button--info {
+.@{prefix}-button--info {
   color: #fff;
   background-color: #50bfff;
-  border-color: #50bfff
-}
-
-.kenshin-button--info:focus, .kenshin-button--info:hover {
-  background: #73ccff;
-  border-color: #73ccff;
-  color: #fff
-}
-
-.kenshin-button--info.is-active, .kenshin-button--info:active {
-  background: #48ace6;
-  border-color: #48ace6;
-  color: #fff
-}
-
-.kenshin-button--info:active {
-  outline: 0
-}
-
-.kenshin-button--info.is-plain {
-  background: #fff;
-  border: 1px solid #bfcbd9;
-  color: #1f2d3d
-}
-
-.kenshin-button--info.is-plain:focus, .kenshin-button--info.is-plain:hover {
-  background: #fff;
   border-color: #50bfff;
-  color: #50bfff
+
+  &:focus,
+  &:hover {
+    background: #73ccff;
+    border-color: #73ccff;
+    color: #fff;
+  }
+
+  &.is-active,
+  &:active {
+    background: #48ace6;
+    border-color: #48ace6;
+    color: #fff;
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &.is-plain {
+    background: #fff;
+    border: 1px solid #bfcbd9;
+    color: #1f2d3d;
+  }
+
+  &.is-plain:focus,
+  &.is-plain:hover {
+    background: #fff;
+    border-color: #50bfff;
+    color: #50bfff;
+  }
+
+  &.is-plain:active {
+    background: #fff;
+    border-color: #48ace6;
+    color: #48ace6;
+    outline: 0;
+  }
 }
 
-.kenshin-button--info.is-plain:active {
-  background: #fff;
-  border-color: #48ace6;
-  color: #48ace6;
-  outline: 0
-}
 
-.kenshin-button--large {
+.@{prefix}-button--large {
   padding: 11px 19px;
   font-size: 16px;
-  border-radius: 4px
+  border-radius: 4px;
 }
 
-.kenshin-button--small {
+.@{prefix}-button--small {
   padding: 7px 9px;
   font-size: 12px;
-  border-radius: 4px
+  border-radius: 4px;
 }
 
-.kenshin-button--mini {
+.@{prefix}-button--mini {
   padding: 4px;
   font-size: 12px;
-  border-radius: 4px
+  border-radius: 4px;
 }
 
-.kenshin-button--text {
+.@{prefix}-button--text {
   border: none;
   color: #20a0ff;
   background: 0 0;
   padding-left: 0;
-  padding-right: 0
+  padding-right: 0;
+
+  &:focus, &:hover {
+    color: #4db3ff;
+  }
+
+  &:active {
+    color: #1d90e6;
+  }
 }
 
-.kenshin-button--text:focus, .kenshin-button--text:hover {
-  color: #4db3ff
-}
 
-.kenshin-button--text:active {
-  color: #1d90e6
-}
 
-.kenshin-button-group {
-  display: inline-block;
-  vertical-align: middle
-}
-
-.kenshin-button-group:after, .kenshin-button-group:before {
-  display: table;
-  content: ""
-}
-
-.kenshin-button-group:after {
-  clear: both
-}
-
-.kenshin-button-group .kenshin-button--primary:first-child {
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--primary:last-child {
-  border-left-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--primary:not(:first-child):not(:last-child) {
-  border-left-color: rgba(255, 255, 255, .5);
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--success:first-child {
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--success:last-child {
-  border-left-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--success:not(:first-child):not(:last-child) {
-  border-left-color: rgba(255, 255, 255, .5);
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--warning:first-child {
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--warning:last-child {
-  border-left-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--warning:not(:first-child):not(:last-child) {
-  border-left-color: rgba(255, 255, 255, .5);
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--danger:first-child {
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--danger:last-child {
-  border-left-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--danger:not(:first-child):not(:last-child) {
-  border-left-color: rgba(255, 255, 255, .5);
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--info:first-child {
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--info:last-child {
-  border-left-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button--info:not(:first-child):not(:last-child) {
-  border-left-color: rgba(255, 255, 255, .5);
-  border-right-color: rgba(255, 255, 255, .5)
-}
-
-.kenshin-button-group .kenshin-button {
-  float: left;
-  position: relative
-}
-
-.kenshin-button-group .kenshin-button + .kenshin-button {
-  margin-left: 0
-}
-
-.kenshin-button-group .kenshin-button:first-child {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0
-}
-
-.kenshin-button-group .kenshin-button:last-child {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0
-}
-
-.kenshin-button-group .kenshin-button:not(:first-child):not(:last-child) {
-  border-radius: 0
-}
-
-.kenshin-button-group .kenshin-button:not(:last-child) {
-  margin-right: -1px
-}
-
-.kenshin-button-group .kenshin-button.is-active, .kenshin-button-group .kenshin-button:active, .kenshin-button-group .kenshin-button:focus, .kenshin-button-group .kenshin-button:hover {
-  z-index: 1
-}
