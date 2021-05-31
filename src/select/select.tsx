@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import * as React from 'react'
 import ClickOutside from 'react-click-outside'
 import { debounce as throttleDebounce } from 'throttle-debounce'

@@ -19,6 +19,7 @@ import Card from './card'
 import Collapse from './collapse'
 import Checkbox from './checkbox'
 import Comment from './comment'
+import Dropdown from './dropdown'
 import Pagination from './pagination'
 
 export {
@@ -44,4 +45,5 @@ export {
   Checkbox,
   Comment,
   Pagination,
+  Dropdown
 }

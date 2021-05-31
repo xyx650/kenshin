@@ -3,16 +3,17 @@ import classnames from 'classnames'
 import useOnClickOutside from 'use-onclickoutside'
 import useUpdate from '../_hooks/useUpdate'
 import { prefixCls as prefix } from '@/config'
-// import findDOMNode from 'rc-util/lib/Dom/findDOMNode'
 import type { ButtonProps } from '@/button'
 import Button from '@/button'
 import { dropdownContext } from './context'
+import type { DropdownItemProps } from './drop-item'
 import DropdownItem from './drop-item'
 import DropdownMenu from './drop-menu'
+import './index.less'
 
 
 export interface DropdownProps {
-  menu?: React.ReactNode;
+  menu: React.ReactElement;
   type?: ButtonProps['type'];
   size?: ButtonProps['size'];
   trigger?: 'hover' | 'click';
@@ -52,32 +53,34 @@ const Dropdown: React.FC<DropdownProps> & {
   const [visible, setVisible] = React.useState(false)
 
   const rootRef = React.useRef<HTMLDivElement>(null)
-  const dropdownRef = React.useRef(null)
+  const dropdownRef = React.useRef<typeof DropdownMenu>(null)
   const triggerRef = React.useRef(null)
   const defaultRef = React.useRef(null)
 
 
-  useOnClickOutside(rootRef, () => setVisible(false))
+  useOnClickOutside(rootRef, () => handleClickOutside())
 
   useUpdate(() => {
-    // dropdownRef.current.on
+    // @ts-ignore
+    dropdownRef.current!.onVisibleChange(visible)
     onVisibleChange?.(visible)
   }, [visible])
 
 
   React.useEffect(() => {
     const triggerEl: HTMLElement = splitButton ? triggerRef.current! : defaultRef.current!
-    const dropdownEl: HTMLElement = dropdownRef.current!
+    // @ts-ignore
+    const dropdownEl: HTMLElement = dropdownRef.current!.dom
     return initEvent(triggerEl, dropdownEl)
   }, [])
 
 
   const initEvent = (triggerEl: HTMLElement, dropdownEl: HTMLElement) => {
     if (trigger === 'hover') {
-      triggerEl.addEventListener('mouseenter', show)
-      triggerEl.addEventListener('mouseleave', hide)
-      dropdownEl.addEventListener('mouseenter', show)
-      dropdownEl.addEventListener('mouseleave', hide)
+      triggerEl.addEventListener('mouseenter', show.bind(triggerEl))
+      triggerEl.addEventListener('mouseleave', hide.bind(triggerEl))
+      dropdownEl.addEventListener('mouseenter', show.bind(dropdownEl))
+      dropdownEl.addEventListener('mouseleave', hide.bind(dropdownEl))
     }
     if (trigger === 'click') {
       triggerEl.addEventListener('click', handleClick)
@@ -123,9 +126,7 @@ const Dropdown: React.FC<DropdownProps> & {
       setVisible(false)
     }
     if (onCommand) {
-      setTimeout(() => {
-        onCommand(command)
-      })
+      setTimeout(() => onCommand(command))
     }
   }
 
@@ -145,7 +146,8 @@ const Dropdown: React.FC<DropdownProps> & {
         })
       }
       {
-        React.cloneElement(children as React.ReactElement, { ref: dropdownRef })
+        // @ts-ignore
+        React.cloneElement(menu, { ref: dropdownRef })
       }
     </div>
   </dropdownContext.Provider>

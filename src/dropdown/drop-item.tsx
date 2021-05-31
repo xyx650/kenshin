@@ -7,7 +7,6 @@ export interface DropdownItemProps {
   disabled?: boolean;
   divided?: boolean;
   style?: React.CSSProperties;
-
 }
 
 const DropdownItem: React.FC<DropdownItemProps> = props => {

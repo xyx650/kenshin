@@ -13,6 +13,9 @@ lib
 # misc
 .DS_Store
 
+# test
+coverage
+
 # umi
 .umi
 .umi-production
