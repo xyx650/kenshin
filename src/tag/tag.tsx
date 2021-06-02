@@ -1,9 +1,9 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import View from '@/_base/view'
+import View from '../_base/view'
 import './index.less'
 
-export type TagProps = {
+export interface TagProps {
   // 是否可关闭
   closable?: boolean,
   // 主题

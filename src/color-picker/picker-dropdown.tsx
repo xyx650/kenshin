@@ -1,11 +1,11 @@
 import * as React from 'react'
 import HueSlider from './hue-slider'
-import View from '@/_base/view'
+import View from '../_base/view'
 import AlphaSlider from './alpha-slider'
 import SvPanel from './sv-panel'
-import type { ColorType } from '@/color-picker/types'
-import { colorPickerContext } from '@/color-picker/context'
-import { prefixCls as prefix } from '@/config'
+import type { ColorType } from '../color-picker/types'
+import { colorPickerContext } from '../color-picker/context'
+import { prefixCls as prefix } from '../config'
 import classnames from 'classnames'
 
 type PickerDropdownProps = {

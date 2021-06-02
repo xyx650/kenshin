@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import View from '@/_base/view'
-import { prefixCls as prefix } from '@/config'
+import View from '../_base/view'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface AlertProps {

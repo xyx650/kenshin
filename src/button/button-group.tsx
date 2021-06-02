@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import './button-group.less'
 
 export interface ButtonGroupProps {

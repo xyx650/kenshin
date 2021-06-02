@@ -1,9 +1,9 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import { colorPickerContext } from '@/color-picker/context'
+import { colorPickerContext } from '../color-picker/context'
 import PickerDropdown from './picker-dropdown'
 import Color from './color'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export type ColorPickerProps = {

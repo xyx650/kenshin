@@ -2,7 +2,7 @@ import * as React from 'react'
 import classnames from 'classnames'
 import CollapseItem from './collapse-item'
 import type { CollapseItemProps } from './collapse-item'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import './collapse.less'
 
 export interface CollapseProps {

@@ -1,7 +1,9 @@
 @import "../_styles/common/index";
 @import "../_styles/common/prefix";
 
-.@{prefix}-button {
+@button: @{prefix}-button;
+
+.@{button} {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -21,7 +23,7 @@
   font-size: 14px;
   border-radius: 4px;
 
-  & + .@{prefix}-button {
+  & + .@{button} {
     margin-left: 10px;
   }
 
@@ -41,7 +43,7 @@
     border: 0;
   }
 
-  [class*=kenshin-icon-] + span {
+  [class*='@{prefix}-icon-'] + span {
     margin-left: 5px;
   }
 
@@ -73,7 +75,7 @@
   }
 
   &.is-disabled {
-    &.@{prefix}-button--text {
+    &.@{button}--text {
       background-color: transparent;
     }
   }
@@ -150,7 +152,7 @@
   }
 }
 
-.@{prefix}-button--success {
+.@{button}--success {
   color: #fff;
   background-color: #13ce66;
   border-color: #13ce66;
@@ -195,7 +197,7 @@
 }
 
 
-.@{prefix}-button--warning {
+.@{button}--warning {
   color: #fff;
   background-color: #f7ba2a;
   border-color: #f7ba2a;
@@ -240,7 +242,7 @@
 }
 
 
-.@{prefix}-button--danger {
+.@{button}--danger {
   color: #fff;
   background-color: #ff4949;
   border-color: #ff4949;
@@ -285,7 +287,7 @@
 }
 
 
-.@{prefix}-button--info {
+.@{button}--info {
   color: #fff;
   background-color: #50bfff;
   border-color: #50bfff;
@@ -330,25 +332,25 @@
 }
 
 
-.@{prefix}-button--large {
+.@{button}--large {
   padding: 11px 19px;
   font-size: 16px;
   border-radius: 4px;
 }
 
-.@{prefix}-button--small {
+.@{button}--small {
   padding: 7px 9px;
   font-size: 12px;
   border-radius: 4px;
 }
 
-.@{prefix}-button--mini {
+.@{button}--mini {
   padding: 4px;
   font-size: 12px;
   border-radius: 4px;
 }
 
-.@{prefix}-button--text {
+.@{button}--text {
   border: none;
   color: #20a0ff;
   background: 0 0;

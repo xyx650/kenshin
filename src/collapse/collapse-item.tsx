@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import CollapseTransition from './collapse-transition'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import './collapse-item.less'
 
 export type CollapseItemProps = {

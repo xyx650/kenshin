@@ -1,10 +1,11 @@
+
 import * as React from 'react'
 import classnames from 'classnames'
 import useOnClickOutside from 'use-onclickoutside'
 import useUpdate from '../_hooks/useUpdate'
-import { prefixCls as prefix } from '@/config'
-import type { ButtonProps } from '@/button'
-import Button from '@/button'
+import { prefixCls as prefix } from '../config'
+import type { ButtonProps } from '../button'
+import Button from '../button'
 import { dropdownContext } from './context'
 import type { DropdownItemProps } from './drop-item'
 import DropdownItem from './drop-item'
@@ -131,6 +132,7 @@ const Dropdown: React.FC<DropdownProps> & {
   }
 
 
+
   return <dropdownContext.Provider value={{ handleMenuItemClick, prefixCls, menuAlign, rootRef }}>
     <div style={props.style} className={classnames(`${prefixCls}-dropdown`)} ref={rootRef}>
       {
@@ -138,6 +140,7 @@ const Dropdown: React.FC<DropdownProps> & {
           <Button type={type} size={size} onClick={onClick}>
             {children}
           </Button>
+          {/* @ts-ignore */}
           <Button type={type} size={size} className={`${prefixCls}-dropdown__caret-button`} ref={triggerRef}>
             <i className={`${prefixCls}-dropdown__icon ${prefixCls}-icon-caret-bottom`} />
           </Button>

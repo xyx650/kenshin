@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import Component from '@/_base/component'
+import Component from '../_base/component'
 
 export type ViewProps = {
   show: boolean

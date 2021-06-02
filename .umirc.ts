@@ -1,4 +1,6 @@
-import { defineConfig } from 'dumi';
+/* eslint-disable */
+import { defineConfig } from 'dumi'
+import { resolve } from 'path'
 
 export default defineConfig({
   title: 'WDCUI',
@@ -11,11 +13,11 @@ export default defineConfig({
   targets: { ie: 9 },
   polyfill: {
     // 兼容臭名昭著 IE9+ 的 polyfill
-    imports: ['element-remove', 'babel-polyfill'],
+    imports: ['element-remove', 'babel-polyfill']
   },
   // mode: 'site',
   hash: true,
   history: { type: 'hash' },
   publicPath: './',
   dynamicImport: {}
-});
+})

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import calcTextareaHeight from '@/input/calcTextareaHeight'
+import calcTextareaHeight from '../input/calcTextareaHeight'
 import classnames from 'classnames'
 
 // autosize 对象类型

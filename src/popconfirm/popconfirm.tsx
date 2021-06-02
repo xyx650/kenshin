@@ -2,10 +2,11 @@ import * as React from 'react'
 import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import KeyCode from 'rc-util/lib/KeyCode'
 import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled'
-import Button from '@/button'
-import Tooltip, { AbstractTooltipProps } from '../tooltip'
+import Button from '../button'
+import type { AbstractTooltipProps } from '../tooltip';
+import Tooltip from '../tooltip'
 import classnames from 'classnames'
-import { cloneElement } from '@/_util/reactNode'
+import { cloneElement } from '../_util/reactNode'
 import './index.less'
 
 

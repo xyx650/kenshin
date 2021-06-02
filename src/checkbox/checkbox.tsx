@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { useCheckbox } from './hooks'
 import CheckboxGroup from './checkbox-group'
 import CheckboxButton from './checkbox-button'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import './checkbox.less'
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {

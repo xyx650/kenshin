@@ -4,7 +4,7 @@ import * as React from 'react'
 import ClickOutside from 'react-click-outside'
 import { debounce as throttleDebounce } from 'throttle-debounce'
 import Popper from 'popper.js'
-import View from '@/_base/view'
+import View from '../_base/view'
 import classnames from 'classnames'
 
 import Tag from '../tag'

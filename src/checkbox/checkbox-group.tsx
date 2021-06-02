@@ -2,7 +2,7 @@ import * as React from 'react'
 import classnames from 'classnames'
 import type { CheckboxProps } from './checkbox'
 import { checkboxContext } from './context'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 
 
 export interface CheckboxGroupProps {

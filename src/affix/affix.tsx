@@ -2,8 +2,8 @@ import * as React from 'react'
 import classnames from 'classnames'
 import omit from 'rc-util/lib/omit'
 import ResizeObserver from 'rc-resize-observer'
-import { throttleByAnimationFrameDecorator } from '@/_util/throttleByAnimationFrameDecorator'
-import { prefixCls as prefix } from '@/config'
+import { throttleByAnimationFrameDecorator } from '../_util/throttleByAnimationFrameDecorator'
+import { prefixCls as prefix } from '../config'
 
 import {
   addObserveTarget,

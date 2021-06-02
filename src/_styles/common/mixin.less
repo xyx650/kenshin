@@ -321,6 +321,127 @@
   transform: scaleY(0);
 }
 
+.hover(@color: tint(@primary-color, 50%)) {
+  border-color: @color;
+  border-right-width: @border-width-base !important;
+}
+
+.active(@color: @primary-color) {
+  border-color: tint(@color, 50);
+  border-right-width: @border-width-base !important;
+  outline: 0;
+  box-shadow: @input-outline-offset @outline-blur-size @outline-width fade(@color, @outline-fade);
+}
+
+.disabled() {
+  color: @input-disabled-color;
+  background-color: @input-disabled-bg;
+  cursor: not-allowed;
+  opacity: 1;
+
+  &:hover {
+    .hover(@input-border-color);
+  }
+}
+
+
+.input() {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: @input-padding-vertical-base @input-padding-horizontal-base;
+  color: @input-color;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  background-color: @input-bg;
+  background-image: none;
+  border: @border-width-base @border-style-base @input-border-color;
+  border-radius: @border-radius-base;
+  transition: all 0.3s;
+  .placeholder(); // Reset placeholder
+
+  &:hover {
+    .hover();
+  }
+
+  &:focus,
+  &-focused {
+    .active();
+  }
+
+  &-disabled {
+    .disabled();
+  }
+
+  &[disabled] {
+    .disabled();
+  }
+
+  &-borderless {
+    &,
+    &:hover,
+    &:focus,
+    &-focused,
+    &-disabled,
+    &[disabled] {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  // Reset height for `textarea`s
+  textarea& {
+    max-width: 100%; // prevent textearea resize from coming out of its container
+    height: auto;
+    min-height: @input-height-base;
+    line-height: @line-height-base;
+    vertical-align: bottom;
+    transition: all 0.3s, height 0s;
+  }
+
+  // Size
+  &-lg {
+    .input-lg();
+  }
+
+  &-sm {
+    .input-sm();
+  }
+}
+
+.placeholder(@color: @input-placeholder-color) {
+  // Firefox
+  &::-moz-placeholder {
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+
+  &::placeholder {
+    color: @color;
+  }
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+}
+
+.input-lg() {
+  padding: @input-padding-vertical-lg @input-padding-horizontal-lg;
+  font-size: @font-size-lg;
+}
+
+.input-sm() {
+  padding: @input-padding-vertical-sm @input-padding-horizontal-sm;
+}
+
+.picker-padding(@input-height, @font-size, @padding-horizontal) {
+  @font-height: floor(@font-size * @line-height-base) + 2;
+  @padding-top: max(((@input-height - @font-height) / 2), 0);
+  @padding-bottom: max(@input-height - @font-height - @padding-top, 0);
+  padding: @padding-top @padding-horizontal @padding-bottom;
+}
+
 
 
 

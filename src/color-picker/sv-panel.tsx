@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { colorPickerContext } from '@/color-picker/context'
+import { colorPickerContext } from '../color-picker/context'
 import draggable from './draggable'
 import type { ColorType, DragOptions } from './types'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 
 
 export type SvPanelProps = {

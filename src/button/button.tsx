@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 import ButtonGroup from './button-group'
 import './index.less'
 
@@ -59,7 +59,7 @@ const ButtonRF: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, r
   </button>
 }
 
-export interface ComputedButton extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLElement>> {
+export interface ComputedButton extends React.ForwardRefExoticComponent<ButtonProps> {
   Group: typeof ButtonGroup;
 }
 

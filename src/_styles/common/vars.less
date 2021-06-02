@@ -138,3 +138,99 @@ purple;
 @comment-action-hover-color: #595959;
 @comment-nest-indent: 44px;
 
+// height rules
+@height-base: 32px;
+@height-lg: 40px;
+@height-sm: 24px;
+@font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+@font-size-sm: 12px;
+@input-height-base: @height-base;
+@input-padding-horizontal: @control-padding-horizontal - 1px;
+@input-padding-horizontal-base: @input-padding-horizontal;
+@picker-bg: @component-background;
+@border-color-base: hsv(0, 0, 85%); // base border outline a component
+@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@border-color-inverse: @white;
+@border-width-base: 1px; // width of the border for a component
+@border-style-base: solid;
+@select-border-color: @border-color-base;
+@background-color-light: hsv(0, 0, 98%); // background of header and selected item
+@background-color-base: hsv(0, 0, 96%);
+@disabled-bg: @background-color-base;
+@input-disabled-bg: @disabled-bg;
+@input-placeholder-color: hsv(0, 0, 75%);
+@input-height-lg: @height-lg;
+@input-padding-horizontal-lg: @input-padding-horizontal;
+@input-height-lg: @height-lg;
+@input-height-sm: @height-sm;
+@input-padding-horizontal-sm: @control-padding-horizontal-sm - 1px;
+@input-padding-horizontal-lg: @input-padding-horizontal;
+@control-padding-horizontal: @padding-sm;
+@control-padding-horizontal-sm: @padding-xs;
+@zindex-badge: auto;
+@zindex-table-fixed: 2;
+@zindex-affix: 10;
+@zindex-back-top: 10;
+@zindex-picker-panel: 10;
+@zindex-popup-close: 10;
+@zindex-modal: 1000;
+@zindex-modal-mask: 1000;
+@zindex-message: 1010;
+@zindex-notification: 1010;
+@zindex-popover: 1030;
+@zindex-dropdown: 1050;
+@zindex-picker: 1050;
+@zindex-popoconfirm: 1060;
+@zindex-tooltip: 1070;
+@zindex-image: 1080;
+@picker-text-height: 40px;
+@primary-1: tint(@primary-color, 90%);
+@primary-3: tint(@primary-color, 70%);
+@calendar-bg: @component-background;
+@input-outline-offset: 0 0;
+@outline-blur-size: 0;
+@outline-width: 2px;
+@outline-color: @primary-color;
+@outline-fade: 20%;
+@input-padding-vertical-base: max((round(((@input-height-base - @font-size-base * @line-height-base) / 2) * 10) / 10) -
+@border-width-base,
+3px);
+@input-color: @text-color;
+@input-bg: @component-background;
+@input-border-color: @border-color-base;
+@input-disabled-color: @disabled-color;
+@input-padding-vertical-sm: max((round(((@input-height-sm - @font-size-base * @line-height-base) / 2) * 10) / 10) -
+@border-width-base,
+0);
+@input-padding-vertical-lg: (
+    ceil(((@input-height-lg - @font-size-lg * @line-height-base) / 2) * 10) / 10
+  ) - @border-width-base;
+
+@item-hover-bg: #f5f5f5;
+@picker-bg: @component-background;
+@picker-basic-cell-hover-color: @item-hover-bg;
+@picker-basic-cell-active-with-range-color: @primary-1;
+@picker-basic-cell-hover-with-range-color: lighten(@primary-color, 35%);
+@picker-basic-cell-disabled-bg: @disabled-bg;
+@picker-border-color: @border-color-split;
+@picker-date-hover-range-border-color: lighten(@primary-color, 20%);
+@picker-date-hover-range-color: @picker-basic-cell-hover-with-range-color;
+@picker-time-panel-column-width: 56px;
+@picker-time-panel-column-height: 224px;
+@picker-time-panel-cell-height: 28px;
+@picker-panel-cell-height: 24px;
+@picker-panel-cell-width: 36px;
+@picker-text-height: 40px;
+@picker-panel-without-time-cell-height: 66px;
+
+@link-hover-color: tint(@link-color, 50%);
+@link-active-color: tint(@link-color, 30%);
+
+@calendar-bg: @component-background;
+@calendar-input-bg: @input-bg;
+@calendar-border-color: @border-color-inverse;
+@calendar-item-active-bg: @primary-1;
+@calendar-full-bg: @calendar-bg;
+@calendar-full-panel-bg: @calendar-full-bg;
+

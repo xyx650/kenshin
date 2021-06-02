@@ -1,10 +1,10 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import { colorPickerContext } from '@/color-picker/context'
+import { colorPickerContext } from '../color-picker/context'
 
 import draggable from './draggable'
 import type { DragOptions, ColorType } from './types'
-import {prefixCls as prefix} from '@/config'
+import {prefixCls as prefix} from '../config'
 
 
 type AlphaSliderProps = {

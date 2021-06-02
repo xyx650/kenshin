@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import View from '@/_base/view'
+import View from '../_base/view'
 import './index.less'
 
 export type SwitchState = {
@@ -137,14 +137,14 @@ const Switch: React.FC<SwitchProps> = props => {
       onBlur={handleBlur}
     />
 
-    <span className='kenshin-switch__core' ref={coreRef} style={{ 'width': coreWidth + 'px' }}>
+    <span className='kenshin-switch__core' ref={coreRef} style={{ 'width': `${coreWidth  }px` }}>
       <span className='kenshin-switch__button' style={{ ...buttonStyle }} onClick={setFocus} />
     </span>
 
     <View show={value === onValue}>
       <div
         className='kenshin-switch__label kenshin-switch__labkenshin--left'
-        style={{ 'width': coreWidth + 'px' }}
+        style={{ 'width': `${coreWidth  }px` }}
       >
         {onIconClass && <i className={onIconClass} />}
         {!onIconClass && onText && <span>{onText}</span>}
@@ -154,7 +154,7 @@ const Switch: React.FC<SwitchProps> = props => {
     <View show={value !== onValue}>
       <div
         className='kenshin-switch__label kenshin-switch__labkenshin--right'
-        style={{ 'width': coreWidth + 'px' }}
+        style={{ 'width': `${coreWidth  }px` }}
       >
         {offIconClass && <i className={offIconClass} />}
         {!offIconClass && offText && <span>{offText}</span>}

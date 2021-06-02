@@ -21,6 +21,7 @@ import Checkbox from './checkbox'
 import Comment from './comment'
 import Dropdown from './dropdown'
 import Pagination from './pagination'
+import DatePicker from './date-picker'
 
 export {
   Rate,
@@ -45,5 +46,6 @@ export {
   Checkbox,
   Comment,
   Pagination,
-  Dropdown
+  Dropdown,
+  DatePicker
 }

@@ -3,7 +3,7 @@ import type { CheckboxProps } from './checkbox'
 import classnames from 'classnames'
 import { checkboxContext } from './context'
 import { useCheckbox } from './hooks'
-import { prefixCls as prefix } from '@/config'
+import { prefixCls as prefix } from '../config'
 
 // CheckboxButtonProps
 export type CheckboxButtonProps = CheckboxProps

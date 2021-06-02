@@ -2,8 +2,8 @@ import * as React from 'react'
 import classnames from 'classnames'
 import draggable from './draggable'
 import type { DragOptions, ColorType } from './types'
-import { colorPickerContext } from '@/color-picker/context'
-import {prefixCls as prefix} from '@/config'
+import { colorPickerContext } from '../color-picker/context'
+import {prefixCls as prefix} from '../config'
 
 
 type HueSliderProps = {
