@@ -7,9 +7,10 @@ import RCPicker from 'rc-picker'
 import locale from 'rc-picker/lib/locale/zh_CN'
 import type { PickerMode } from 'rc-picker/lib/interface'
 import type { GenerateConfig } from 'rc-picker/lib/generate/index'
-import type { PickerProps, PickerDateProps, PickerTimeProps } from './picker'
+import type { PickerProps, PickerDateProps, PickerTimeProps, PickerLocale } from './picker'
 import { getTimeProps, Components } from './picker'
 import { prefixCls as prefix } from '../config'
+import { getPlaceholder } from './util'
 
 
 export default function generatePicker<DateType>(generateConfig: GenerateConfig<DateType>) {
@@ -39,7 +40,7 @@ export default function generatePicker<DateType>(generateConfig: GenerateConfig<
           className,
           size: customizeSize = 'middle',
           bordered = true,
-          placeholder,
+          placeholder = '请选择',
           ...restProps
         } = this.props
 
@@ -65,10 +66,8 @@ export default function generatePicker<DateType>(generateConfig: GenerateConfig<
 
         return <RCPicker<DateType>
           ref={this.pickerRef}
-          placeholder={placeholder}
-          suffixIcon={
-            mergedPicker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />
-          }
+          placeholder={getPlaceholder(mergedPicker, { lang: locale } as PickerLocale, placeholder)}
+          suffixIcon={mergedPicker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />}
           clearIcon={<CloseCircleFilled />}
           allowClear
           transitionName={`${customizePrefixCls}-slide-up`}

@@ -15,7 +15,7 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<ButtonProps
   plain?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  prefixCls?: string
+  prefixCls?: string;
 }
 
 const ButtonRF: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
@@ -29,15 +29,11 @@ const ButtonRF: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, r
     children,
     prefixCls = prefix
   } = props
-  const className = classNames(
-    `${prefixCls}-button`,
-    type && `${prefixCls}-button--${type}`,
-    size && `${prefixCls}-button--${size}`,
-    {
-      'is-disabled': disabled,
-      'is-loading': loading,
-      'is-plain': plain
-    })
+  const className = classNames(`${prefixCls}-button`, type && `${prefixCls}-button--${type}`, size && `${prefixCls}-button--${size}`, {
+    'is-disabled': disabled,
+    'is-loading': loading,
+    'is-plain': plain
+  })
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!loading) {
       props.onClick?.(e)

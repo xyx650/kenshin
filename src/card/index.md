@@ -8,10 +8,7 @@
 import React from 'react';
 import { Card } from 'kenshin';
 
-export default () => <Card
-  className="box-card"
-  header="卡片名称"
->
+export default () => <Card className="box-card" header="卡片名称">
   <div className="item">列表内容 1</div>
   <div className="item">列表内容 2</div>
   <div className="item">列表内容 3</div>

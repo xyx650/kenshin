@@ -13,18 +13,34 @@ import {
   getFixedBottom
 } from './utils'
 
-export type AffixProps = {
-  /** 距离窗口顶部达到指定偏移量后触发 */
+export interface AffixProps {
+  /**
+   * @description 距离窗口顶部达到指定偏移量后触发
+   */
   offsetTop?: number;
-  /** 距离窗口底部达到指定偏移量后触发 */
+  /**
+   * @description 距离窗口底部达到指定偏移量后触发
+   */
   offsetBottom?: number;
-  /** 固定状态改变时触发的回调函数 */
+  /**
+   * @description 固定状态改变时触发的回调函数
+   */
   onChange?: (affixed?: boolean) => void;
-  /** 设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 */
+  /**
+   * @description 设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数
+   */
   target?: () => Window | HTMLElement | null;
-  children: React.ReactNode;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
   className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
 }
 
@@ -33,12 +49,11 @@ enum AffixStatus {
   Prepare,
 }
 
-export type AffixState = {
+export interface AffixState {
   affixStyle?: React.CSSProperties;
   placeholderStyle?: React.CSSProperties;
   status: AffixStatus;
   lastAffix: boolean;
-
   prevTarget: Window | HTMLElement | null;
 }
 

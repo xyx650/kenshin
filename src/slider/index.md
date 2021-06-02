@@ -1,7 +1,4 @@
 ## Slider 滑块
-
-Demo:
-
 ```tsx
 import React from 'react';
 import { Slider } from 'kenshin';

@@ -1,129 +1,143 @@
-/* eslint-disable */
-// @ts-nocheck
 import * as React from 'react'
-import ClickOutside from 'react-click-outside'
-import { debounce as throttleDebounce } from 'throttle-debounce'
-import Popper from 'popper.js'
-import View from '../_base/view'
-import classnames from 'classnames'
+import omit from 'rc-util/lib/omit'
+import classNames from 'classnames'
+import type { SelectProps as RcSelectProps } from 'rc-select'
+import RcSelect, { Option, OptGroup } from 'rc-select'
+import { OptionProps } from 'rc-select/lib/Option'
+import { prefixCls as prefix } from '../config'
+import getIcons from './icon'
+import './index.less'
 
-import Tag from '../tag'
-import Input from '../input'
+type RawValue = string | number;
 
-type sizeMapKey = 'large' | 'small' | 'mini'
+export { OptionProps }
 
-const sizeMap: Record<sizeMapKey, number> = {
-  'large': 42,
-  'small': 30,
-  'mini': 22
+export type OptionType = typeof Option;
+
+export interface LabeledValue {
+  key?: string;
+  value: RawValue;
+  label: React.ReactNode;
 }
 
-export interface SelectProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  value: string | number;
-  size?: sizeMapKey;
-  disabled?: boolean;
-  clearable?: boolean;
-  filterable?: boolean;
-  loading?: boolean;
-  remote?: boolean;
-  remoteMethod?: () => void;
-  filterMethod?: () => void;
-  multiple?: boolean;
-  placeholder?: string;
-  onChange?: () => void;
-  onVisibleChange?: () => void;
-  onRemoveTag?: () => void;
-  onClear?: () => void;
+export type SelectValue = RawValue | RawValue[] | LabeledValue | LabeledValue[];
+
+export interface InternalSelectProps<VT> extends Omit<RcSelectProps<VT>, 'mode'> {
+  suffixIcon?: React.ReactNode;
+  size?: 'mini' | 'small' | 'middle' | 'large';
+  mode?: 'multiple' | 'tags' | 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
+  bordered?: boolean;
 }
 
+export interface SelectProps<VT>
+  extends Omit<InternalSelectProps<VT>, 'inputIcon' | 'mode' | 'getInputElement' | 'backfill'> {
+  mode?: 'multiple' | 'tags';
+}
 
-const Select = React.forwardRef<unknown, SelectProps>((props, ref) => {
-  const { multiple, onRemoveTag } = props
+export interface RefSelectProps {
+  focus: () => void;
+  blur: () => void;
+}
 
-  // states
-  const [options, setOptions] = React.useState<OptionState>([])
-  const [isSelect, setIsSelect] = React.useState(true)
-  const [query, setQuery] = React.useState('')
-  const [value, setValue] = React.useState(props.value)
-  const [inputWidth, setInputWidth] = React.useState(0)
-  const [inputLength, setInputLength] = React.useState(20)
-  const [selectedLabel, setSelectedLabel] = React.useState('')
-  const [visible, setVisible] = React.useState(false)
-  const [selected, setSelected] = React.useState([] as OptionState)
-  const [selectedInit, setSelectedInit] = React.useState(!!props.multiple)
+const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
 
-  const debounce = () => props.remote ? 300 : 0
-  const debouncedOnInputChange = throttleDebounce(debounce(), () => {
-    onInputChange()
+const InternalSelect = <VT extends SelectValue = SelectValue>(
+  {
+    prefixCls: customizePrefixCls = prefix,
+    bordered = true,
+    className,
+    getPopupContainer,
+    dropdownClassName,
+    listHeight = 256,
+    listItemHeight = 24,
+    size: customizeSize = 'middle',
+    notFoundContent,
+    ...props
+  }: SelectProps<VT>,
+  ref: React.Ref<RefSelectProps>
+) => {
+  const prefixCls = `${customizePrefixCls}-select`
+  const rootPrefixCls = prefix
+
+  const mode = React.useMemo(() => {
+    const { mode: m } = props as InternalSelectProps<VT>
+
+    if ((m as any) === 'combobox') {
+      return undefined
+    }
+
+    if (m === SECRET_COMBOBOX_MODE_DO_NOT_USE) {
+      return 'combobox'
+    }
+
+    return m
+  }, [props.mode])
+
+  const isMultiple = mode === 'multiple' || mode === 'tags'
+
+
+  let mergedNotFound: React.ReactNode
+  if (notFoundContent !== undefined) {
+    mergedNotFound = notFoundContent
+  } else if (mode === 'combobox') {
+    mergedNotFound = null
+  } else {
+    // empty
+    mergedNotFound = <div />
+  }
+
+  const { suffixIcon, itemIcon, removeIcon, clearIcon } = getIcons({
+    ...props,
+    multiple: isMultiple,
+    prefixCls
   })
 
-  const onInputChange = () => {
-    if (props.filterable && selectedLabel !== value) {
-      setQuery(selectedLabel)
-    }
-  }
+  const selectProps = omit(props as typeof props & { itemIcon: any }, ['suffixIcon', 'itemIcon'])
 
-  const toggleMenu = () => {
-    const { filterable, disabled } = props
-    if (filterable && query === '' && visible) {
-      return
-    }
-    if (!disabled) {
-      setVisible(v => !v)
-    }
-  }
+  const rcSelectRtlDropDownClassName = classNames(dropdownClassName)
 
-  const deleteTag = (tag) => {
-    const index = selected.indexOf(tag)
-    if (index > -1 && !props.disabled) {
-      const _selected = selected.slice()
-      _selected.splice(index, 1)
-      setSelected(_selected)
-      // onRemoveTag
-    }
-  }
+  const mergedSize = customizeSize
+  const mergedClassName = classNames({
+    [`${prefixCls}-lg`]: mergedSize === 'large',
+    [`${prefixCls}-sm`]: mergedSize === 'small',
+    [`${prefixCls}-borderless`]: !bordered
+  }, className)
 
-  return <div ref={root} style={props.style} className={classnames('kenshin-select', props.className)}>
-    {
-      multiple &&
-      <div ref={tags} className='kenshin-select__tags' onClick={toggleMenu} style={{ maxWidth: inputWidth - 32 }}>
-        {
-          selected.map(el => <Tag
-            type='primary'
-            key={el.props.value}
-            hit={el.hitState}
-            closable={!props.disabled}
-            onClose={() => deleteTag(el)}
-          >
-          </Tag>)
-        }
-      </div>
-    }
-  </div>
-})
-
-type OptionState = { value: string | number; disabled: boolean; label: string | number }[]
-
-
-type State = {
-  options: { value: string | number; disabled: boolean; label: string | number; }[][],
-  isSelect: boolean,
-  inputLength: number,
-  inputWidth: number,
-  inputHovering: boolean,
-  filteredOptionsCount: number,
-  optionsCount: number,
-  hoverIndex: number,
-  bottomOverflowBeforeHidden: number,
-  cachedPlaceHolder: string,
-  currentPlaceholder: string,
-  selectedLabel: string,
-  value: any,
-  visible: boolean,
-  query: string,
-  selected: any,
-  voidRemoteQuery: boolean,
-  valueChangeBySelected: boolean,
-  selectedInit: boolean,
-  dropdownUl?: HTMLElement
+  return <RcSelect<VT>
+    ref={ref as any}
+    {...selectProps}
+    transitionName={props.transitionName || `${rootPrefixCls}-slide-up`}
+    listHeight={listHeight}
+    listItemHeight={listItemHeight}
+    mode={mode}
+    prefixCls={prefixCls}
+    inputIcon={suffixIcon}
+    menuItemSelectedIcon={itemIcon}
+    removeIcon={removeIcon}
+    clearIcon={clearIcon}
+    notFoundContent={mergedNotFound}
+    className={mergedClassName}
+    getPopupContainer={getPopupContainer}
+    dropdownClassName={rcSelectRtlDropDownClassName}
+  />
 }
+
+const SelectRef = React.forwardRef(InternalSelect) as <VT extends SelectValue = SelectValue>(
+  props: SelectProps<VT> & { ref?: React.Ref<RefSelectProps> }
+) => React.ReactElement
+
+type InternalSelectType = typeof SelectRef;
+
+interface SelectInterface extends InternalSelectType {
+  SECRET_COMBOBOX_MODE_DO_NOT_USE: string;
+  Option: typeof Option;
+  OptGroup: typeof OptGroup;
+}
+
+const Select = SelectRef as SelectInterface
+
+Select.SECRET_COMBOBOX_MODE_DO_NOT_USE = SECRET_COMBOBOX_MODE_DO_NOT_USE
+Select.Option = Option
+Select.OptGroup = OptGroup
+
+export default Select

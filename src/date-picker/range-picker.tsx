@@ -7,9 +7,10 @@ import SwapRightOutlined from '@ant-design/icons/SwapRightOutlined'
 import { RangePicker as RCRangePicker } from 'rc-picker'
 import type { GenerateConfig } from 'rc-picker/lib/generate/index'
 import { prefixCls as prefix } from '../config'
-import type { RangePickerProps } from './picker'
+import type { RangePickerProps , PickerLocale } from './picker'
 import { Components, getTimeProps } from './picker'
 import locale from 'rc-picker/lib/locale/zh_CN'
+import { getRangePlaceholder } from '@/date-picker/util'
 
 
 export default function generateRangePicker<DateType>(generateConfig: GenerateConfig<DateType>) {
@@ -50,7 +51,7 @@ export default function generateRangePicker<DateType>(generateConfig: GenerateCo
             </span>
          }
          ref={this.pickerRef}
-         placeholder={placeholder}
+         placeholder={getRangePlaceholder(picker, { lang: locale } as PickerLocale, placeholder)}
          suffixIcon={picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />}
          clearIcon={<CloseCircleFilled />}
          allowClear

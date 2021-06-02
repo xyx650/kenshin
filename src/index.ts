@@ -22,6 +22,7 @@ import Comment from './comment'
 import Dropdown from './dropdown'
 import Pagination from './pagination'
 import DatePicker from './date-picker'
+import Select from './select'
 
 export {
   Rate,
@@ -47,5 +48,6 @@ export {
   Comment,
   Pagination,
   Dropdown,
-  DatePicker
+  DatePicker,
+  Select
 }

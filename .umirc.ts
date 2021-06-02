@@ -19,5 +19,8 @@ export default defineConfig({
   hash: true,
   history: { type: 'hash' },
   publicPath: './',
-  dynamicImport: {}
+  dynamicImport: {},
+  styles:[`
+    a:-webkit-any-link { text-decoration: none; cursor: none }
+  `]
 })

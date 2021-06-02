@@ -68,6 +68,7 @@
     "rc-pagination": "^3.1.6",
     "rc-picker": "^2.5.10",
     "rc-resize-observer": "^1.0.0",
+    "rc-select": "^12.1.10",
     "rc-slider": "^9.7.2",
     "rc-tooltip": "5.1.0",
     "rc-util": "^5.12.1",

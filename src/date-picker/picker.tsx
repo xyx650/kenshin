@@ -11,10 +11,9 @@ import type {
   RangePickerDateProps as RCRangePickerDateProps,
   RangePickerTimeProps as RCRangePickerTimeProps
 } from 'rc-picker/lib/RangePicker'
-import type { PickerMode } from 'rc-picker/lib/interface'
 import PickerTag from './picker-tag'
 import PickerButton from './picker-button'
-// import { Locale as RcPickerLocale } from 'rc-picker/lib/interface'
+import type { PickerMode, Locale as RcPickerLocale } from 'rc-picker/lib/interface';
 import generateSinglePicker from './single-picker'
 import generateRangePicker from './range-picker'
 
@@ -130,3 +129,28 @@ export default function generatePicker<DateType>(generateConfig: GenerateConfig<
 
   return MergedDatePicker
 }
+
+
+export type PickerLocale = {
+  lang: RcPickerLocale & AdditionalPickerLocaleLangProps;
+  // timePickerLocale: TimePickerLocale;
+} & AdditionalPickerLocaleProps;
+
+export type AdditionalPickerLocaleLangProps = {
+  placeholder: string;
+  yearPlaceholder?: string;
+  quarterPlaceholder?: string;
+  monthPlaceholder?: string;
+  weekPlaceholder?: string;
+  rangeYearPlaceholder?: [string, string];
+  rangeMonthPlaceholder?: [string, string];
+  rangeWeekPlaceholder?: [string, string];
+  rangePlaceholder?: [string, string];
+};
+
+export type AdditionalPickerLocaleProps = {
+  dateFormat?: string;
+  dateTimeFormat?: string;
+  weekFormat?: string;
+  monthFormat?: string;
+};

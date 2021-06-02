@@ -28,13 +28,8 @@ const handleChange = value => {
   console.log(value)
 }
 
-export default () => <Checkbox.Group
-  value={['上海', '北京']}
-  max={3}
-  onChange={handleChange}>
-  {
-    cities.map((city, index) => <Checkbox key={index} label={city} />)
-  }
+export default () => <Checkbox.Group value={['上海', '北京']} max={3} onChange={handleChange}>
+  {cities.map((city, index) => <Checkbox key={index} label={city} />)}
 </Checkbox.Group>
 ```
 
@@ -42,5 +37,5 @@ export default () => <Checkbox.Group
 
 
 <style>
-]
+
 </style>

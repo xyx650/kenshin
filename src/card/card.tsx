@@ -4,10 +4,25 @@ import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface CardProps {
+  /**
+   * @description 设置 header，可以通过 JSX 元素传入
+   */
   header?: React.ReactNode;
+  /**
+   * @description 设置 body 的样式
+   */
   bodyStyle?: React.CSSProperties;
-  className?: string;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
+  className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
 }
 
