@@ -2,9 +2,8 @@ import * as React from 'react';
 import classNames from 'classnames';
 import RcMentions from 'rc-mentions';
 import { MentionsProps as RcMentionsProps } from 'rc-mentions/lib/Mentions';
-import { composeRef } from 'rc-util/lib/ref';
 import './mentions.less';
-// import Spin from '../spin';
+import Loading from '../loading';
 
 const { Option } = RcMentions;
 
@@ -97,7 +96,10 @@ const Mentions: React.FC<MentionProps> = props => {
       return (
         <Option value="ANTD_SEARCHING" disabled>
           {/* 缺少加载组件 */}
-          <div className="loading">加载中...</div>
+          {/* <div className="loading">加载中...</div> */}
+          <Loading loading={loading}>
+            <div style={{ padding: '20px', transform: 'scale(0.5)' }}></div>
+          </Loading>
         </Option>
       );
     }
@@ -139,38 +141,9 @@ const Mentions: React.FC<MentionProps> = props => {
   );
 };
 
-// const Mentions = React.forwardRef<unknown, MentionProps>(Mentions) as CompoundedComponent;
 Mentions.displayName = 'Mentions';
 Mentions.Option = Option;
 
-// Mentions.getMentions = (value: string = '', config?: MentionsConfig): MentionsEntity[] => {
-//   const { prefix = '@', split = ' ' } = config || {};
-//   const prefixList: string[] = Array.isArray(prefix) ? prefix : [prefix];
-
-//   return value
-//     .split(split)
-//     .map((str = ''): MentionsEntity | null => {
-//       let hitPrefix: string | null = null;
-
-//       prefixList.some(prefixStr => {
-//         const startStr = str.slice(0, prefixStr.length);
-//         if (startStr === prefixStr) {
-//           hitPrefix = prefixStr;
-//           return true;
-//         }
-//         return false;
-//       });
-
-//       if (hitPrefix !== null) {
-//         return {
-//           prefix: hitPrefix,
-//           value: str.slice(hitPrefix!.length),
-//         };
-//       }
-//       return null;
-//     })
-//     .filter((entity): entity is MentionsEntity => !!entity && !!entity.value);
-// };
 Mentions.defaultProps = {
   autoFocus: false,
   autoSize: false,
