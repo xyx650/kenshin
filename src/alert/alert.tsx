@@ -11,6 +11,7 @@ export interface AlertProps {
   onClose?: () => void;
   /**
    * @description 标题，必选参数
+   * @required
    */
   title: string;
   /**

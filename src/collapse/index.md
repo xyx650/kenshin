@@ -88,9 +88,21 @@ export default () => <Collapse value=''>
 </Collapse>
 ```
 
-<API/>
+## API
+
+### Collapse
+
+| Name | Description | Type | Default |
+| ------------- | --------------- | ------------------------------------------------------------ |----------------- |
+| accordion | 是否手风琴模式          | `boolean`  | `false` |
+| value     | 当前激活的面板(如果是手风琴模式，绑定值类型需要为string，否则为array) | `string \| string[]`|     `--`       |
+| onChange | 当前激活面板改变时触发(如果是手风琴模式，参数类型为string，否则为array) | `(value: string \| string[]) => void`|      `--`          |
 
 
-<style>
+### Collapse.Item
 
-</style>
+| Name          | Description     | Type                                                         |    Default       |
+| ------------- | --------------- | ------------------------------------------------------------ |----------------- |
+| name          | 唯一标志符        | `string \| number`                                                   | `--` |
+| title         | 面板标题          | `React.ReactNode`                                            |     `--`       |
+

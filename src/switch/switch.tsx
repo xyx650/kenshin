@@ -13,46 +13,57 @@ export interface SwitchState {
 export interface SwitchProps {
   /**
    * @description 绑定的value
+   * @default true
    */
   value: number | string | boolean;
   /**
    * @description 是否禁用
+   * @default false
    */
   disabled: boolean;
   /**
    * @description switch 的宽度（像素）
+   * @default 58（有文字）/ 46（无文字）
    */
   width: number;
   /**
    * @description switch 打开时所显示图标的类名，设置此项会忽略 onText
+   * @default ''
    */
   onIconClass: string;
   /**
    * @description switch 关闭时所显示图标的类名，设置此项会忽略 offText
+   * @default ''
    */
   offIconClass: string;
   /**
    * @description switch 打开时的文字
+   * @default ''
    */
   onText: string;
   /**
    * @description switch 关闭时的文字
+   * @default ''
    */
   offText: string;
   /**
    * @description switch 打开时的背景色
+   * @default #20A0FF
    */
   onColor: string;
   /**
    * @description switch 关闭时的背景色
+   * @default #C0CCDA
    */
   offColor: string;
   /**
    * @description switch 打开时的值
+   * @default true
    */
   onValue: number | string | boolean;
   /**
    * @description switch 关闭时的值 switch
+   * @default false
    */
   offValue: number | string | boolean;
   /**
@@ -93,7 +104,7 @@ const Switch: React.FC<SwitchProps> = props => {
 
   const [state, setState] = React.useState<SwitchState>({
     value: props.value,
-    coreWidth: props.width,
+    coreWidth: props.width ?? 0,
     buttonStyle: { transform: '' }
   })
 
@@ -119,7 +130,7 @@ const Switch: React.FC<SwitchProps> = props => {
 
   // didMount
   React.useEffect(() => {
-    if (props.width === 0) {
+    if (!props.width) {
       state.coreWidth = hasText() ? 58 : 46
     }
     updateSwitch()
@@ -226,15 +237,14 @@ const Switch: React.FC<SwitchProps> = props => {
 Switch.defaultProps = {
   value: true,
   disabled: false,
-  width: 0,
   onIconClass: '',
   offIconClass: '',
   onText: 'ON',
   offText: 'OFF',
   onValue: true,
   offValue: false,
-  onColor: '',
-  offColor: '',
+  onColor: '#20A0FF',
+  offColor: '#C0CCDA',
   name: '',
   allowFocus: false
 }
