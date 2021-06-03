@@ -1,113 +1,129 @@
-.kenshin-radio, .kenshin-radio__input {
+@import "../_styles/common/prefix";
+
+@radio: ~"@{prefix}-radio";
+
+.@{radio},
+.@{radio}__input {
   white-space: nowrap;
   cursor: pointer
 }
 
-.kenshin-radio, .kenshin-radio__inner, .kenshin-radio__input {
+.@{radio},
+.@{radio}__inner,
+.@{radio}__input {
   position: relative;
   display: inline-block
 }
 
-.kenshin-radio {
+.@{radio} {
   color: #1f2d3d;
   -moz-user-select: none;
   -webkit-user-select: none;
-  -ms-user-select: none
-}
+  -ms-user-select: none;
 
-.kenshin-radio + .kenshin-radio {
-  margin-left: 15px
-}
+  & + & {
+    margin-left: 15px;
+  }
 
-.kenshin-radio__input {
-  outline: 0;
-  line-height: 1;
-  vertical-align: middle
-}
+  &__input {
+    outline: 0;
+    line-height: 1;
+    vertical-align: middle;
 
-.kenshin-radio__input.is-focus .kenshin-radio__inner {
-  border-color: #20a0ff
-}
+    &.is-focus {
+      @{radio}__inner {
+        border-color: #20a0ff;
+      }
+    }
 
-.kenshin-radio__input.is-checked .kenshin-radio__inner {
-  border-color: #20a0ff;
-  background: #20a0ff
-}
+    &.is-checked {
+      .@{radio}__inner {
+        border-color: #20a0ff;
+        background: #20a0ff;
 
-.kenshin-radio__input.is-checked .kenshin-radio__inner::after {
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1)
-}
+        &::after {
+          -ms-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
 
-.kenshin-radio__input.is-disabled .kenshin-radio__inner {
-  background-color: #eef1f6;
-  border-color: #d1dbe5;
-  cursor: not-allowed
-}
+    &.is-disabled {
+      @{radio}__inner {
+        background-color: #eef1f6;
+        border-color: #d1dbe5;
+        cursor: not-allowed;
 
-.kenshin-radio__input.is-disabled .kenshin-radio__inner::after {
-  cursor: not-allowed;
-  background-color: #eef1f6
-}
+        &::after {
+          cursor: not-allowed;
+          background-color: #eef1f6;
+        }
 
-.kenshin-radio__input.is-disabled .kenshin-radio__inner + .kenshin-radio__label {
-  cursor: not-allowed
-}
+        + .@{radio}__label {
+          cursor: not-allowed;
+        }
 
-.kenshin-radio__input.is-disabled.is-checked .kenshin-radio__inner {
-  background-color: #d1dbe5;
-  border-color: #d1dbe5
-}
+        &.is-checked {
+          .@{radio}__inner {
+            background-color: #d1dbe5;
+            border-color: #d1dbe5;
+          }
+        }
+      }
+    }
+  }
 
-.kenshin-radio__inner, .kenshin-radio__input.is-disabled.is-checked .kenshin-radio__inner::after {
-  background-color: #fff
-}
+  &__inner,
+  &__input.is-disabled.is-checked .@{radio}__inner::after {
+    background-color: #fff;
+  }
 
-.kenshin-radio__input.is-disabled + .kenshin-radio__label {
-  color: #bbb;
-  cursor: not-allowed
-}
+  &__input.is-disabled + .@{radio}__label {
+    color: #bbb;
+    cursor: not-allowed;
+  }
 
-.kenshin-radio__inner {
-  border: 1px solid #bfcbd9;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-sizing: border-box
-}
+  &__inner {
+    border: 1px solid #bfcbd9;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-sizing: border-box;
 
-.kenshin-radio__inner:hover {
-  border-color: #20a0ff
-}
+    &:hover {
+      border-color: #20a0ff;
+    }
 
-.kenshin-radio__inner::after {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #fff;
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform .15s cubic-bezier(.71, -.46, .88, .6)
-}
+    &::after {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #fff;
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -ms-transform: translate(-50%, -50%) scale(0);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform .15s cubic-bezier(.71, -.46, .88, .6);
+    }
+  }
 
-.kenshin-radio__original {
-  opacity: 0;
-  outline: 0;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0
-}
+  &__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
 
-.kenshin-radio__label {
-  font-size: 14px;
-  padding-left: 5px
+  &__label {
+    font-size: 14px;
+    padding-left: 5px;
+  }
 }

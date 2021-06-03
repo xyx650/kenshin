@@ -1,30 +1,33 @@
 import * as React from 'react'
 import classNames from 'classnames'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
-export type DividerProps = {
+export interface DividerProps {
   type?: 'horizontal' | 'vertical';
   orientation?: 'left' | 'right' | 'center';
-  className?: string;
+  plain?: boolean;
   children?: React.ReactNode;
   dashed?: boolean;
   style?: React.CSSProperties;
-  plain?: boolean;
+  className?: string;
+  prefixCls?: string;
 }
 
 const Divider: React.FC<DividerProps> = props => {
   const {
     type = 'horizontal',
     orientation = 'center',
+    prefixCls = prefix,
     className,
     children,
     ...restProps
   } = props
 
-  const classString = classNames('kenshin-divider', `kenshin-divider--${type}`, className)
+  const classString = classNames(`${prefixCls}-divider`, `${prefixCls}-divider--${type}`, className)
 
   return <div className={classString} {...restProps}>
-    {children && <span className={classNames(`kenshin-divider__text`,`is-${orientation}`)}>{children}</span>}
+    {children && <span className={classNames(`${prefixCls}-divider__text`, `is-${orientation}`)}>{children}</span>}
   </div>
 }
 

@@ -9,6 +9,7 @@ import type { PresetColorType } from '../_util/colors'
 import getPlacements from './placements'
 import type { AdjustOverflow } from './placements'
 import classnames from 'classnames'
+import {prefixCls as prefix} from '../config'
 import 'rc-tooltip/assets/bootstrap.css'
 import './index.less'
 
@@ -42,6 +43,7 @@ export interface TooltipAlignConfig {
 export interface AbstractTooltipProps extends Partial<Omit<RcTooltipProps, 'children'>> {
   style?: React.CSSProperties;
   className?: string;
+  prefixCls?: string;
   color?: LiteralUnion<PresetColorType, string>;
   placement?: TooltipPlacement;
   builtinPlacements?: typeof Placements;
@@ -202,8 +204,8 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     children
   } = props
 
-  const prefixCls = customizePrefixCls || 'kenshin-tooltip'
-  const rootPrefixCls = 'kenshin'
+  const prefixCls = customizePrefixCls || `${prefix}-tooltip`
+  const rootPrefixCls = prefix
 
   const tempVisible = (!('visible' in props) && isNoTitle()) ? false : visible
 

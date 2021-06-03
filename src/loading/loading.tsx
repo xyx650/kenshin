@@ -1,28 +1,30 @@
 import * as React from 'react'
 import classnames from 'classnames'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export type LoadingProps = {
   /**
    * @description       loading 状态
    */
-  loading: boolean
+  loading: boolean;
   /**
    * @description       是否全屏
    */
-  fullscreen?: boolean
+  fullscreen?: boolean;
   /**
    * @description       加载文案
    */
-  text?: string
+  text?: string;
   /**
    * @description       自定义样式
    */
-  style?: React.CSSProperties
+  style?: React.CSSProperties;
   /**
    * @description       自定义样式类
    */
-  className?: string
+  className?: string;
+  prefixCls?: string;
 }
 
 
@@ -30,7 +32,8 @@ const Loading: React.FC<LoadingProps> = props => {
   const {
     loading,
     fullscreen,
-    text
+    text,
+    prefixCls = prefix
   } = props
 
   // 更新全屏锁定属性
@@ -71,13 +74,13 @@ const Loading: React.FC<LoadingProps> = props => {
     {
       loading && <div style={loadingStyle}>
         <div
-          className={classnames('kenshin-loading-spinner', { 'is-full-screen': fullscreen })}
+          className={classnames(`${prefixCls}-loading-spinner`, { 'is-full-screen': fullscreen })}
           style={loadingInnerStyle}
         >
           <svg className='circular' viewBox='25 25 50 50'>
             <circle className='path' cx='50' cy='50' r='20' fill='none' />
           </svg>
-          {text && <p className='kenshin-loading-text'>{text}</p>}
+          {text && <p className={`${prefixCls}-loading-text`}>{text}</p>}
         </div>
       </div>
     }

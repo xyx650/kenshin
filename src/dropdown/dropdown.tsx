@@ -7,11 +7,9 @@ import { prefixCls as prefix } from '../config'
 import type { ButtonProps } from '../button'
 import Button from '../button'
 import { dropdownContext } from './context'
-import type { DropdownItemProps } from './drop-item'
 import DropdownItem from './drop-item'
 import DropdownMenu from './drop-menu'
 import './index.less'
-
 
 export interface DropdownProps {
   menu: React.ReactElement;

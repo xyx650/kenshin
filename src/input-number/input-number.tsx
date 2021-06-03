@@ -2,19 +2,22 @@ import * as React from 'react'
 import classnames from 'classnames'
 import Input from '../input'
 import { accAdd, accSub } from './util'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onInput' | 'onChange' | 'size'> {
-  defaultValue?: number,
-  value: number | string,
-  step: number | string,
-  max: number | string,
-  min: number | string,
-  disabled: boolean,
-  controls: boolean,
-  size: 'small' | 'large' | 'mini',
-  onChange?: (val: number | string | undefined) => void,
-  style?: React.CSSProperties
+  defaultValue?: number;
+  value: number | string;
+  step: number | string;
+  max: number | string;
+  min: number | string;
+  disabled: boolean;
+  controls: boolean;
+  size: 'small' | 'large' | 'mini';
+  onChange?: (val: number | string | undefined) => void;
+  style?: React.CSSProperties;
+  className?: string;
+  prefixCls?: string;
 }
 
 
@@ -23,7 +26,7 @@ const InputNumber: React.FC<InputNumberProps> = props => {
   const [inputActive, setInputActive] = React.useState(false)
   // const input = React.useRef<Input>(null)
 
-  const { controls, disabled, size, max, min } = props
+  const { controls, disabled, size, max, min, prefixCls = prefix } = props
 
   // 防抖定时器
   let timer: number | undefined
@@ -131,24 +134,24 @@ const InputNumber: React.FC<InputNumberProps> = props => {
   return (
     <div
       style={props.style}
-      className={classnames('kenshin-input-number', size && `kenshin-input-number--${size}`, {
+      className={classnames(`${prefixCls}-input-number`, size && `${prefixCls}-input-number--${size}`, {
         'is-disabled': disabled,
         'is-without-controls': !controls
       })}>
       {
         controls && <span
-          className={classnames('kenshin-input-number__decrease', { 'is-disabled': minDisabled() })}
+          className={classnames(`${prefixCls}-input-number__decrease`, { 'is-disabled': minDisabled() })}
           onClick={decrease}
         >
-          <i className='kenshin-icon-minus' />
+          <i className={`${prefixCls}-icon-minus`} />
         </span>
       }
       {
         controls && <span
-          className={classnames('kenshin-input-number__increase', { 'is-disabled': maxDisabled() })}
+          className={classnames(`${prefixCls}-input-number__increase`, { 'is-disabled': maxDisabled() })}
           onClick={increase}
         >
-          <i className='kenshin-icon-plus' />
+          <i className={`${prefixCls}-icon-plus`} />
         </span>
       }
       <Input

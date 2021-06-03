@@ -32,6 +32,7 @@ export interface AffixProps {
   target?: () => Window | HTMLElement | null;
   /**
    * @description 自定义样式
+   * @default () => window
    */
   style?: React.CSSProperties;
   /**

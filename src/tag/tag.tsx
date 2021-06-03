@@ -1,22 +1,25 @@
 import * as React from 'react'
 import classnames from 'classnames'
 import View from '../_base/view'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface TagProps {
   // 是否可关闭
-  closable?: boolean,
+  closable?: boolean;
   // 主题
-  type?: 'primary' | 'gray' | 'success' | 'warning' | 'danger',
+  type?: 'primary' | 'gray' | 'success' | 'warning' | 'danger';
   // 是否有边框描边
-  hit?: boolean,
-  color: string,
+  hit?: boolean;
+  color: string;
   // closeTransition: boolean,
-  onClose?: () => void
+  onClose?: () => void;
+
+  prefixCls?: string;
 }
 
 const Tag: React.FC<TagProps> = props => {
-  const { type, hit = false, closable = false, color } = props
+  const { type, hit = false, closable = false, color, prefixCls = prefix } = props
   const [visible, setVisible] = React.useState(true)
   const [isHandled, setIsHandled] = React.useState(false)
 
@@ -32,12 +35,12 @@ const Tag: React.FC<TagProps> = props => {
     setIsHandled(true)
   }
   return <View show={visible}>
-    <span style={{ backgroundColor: color }} className={classnames('kenshin-tag',
-      type && `kenshin-tag--${type}`,
+    <span style={{ backgroundColor: color }} className={classnames(`${prefixCls}-tag`,
+      type && `${prefixCls}-tag--${type}`,
       { 'is-hit': hit })
     }>
       {props.children}
-      {closable && <i className='kenshin-tag__close kenshin-icon-close' onClick={() => handleClose()} />}
+      {closable && <i className={`${prefixCls}-tag__close ${prefixCls}-icon-close`} onClick={() => handleClose()} />}
     </span>
   </View>
 }

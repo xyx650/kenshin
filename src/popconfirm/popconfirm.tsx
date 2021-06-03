@@ -3,10 +3,11 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState'
 import KeyCode from 'rc-util/lib/KeyCode'
 import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled'
 import Button from '../button'
-import type { AbstractTooltipProps } from '../tooltip';
+import type { AbstractTooltipProps } from '../tooltip'
 import Tooltip from '../tooltip'
 import classnames from 'classnames'
 import { cloneElement } from '../_util/reactNode'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 
@@ -118,8 +119,8 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
     ...restProps
   } = props
 
-  const prefixCls = 'kenshin-popover'
-  const prefixClsConfirm = customizePrefixCls || 'kenshin-popconfirm'
+  const prefixCls = `${prefix}-popover`
+  const prefixClsConfirm = customizePrefixCls || `${prefix}-popconfirm`
   const overlayClassNames = classnames(prefixClsConfirm, overlayClassName)
 
   const overlay = renderOverlay(prefixCls)
@@ -133,7 +134,7 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
     overlay={overlay}
     overlayClassName={overlayClassNames}
     ref={ref}
-    transitionName={props.transitionName || 'kenshin-zoom-big'}
+    transitionName={props.transitionName || `${prefix}-zoom-big`}
   >
     {cloneElement(children, {
       onKeyDown: (e: React.KeyboardEvent<any>) => {

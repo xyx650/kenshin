@@ -65,9 +65,6 @@ const Rate: React.FC<RateProps> = props => {
   }, [props.value])
 
   const {
-    iconClasses = ['kenshin-icon-star-on', 'kenshin-icon-star-on', 'kenshin-icon-star-on'],
-    voidIconClass = 'kenshin-icon-star-off',
-    disabledVoidIconClass = 'kenshin-icon-star-on',
     colors = ['#F7BA2A', '#F7BA2A', '#F7BA2A'],
     voidColor = '#C6D1DE',
     disabledVoidColor = '#EFF2F7',
@@ -75,6 +72,12 @@ const Rate: React.FC<RateProps> = props => {
     textColor = '#1F2D3D',
     disabled = false,
     prefixCls = prefix
+  } = props
+
+  const {
+    iconClasses = [`${prefixCls}-icon-star-on`, `${prefixCls}-icon-star-on`, `${prefixCls}-icon-star-on`],
+    voidIconClass = `${prefixCls}-icon-star-off`,
+    disabledVoidIconClass = `${prefixCls}-icon-star-on`
   } = props
 
   const classMap: classMap = {
@@ -105,10 +108,10 @@ const Rate: React.FC<RateProps> = props => {
     if (allowHalf) {
       e.persist()
       let target: HTMLSpanElement = e.target as HTMLElement
-      if (hasClass(target, 'el-rate__item')) {
-        target = target.querySelector('.el-rate__icon')!
+      if (hasClass(target, `${prefixCls}-rate__item`)) {
+        target = target.querySelector(`.${prefixCls}-rate__icon`)!
       }
-      if (hasClass(target, 'el-rate__decimal')) {
+      if (hasClass(target, `${prefixCls}-rate__decimal`)) {
         target = target.parentNode as HTMLElement
       }
 
@@ -284,9 +287,9 @@ Rate.defaultProps = {
   max: 5,
   voidColor: '#C6D1DE',
   disabledVoidColor: '#EFF2F7',
-  iconClasses: ['kenshin-icon-star-on', 'kenshin-icon-star-on', 'kenshin-icon-star-on'],
-  voidIconClass: 'kenshin-icon-star-off',
-  disabledVoidIconClass: 'kenshin-icon-star-on',
+  iconClasses: [`${prefix}-icon-star-on`, `${prefix}-icon-star-on`, `${prefix}-icon-star-on`],
+  voidIconClass: `${prefix}-icon-star-off`,
+  disabledVoidIconClass: `${prefix}-icon-star-on`,
   allowHalf: false,
   textTemplate: '{value}'
 }

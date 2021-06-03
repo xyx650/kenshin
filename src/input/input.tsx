@@ -1,6 +1,7 @@
 import * as React from 'react'
 import calcTextareaHeight from '../input/calcTextareaHeight'
 import classnames from 'classnames'
+import { prefixCls as prefix } from '../config'
 
 // autosize 对象类型
 interface autosizeObj {
@@ -10,42 +11,43 @@ interface autosizeObj {
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLTextAreaElement | HTMLInputElement>, 'size' | 'type' | 'onChange'> {
-  type?: 'text' | 'textarea'
-  icon?: React.ReactNode | string
-  disabled?: boolean
-  name?: string
-  placeholder?: string
-  readOnly?: boolean
-  autoFocus?: boolean
-  maxLength?: number
-  minLength?: number
-  defaultValue?: string
-  value: string
-  trim?: boolean
+  type?: 'text' | 'textarea';
+  icon?: React.ReactNode | string;
+  disabled?: boolean;
+  name?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  autoFocus?: boolean;
+  maxLength?: number;
+  minLength?: number;
+  defaultValue?: string;
+  value: string;
+  trim?: boolean;
 
-  size?: 'large' | 'small' | 'mini'
-  prepend?: React.ReactNode
-  append?: React.ReactNode
+  size?: 'large' | 'small' | 'mini';
+  prepend?: React.ReactNode;
+  append?: React.ReactNode;
 
-  autosize?: boolean | autosizeObj
-  rows?: number
-  resize?: React.CSSProperties['resize']
+  autosize?: boolean | autosizeObj;
+  rows?: number;
+  resize?: React.CSSProperties['resize'];
 
-  // onFocus?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
-  // onBlur?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void
-  onChange?: (val: string) => void
-  onIconClick?: (e: React.MouseEvent<HTMLElement>) => void
-  onMouseEnter?: (e: React.MouseEvent<HTMLElement>) => void
-  onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void
+  // onFocus?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  // onBlur?: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange?: (val: string) => void;
+  onIconClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onMouseEnter?: (e: React.MouseEvent<HTMLElement>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void;
 
-  autoComplete?: string
-  inputSelect?: () => void
+  autoComplete?: string;
+  inputSelect?: () => void;
 
-  form?: string
-  validating?: boolean,
+  form?: string;
+  validating?: boolean;
 
-  style?: React.CSSProperties
-  className?: string
+  style?: React.CSSProperties;
+  className?: string;
+  prefixCls?: string;
 }
 
 export type InputState = { resize: React.CSSProperties['resize'], height?: React.CSSProperties['height'] }
@@ -64,6 +66,7 @@ const Input: React.FC<InputProps> = props => {
     onMouseEnter,
     onMouseLeave,
     trim,
+    prefixCls = prefix,
     ...otherProps
   } = props
 
@@ -134,11 +137,13 @@ const Input: React.FC<InputProps> = props => {
   }
 
 
-  const classname = classnames(type === 'textarea' ? 'kenshin-textarea' : 'kenshin-input', size &&
-    `kenshin-input--${size}`, {
-    'is-disabled': props.disabled, 'kenshin-input-group': prepend || append,
-    'kenshin-input-group--append': !!append, 'kenshin-input-group--prepend': !!prepend
-  })
+  const classname = classnames(type === 'textarea' ? `${prefixCls}-textarea` : `${prefixCls}-input`,
+    size && `${prefixCls}-input--${size}`,
+    {
+      'is-disabled': props.disabled,
+      [`${prefixCls}-input-group`]: prepend || append,
+      [`${prefixCls}-input-group--append`]: !!append, [`${prefixCls}-input-group--prepend`]: !!prepend
+    })
   if ('value' in props) {
     otherProps.value = fixControlledValue(props.value)
     delete otherProps.defaultValue
@@ -154,7 +159,7 @@ const Input: React.FC<InputProps> = props => {
         <textarea
           {...otherProps}
           ref={textarea}
-          className='kenshin-textarea__inner'
+          className={`${prefixCls}-textarea__inner`}
           style={textareaStyle}
           rows={rows}
           onChange={handleChange}
@@ -170,11 +175,11 @@ const Input: React.FC<InputProps> = props => {
     className={classnames(classname)}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-  > {prepend && <div className='kenshin-input-group__prepend'>{prepend}</div>}
+  > {prepend && <div className={`${prefixCls}-input-group__prepend`}>{prepend}</div>}
     {
       typeof icon === 'string'
         ? <i
-          className={`kenshin-input__icon kenshin-icon-${icon}`}
+          className={`${prefixCls}-input__icon ${prefixCls}-icon-${icon}`}
           onClick={handleIconClick}
         >{prepend}</i>
         : icon
@@ -183,14 +188,14 @@ const Input: React.FC<InputProps> = props => {
       {...otherProps}
       ref={input}
       type={type}
-      className='kenshin-input__inner'
+      className={`${prefixCls}-input__inner`}
       autoComplete={autoComplete}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
     />
-    {validating && <i className='kenshin-input__icon kenshin-icon-loading' />}
-    {append && <div className='kenshin-input-group__append'>{append}</div>}
+    {validating && <i className={`${prefixCls}-input__icon ${prefixCls}-icon-loading`} />}
+    {append && <div className={`${prefixCls}-input-group__append`}>{append}</div>}
   </div>
 }
 

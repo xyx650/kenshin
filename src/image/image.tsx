@@ -1,7 +1,9 @@
 import * as React from 'react'
-import RcImage, { ImageProps } from 'rc-image'
+import type { ImageProps } from 'rc-image'
+import RcImage from 'rc-image'
 import EyeOutlined from '@ant-design/icons/EyeOutlined'
 import PreviewGroup, { icons } from './preview'
+import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface CompositionImage<P> extends React.FC<P> {
@@ -9,7 +11,7 @@ export interface CompositionImage<P> extends React.FC<P> {
 }
 
 const Image: CompositionImage<ImageProps> = ({
-  prefixCls: customizePrefixCls,
+  prefixCls: customizePrefixCls = prefix,
   preview,
   ...otherProps
 }) => {
@@ -20,19 +22,19 @@ const Image: CompositionImage<ImageProps> = ({
     }
     const _preview = typeof preview === 'object' ? preview : {}
     return {
-      mask: <div className='kenshin-image-mask-info'>
+      mask: <div className={`${customizePrefixCls}-image-mask-info`}>
         <EyeOutlined />
         预览
       </div>,
       icons,
       ..._preview,
-      transitionName: _preview.transitionName || 'kenshin-zoom',
-      maskTransitionName: _preview.maskTransitionName || 'kenshin-fade'
+      transitionName: _preview.transitionName || `${customizePrefixCls}-zoom`,
+      maskTransitionName: _preview.maskTransitionName || `${customizePrefixCls}-fade`
     }
   }, [preview])
 
   return <RcImage
-    prefixCls={customizePrefixCls || 'kenshin-image'}
+    prefixCls={`${customizePrefixCls}-image`}
     preview={mergedPreview}
     {...otherProps}
   />

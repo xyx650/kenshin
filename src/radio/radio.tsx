@@ -1,15 +1,18 @@
 import * as React from 'react'
 import classnames from 'classnames'
+import { prefixCls as prefix } from '../config'
 import './radio.less'
 
-export type RadioProps = {
-  value: string | number
-  onChange?: (val: string | number) => void
-  disabled: boolean
-  checked: boolean
-  style?: React.CSSProperties
-  className?: string
+export interface RadioProps {
+  value: string | number;
+  onChange?: (val: string | number) => void;
+  disabled: boolean;
+  checked: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  prefixCls?: string;
 }
+
 const getChecked = (props: any) => {
   return props.model === props.value || !!props.checked
 }
@@ -19,7 +22,7 @@ const Radio: React.FC<RadioProps> = props => {
   const [checked, setChecked] = React.useState(getChecked(props))
   const [focus, setFocus] = React.useState(false)
 
-  const { disabled, value, children } = props
+  const { disabled, value, children, prefixCls = prefix } = props
 
   // componentWillReceiveProps
   React.useEffect(() => {
@@ -30,7 +33,7 @@ const Radio: React.FC<RadioProps> = props => {
   })
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = e.target.checked
+    const { checked } = e.target
     if (checked) {
       props.onChange?.(props.value)
     }
@@ -45,16 +48,16 @@ const Radio: React.FC<RadioProps> = props => {
     setFocus(false)
   }
 
-  return <label style={{ ...props.style }} className={classnames('kenshin-radio', props.className)}>
-    <span className={classnames('kenshin-radio__input', {
+  return <label style={{ ...props.style }} className={classnames(`${prefixCls}-radio`, props.className)}>
+    <span className={classnames(`${prefixCls}-radio__input`, {
       'is-checked': checked,
       'is-disabled': disabled,
       'is-focus': focus
     })}>
-      <span className='kenshin-radio__inner' />
+      <span className={`${prefixCls}-radio__inner`} />
       <input
         type='radio'
-        className='kenshin-radio__original'
+        className={`${prefixCls}-radio__original`}
         checked={checked}
         disabled={disabled}
         onChange={onChange}
@@ -62,7 +65,7 @@ const Radio: React.FC<RadioProps> = props => {
         onBlur={onBlur}
       />
     </span>
-    <span className='kenshin-radio__label'>
+    <span className={`${prefixCls}-radio__label`}>
       {children || value}
     </span>
   </label>

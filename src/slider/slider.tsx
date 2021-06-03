@@ -1,6 +1,7 @@
 import * as React from 'react'
 import RcSlider, { Range as RcRange, Handle as RcHandle, SliderTooltip } from 'rc-slider'
 import classnames from 'classnames'
+import { prefixCls as prefix } from '../config'
 import 'rc-slider/assets/index.css'
 import './slider.less'
 
@@ -36,6 +37,7 @@ export interface SliderSingleProps extends SliderBaseProps {
   onAfterChange?: (value: number) => void;
   handleStyle?: React.CSSProperties;
   trackStyle?: React.CSSProperties;
+  prefixCls?: string;
 }
 
 // 范围选择属性
@@ -47,6 +49,7 @@ export interface SliderRangeProps extends SliderBaseProps {
   onAfterChange?: (value: number[]) => void;
   handleStyle?: React.CSSProperties[];
   trackStyle?: React.CSSProperties[];
+  prefixCls?: string;
 }
 
 interface HandleGeneratorInfo {
@@ -60,12 +63,13 @@ export type HandleGeneratorFn = (config: {
 }) => React.ReactElement;
 
 
-export type Visibles = { [index: number]: boolean };
+export type Visibles = Record<number, boolean>;
 
 const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>((props, ref: any) => {
   const {
     range,
     className,
+    prefixCls = prefix,
     ...restProps
   } = props
   const [visibles, setVisibles] = React.useState<Visibles>({})
@@ -92,7 +96,7 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
       visible={visible}
       placement='top'
       key={index}
-      overlayClassName='kenshin-tooltip'
+      overlayClassName={`${prefixCls}-tooltip`}
       getTooltipContainer={getTooltipPopupContainer}
     >
       <RcHandle
