@@ -3,12 +3,16 @@
 @font-color: #333;
 @active-color: #4389f9;
 @pagination-prefix-cls: ~'@{prefix}';
+@defaultSize: 30px;
+@smallSize: 24px;
+@disabledOpacity: 0.4;
+
 ul.@{pagination-prefix-cls}-pagination {
   display: flex;
   align-items: center;
   list-style: none;
   [disabled] {
-    opacity: 0.4;
+    opacity: @disabledOpacity;
     pointer-events: none;
   }
   .@{pagination-prefix-cls}-options,
@@ -17,7 +21,7 @@ ul.@{pagination-prefix-cls}-pagination {
     & > input {
       box-sizing: border-box;
       width: 46px;
-      height: 30px;
+      height: @defaultSize;
       padding: 6px;
       background: @then-color;
       border: 0;
@@ -29,15 +33,15 @@ ul.@{pagination-prefix-cls}-pagination {
   &.default {
     .@{pagination-prefix-cls}-item,
     .flipIcon {
-      min-width: 30px;
-      min-height: 30px;
-      line-height: 30px;
+      min-width: @defaultSize;
+      min-height: @defaultSize;
+      line-height: @defaultSize;
       text-align: center;
     }
     .@{pagination-prefix-cls}-item.@{pagination-prefix-cls}-item-active {
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
+      width: calc(@defaultSize + 2px);
+      height: calc(@defaultSize + 2px);
+      line-height: calc(@defaultSize + 2px);
     }
     li + li {
       margin-left: 12px;
@@ -46,14 +50,14 @@ ul.@{pagination-prefix-cls}-pagination {
   &.small {
     .@{pagination-prefix-cls}-item,
     .flipIcon {
-      min-width: 24px;
-      min-height: 24px;
-      line-height: 24px;
+      min-width: @defaultSize;
+      min-height: @defaultSize;
+      line-height: @defaultSize;
     }
     .@{pagination-prefix-cls}-item.@{pagination-prefix-cls}-item-active {
-      width: 26px;
-      height: 26px;
-      line-height: 26px;
+      width: calc(@smallSize+ 2px);
+      height: calc(@smallSize+ 2px);
+      line-height: calc(@smallSize+ 2px);
     }
     li + li {
       margin-left: 10px;
@@ -76,7 +80,7 @@ ul.@{pagination-prefix-cls}-pagination {
     transition: opacity 0.3s;
     &.@{pagination-prefix-cls}-disabled {
       cursor: not-allowed;
-      opacity: 0.4;
+      opacity: @disabledOpacity;
       .svgIcon {
         stroke: @font-color;
       }
@@ -109,7 +113,7 @@ ul.@{pagination-prefix-cls}-pagination {
 }
 ul.is-disabled {
   cursor: not-allowed;
-  opacity: 0.4;
+  opacity: @disabledOpacity;
   .@{pagination-prefix-cls}-item,
   .@{pagination-prefix-cls}-prev,
   .@{pagination-prefix-cls}-next {
