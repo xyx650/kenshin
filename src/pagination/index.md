@@ -1,13 +1,14 @@
 ## Pagination 分页
+
 ###### 采用分页的形式分隔长列表，每次只加载一个页面。
 
 ## 何时使用
+
 - 当加载/渲染所有数据将花费很多时间时；
 
 - 可切换页码浏览数据。
 
 ## 代码演示
-
 
 ```tsx
 /**
@@ -18,12 +19,14 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination total={25} />
-  </>
-}
+  return (
+    <>
+      <Pagination total={25} showSizeChanger />
+    </>
+  );
+};
 ```
+
 ```tsx
 /**
  * title: 简洁
@@ -33,12 +36,14 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination total={250} pageSize={2} simple />
-  </>
-}
+  return (
+    <>
+      <Pagination total={250} pageSize={2} simple />
+    </>
+  );
+};
 ```
+
 ```tsx
 /**
  * title: 不可操作
@@ -48,12 +53,14 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination defaultCurrent={5} total={250} disabled />
-  </>
-}
+  return (
+    <>
+      <Pagination defaultCurrent={5} total={250} disabled />
+    </>
+  );
+};
 ```
+
 ```tsx
 /**
  * title: 迷你
@@ -63,11 +70,12 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination total={250} size="small" />
-  </>
-}
+  return (
+    <>
+      <Pagination total={250} size="small" />
+    </>
+  );
+};
 ```
 
 ```tsx
@@ -79,11 +87,12 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination total={250} showTotal={(total, _range) => `共${total}条记录`} />
-  </>
-}
+  return (
+    <>
+      <Pagination total={250} showTotal={(total, _range) => `共${total}条记录`} />
+    </>
+  );
+};
 ```
 
 ```tsx
@@ -95,12 +104,14 @@ import React from 'react';
 import { Pagination } from 'kenshin';
 
 export default () => {
-
-  return <>
-    <Pagination total={250} showTotal={(total, _range) => `共${total}条记录`} showQuickJumper />
-  </>
-}
+  return (
+    <>
+      <Pagination total={250} showTotal={(total, _range) => `共${total}条记录`} showQuickJumper />
+    </>
+  );
+};
 ```
+
 ```tsx
 /**
  * title: 上一步和下一步
@@ -120,9 +131,12 @@ export default () => {
     return originalElement;
   }
 
-  return <>
-    <Pagination total={25} itemRender={itemRender} />
-  </>
-}
+  return (
+    <>
+      <Pagination total={25} itemRender={itemRender} />
+    </>
+  );
+};
 ```
+
 <API/>

@@ -1,9 +1,12 @@
+@import '../_styles/common/prefix';
 @them-color: #dddddd;
 @focus-color: #4389f9;
 @disabled-color: #b0b0b0;
 @disabled-bg-color: #eeeeee;
 
-.kensin-mentions {
+@mentions-prefix-cls: ~'@{prefix}';
+
+.@{mentions-prefix-cls}-mentions {
   position: relative;
   & > textarea {
     width: 100%;
@@ -35,7 +38,7 @@
     }
   }
 }
-.kensin-mentions-disabled {
+.@{mentions-prefix-cls}-mentions-disabled {
   cursor: not-allowed;
   .rc-textarea-disabled {
     color: @disabled-color;
@@ -46,7 +49,7 @@
     }
   }
 }
-.kensin-mentions-measure {
+.@{mentions-prefix-cls}-mentions-measure {
   position: absolute;
   top: 0;
   right: 0;
@@ -57,7 +60,7 @@
   pointer-events: none;
 }
 
-.kensin-mentions-dropdown {
+.@{mentions-prefix-cls}-mentions-dropdown {
   ul {
     margin: 0;
     padding: 0;
@@ -69,7 +72,7 @@
       cursor: pointer;
     }
   }
-  .kensin-mentions-dropdown-menu-item-active {
+  .@{mentions-prefix-cls}-mentions-dropdown-menu-item-active {
     background: #f5f5f5;
   }
   display: inline-block;

@@ -1,4 +1,2 @@
-import Pagination from './pagination'
-export default Pagination
-
-// responsive属性  未实现
+import Pagination from './pagination';
+export default Pagination;

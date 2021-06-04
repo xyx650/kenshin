@@ -4,6 +4,7 @@ import RcMentions from 'rc-mentions';
 import { MentionsProps as RcMentionsProps } from 'rc-mentions/lib/Mentions';
 import './mentions.less';
 import Loading from '../loading';
+import { prefixCls as prefix } from '../config';
 
 const { Option } = RcMentions;
 
@@ -113,7 +114,7 @@ const Mentions: React.FC<MentionProps> = props => {
     return filterOption;
   };
 
-  const prefixCls = 'kensin-mentions';
+  const prefixCls = `${prefix}-mentions`;
 
   const mergedClassName = classNames(
     {

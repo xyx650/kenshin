@@ -1,75 +1,67 @@
+@import '../_styles/common/prefix';
 @then-color: #f6f8fb;
 @font-color: #333;
 @active-color: #4389f9;
-
-ul.kenshin-pagination {
+@pagination-prefix-cls: ~'@{prefix}';
+ul.@{pagination-prefix-cls}-pagination {
   display: flex;
   align-items: center;
   list-style: none;
-
   [disabled] {
     opacity: 0.4;
     pointer-events: none;
   }
-
-  .rc-pagination-options,
-  .rc-pagination-simple-pager {
-    input {
+  .@{pagination-prefix-cls}-options,
+  .@{pagination-prefix-cls}-simple-pager,
+  .@{pagination-prefix-cls}-options-quick-jumper {
+    & > input {
       box-sizing: border-box;
       width: 46px;
       height: 30px;
       padding: 6px;
       background: @then-color;
       border: 0;
-
       &:focus-visible {
         outline: none;
       }
     }
   }
-
   &.default {
-    .rc-pagination-item,
+    .@{pagination-prefix-cls}-item,
     .flipIcon {
       min-width: 30px;
       min-height: 30px;
       line-height: 30px;
       text-align: center;
     }
-
-    .rc-pagination-item.rc-pagination-item-active {
+    .@{pagination-prefix-cls}-item.@{pagination-prefix-cls}-item-active {
       width: 32px;
       height: 32px;
       line-height: 32px;
     }
-
     li + li {
       margin-left: 12px;
     }
   }
-
   &.small {
-    .rc-pagination-item,
+    .@{pagination-prefix-cls}-item,
     .flipIcon {
       min-width: 24px;
       min-height: 24px;
       line-height: 24px;
     }
-
-    .rc-pagination-item.rc-pagination-item-active {
+    .@{pagination-prefix-cls}-item.@{pagination-prefix-cls}-item-active {
       width: 26px;
       height: 26px;
       line-height: 26px;
     }
-
     li + li {
       margin-left: 10px;
     }
   }
-
-  .rc-pagination-item,
-  .rc-pagination-prev,
-  .rc-pagination-next,
+  .@{pagination-prefix-cls}-item,
+  .@{pagination-prefix-cls}-prev,
+  .@{pagination-prefix-cls}-next,
   .flipIcon {
     position: relative;
     display: flex;
@@ -79,12 +71,10 @@ ul.kenshin-pagination {
     overflow: hidden;
     color: @font-color;
     background: @then-color;
-    // background: red;
     border-radius: 2px;
     cursor: pointer;
     transition: opacity 0.3s;
-
-    &.rc-pagination-disabled {
+    &.@{pagination-prefix-cls}-disabled {
       cursor: not-allowed;
       opacity: 0.4;
       .svgIcon {
@@ -96,10 +86,10 @@ ul.kenshin-pagination {
     width: 100%;
     height: 100%;
   }
-  .rc-pagination-item,
+  .@{pagination-prefix-cls}-item,
   .flipIcon {
     &:hover,
-    &.rc-pagination-item-active {
+    &.@{pagination-prefix-cls}-item-active {
       color: #fff;
       background: @active-color;
       transition: background 0.3s, color 0.3s;
@@ -108,25 +98,29 @@ ul.kenshin-pagination {
       }
     }
   }
-
   .item-ellipsis {
     cursor: pointer;
   }
-
   .svgIcon {
     fill: none;
     stroke: @font-color;
     stroke-width: 1;
   }
 }
-
 ul.is-disabled {
   cursor: not-allowed;
   opacity: 0.4;
-
-  .rc-pagination-item,
-  .rc-pagination-prev,
-  .rc-pagination-next {
+  .@{pagination-prefix-cls}-item,
+  .@{pagination-prefix-cls}-prev,
+  .@{pagination-prefix-cls}-next {
     pointer-events: none;
+  }
+}
+.@{pagination-prefix-cls}-options {
+  display: flex;
+  margin-left: 12px;
+  vertical-align: middle;
+  .@{pagination-prefix-cls}-select {
+    margin-right: 12px;
   }
 }

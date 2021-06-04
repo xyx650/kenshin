@@ -119,7 +119,6 @@ export default () => {
 /**
  * title: 无效或只读
  * desc: 通过 disabled 属性设置是否生效。通过 readOnly 属性设置是否只读。
- * <codesrc="/path/to/Demo.tsx"/>
  */
 import React from 'react';
 import { Mentions } from 'kenshin';
