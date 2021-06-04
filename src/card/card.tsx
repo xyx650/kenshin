@@ -14,6 +14,7 @@ export interface CardProps {
   bodyStyle?: React.CSSProperties;
   /**
    * @description 自定义样式
+   * @default { padding: '20px' }
    */
   style?: React.CSSProperties;
   /**
@@ -41,5 +42,7 @@ const Card: React.FC<CardProps> = props => {
 Card.defaultProps = {
   bodyStyle: { padding: '20px' }
 }
+
+Card.displayName = 'Card'
 
 export default Card

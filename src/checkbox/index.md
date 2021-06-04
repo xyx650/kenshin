@@ -35,29 +35,28 @@ export default () => {
   const [isIndeterminate, setIsIndeterminate] = React.useState(true)
   const [checkedCities, setCheckedCities] = React.useState<string[]>(['上海', '北京'])
 
-  const handleCheckedCitiesChange = value => {
-    console.log(checkedCities, 'handleCheckedCitiesChange')
-    // console.log(value === checkedCities, 'handleCheckedCitiesChange')
-    // console.log(checkedCities, 'handleCheckedCitiesChange -> checkedCities')
+  // React.useEffect(() => {
+  //   // console.log(checkAll, 'effect')
+  // }, [checkAll])
 
-    // setCheckAll(checkedCities.length === cities.length)
-    // setIsIndeterminate(value.length && value.length < cities.length)
-    // setCheckedCities([...value])
+  const handleCheckedCitiesChange = value => {
+    // console.log(checkedCities, 'handleChecked---CitiesChange')
+    // console.log(cities.length, 'cities.length')
+    // console.log(value.length, 'value.length')
+    //
+    // setCheckedCities(checkedCities => checkedCities)
+    // setCheckAll(() => value.length === cities.length)
+    // setIsIndeterminate(() => value.length && value.length < cities.length)
   }
 
   const handleCheckAllChange = checked => {
-    console.log(checked, 'isCheckAll')
+    // console.log(checked, 'isCheckAll')
+    // console.log(checkedCities, 'isCheckAll-checkedCities')
     // setCheckAll(checked)
     // setIsIndeterminate(false)
-    // setCheckedCities(checked ? cities : [])
+    // setCheckedCities(checked ? ['上海', '北京', '广州', '深圳'] : [])
   }
 
-  // React.useEffect(() => {
-  //   console.log(checkedCities, 'effect')
-  //   if (checkedCities.length === cities.length) {
-  //
-  //   }
-  // }, [checkedCities])
 
   return <>
     <Checkbox

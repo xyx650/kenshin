@@ -20,10 +20,12 @@ export interface AlertProps {
   description?: string;
   /**
    * @description 主题
+   * @default info
    */
-  type: 'success' | 'warning' | 'error' | 'info';
+  type?: 'success' | 'warning' | 'error' | 'info';
   /**
    * @description 是否可关闭
+   * @default true
    */
   closable?: boolean;
   /**
@@ -109,5 +111,7 @@ Alert.defaultProps = {
   type: 'info',
   closable: true
 }
+
+Alert.displayName = 'Alert'
 
 export default Alert

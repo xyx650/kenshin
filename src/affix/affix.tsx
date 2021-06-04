@@ -65,6 +65,7 @@ function getDefaultTarget() {
 
 
 export default class Affix extends React.Component<AffixProps, AffixState> {
+  static displayName = 'Affix'
   state: AffixState = {
     status: AffixStatus.None,
     lastAffix: false,

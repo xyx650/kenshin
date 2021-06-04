@@ -6,7 +6,7 @@ import { prefixCls as prefix } from '../config'
 import './collapse.less'
 
 export interface CollapseProps {
-  accordion: boolean;
+  accordion?: boolean;
   value: string | string[];
   onChange?: (activeNames: string[]) => void;
   style?: React.CSSProperties;
@@ -63,5 +63,7 @@ Collapse.defaultProps = {
 }
 
 Collapse.Item = CollapseItem
+
+Collapse.displayName = 'Collapse'
 
 export default Collapse

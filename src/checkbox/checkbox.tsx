@@ -30,10 +30,7 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
   prefixCls?: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> & {
-  Group: typeof CheckboxGroup;
-  Button: typeof CheckboxButton;
-} = props => {
+const CheckboxRC: React.ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> = (props, ref) => {
 
   const {
     getLabel,
@@ -81,12 +78,14 @@ const Checkbox: React.FC<CheckboxProps> & {
       <span className={`${prefixCls}-checkbox__inner`} />
       <input
         className={`${prefixCls}-checkbox__original`}
+        aria-label="ks-checkbox"
         type='checkbox'
         checked={checked}
         disabled={props.disabled}
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={onChange}
+        ref={ref}
       />
     </span>
     <span className={`${prefixCls}-checkbox__label`}>
@@ -94,6 +93,13 @@ const Checkbox: React.FC<CheckboxProps> & {
     </span>
   </label>
 }
+
+export interface ComputedCheckbox extends React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>> {
+  Group: typeof CheckboxGroup;
+  Button: typeof CheckboxButton;
+}
+
+const Checkbox = React.forwardRef<any, CheckboxProps>(CheckboxRC) as ComputedCheckbox
 
 Checkbox.defaultProps = {
   checked: false,

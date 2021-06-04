@@ -24,12 +24,12 @@ export default () => {
 <API/>
 
 <style>
-.scrollable-container{
+.scrollable-container {
   height: 100px;
   overflow-y: scroll;
 }
 
-.background{
+.background {
   padding-top: 60px;
   height: 300px;
   background-image: url('https://zos.alipayobjects.com/rmsportal/RmjwQiJorKyobvI.jpg');

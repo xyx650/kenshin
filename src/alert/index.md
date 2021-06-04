@@ -41,7 +41,7 @@ import React from 'react';
 import { Alert } from 'kenshin';
 
 export default () => <>
-  <Alert title="成功提示的文案" type="success" description="文字说明文字说明文字说明文字说明文字说明文字说明"  showIcon />
+  <Alert title="成功提示的文案" type="success" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon />
   <Alert title="消息提示的文案" type="info" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon />
   <Alert title="警告提示的文案" type="warning" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon />
   <Alert title="错误提示的文案" type="error" description="文字说明文字说明文字说明文字说明文字说明文字说明" showIcon />

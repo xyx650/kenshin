@@ -71,4 +71,6 @@ Button.defaultProps = {
 
 Button.Group = ButtonGroup
 
+Button.displayName = 'Button'
+
 export default Button

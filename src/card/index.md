@@ -2,8 +2,8 @@
 
 ```tsx
 /**
- * title: Card 基本使用方式
- * desc: Card 组件包括 header 和 body 部分，header 部分需要有显式具名 slot 分发，同时也是可选的。
+ * title: 基本使用方式
+ * desc: Card 组件包括 `header` 和 `body` 部分，header 需要传入 React.ReactNode，同时也是可选的。
  */
 import React from 'react';
 import { Card } from 'kenshin';
