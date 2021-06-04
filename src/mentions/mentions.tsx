@@ -21,7 +21,7 @@ interface CompoundedProps {
   Option?: typeof Option;
 }
 
-export interface MentionProps extends CompoundedProps {
+export interface MentionProps {
   /** 加载中 */
   loading?: boolean;
   /** 自动获得焦点 */
@@ -59,9 +59,10 @@ export interface MentionProps extends CompoundedProps {
   onSearch?: (text: string, prefix: string) => void;
   /** 选择选项时触发 */
   onSelect?: (option: any, prefix: string) => void;
+  /** 类名 */
   className?: string;
+  /** 设置不可操作 */
   disabled?: boolean;
-  prefixCls: string;
 }
 
 const Mentions: React.FC<MentionProps> = props => {
@@ -95,8 +96,6 @@ const Mentions: React.FC<MentionProps> = props => {
     if (loading) {
       return (
         <Option value="ANTD_SEARCHING" disabled>
-          {/* 缺少加载组件 */}
-          {/* <div className="loading">加载中...</div> */}
           <Loading loading={loading}>
             <div style={{ padding: '20px', transform: 'scale(0.5)' }}></div>
           </Loading>
