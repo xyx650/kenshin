@@ -10,11 +10,11 @@ export interface CardProps {
   header?: React.ReactNode;
   /**
    * @description 设置 body 的样式
+   * @default { padding: '20px' }
    */
   bodyStyle?: React.CSSProperties;
   /**
    * @description 自定义样式
-   * @default { padding: '20px' }
    */
   style?: React.CSSProperties;
   /**

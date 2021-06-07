@@ -4,13 +4,37 @@ import { prefixCls as prefix } from '../config'
 import './index.less'
 
 export interface DividerProps {
+  /**
+   * @description 类型，横向或竖向
+   * @default horizontal
+   */
   type?: 'horizontal' | 'vertical';
+  /**
+   * @description 对齐方式
+   * @default center
+   */
   orientation?: 'left' | 'right' | 'center';
+  /**
+   * @description 文字是否显示为普通正文样式
+   * @default false
+   */
   plain?: boolean;
-  children?: React.ReactNode;
+  /**
+   * @description 是否虚线
+   * @default false
+   */
   dashed?: boolean;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类名
+   */
   className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
 }
 

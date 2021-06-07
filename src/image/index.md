@@ -10,10 +10,10 @@ export default () => <Image.PreviewGroup>
 </Image.PreviewGroup>
 ```
 
-<API/>
+
 
 <style>
-.kenshin-image{
+.kenshin-image {
   margin-right: 10px;
 }
 </style>

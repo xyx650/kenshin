@@ -62,7 +62,7 @@ export default () => <Collapse value='' accordion>
 ```tsx
 /**
  * title: Collapse 自定义面板标题
- * desc: 可以通过 title 属性来实现自定义面板的标题内容
+ * desc: 可以通过 `title` 属性来实现自定义面板的标题内容
  */
 import React from 'react';
 import { Collapse } from 'kenshin';
