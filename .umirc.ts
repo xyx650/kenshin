@@ -20,7 +20,15 @@ export default defineConfig({
   history: { type: 'hash' },
   publicPath: './',
   dynamicImport: {},
-  styles:[`
+  styles: [`
     a:-webkit-any-link { text-decoration: none; cursor: none }
-  `]
+  `],
+  headScripts: [
+    'https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js',
+    `
+      document.addEventListener('DOMContentLoaded', function() {
+         pangu.autoSpacingPage()
+      })
+    `
+  ]
 })

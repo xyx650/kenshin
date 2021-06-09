@@ -6,6 +6,7 @@ import './index.less'
 export interface ProgressProps {
   /**
    * @description 进度条类型
+   * @default line
    */
   type?: 'line' | 'circle';
   /**
@@ -18,22 +19,36 @@ export interface ProgressProps {
   status?: 'success' | 'exception';
   /**
    * @description 进度条的宽度，单位 px
+   * @default 6
    */
   strokeWidth?: number;
   /**
    * @description 环形进度条画布宽度
+   * @default 126
    */
   width?: number;
   /**
    * @description 进度条显示文字内置在进度条内
+   * @default false
    */
   textInside?: boolean;
   /**
    * @description 显示进度条文字内容
+   * @default true
    */
   showText?: boolean;
-  prefixCls?: string;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
+  className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
+  prefixCls?: string;
 }
 
 const Progress: React.FC<ProgressProps> = props => {
@@ -102,37 +117,37 @@ const Progress: React.FC<ProgressProps> = props => {
 
 
   const progress = type === 'line'
-    ? <div className={classnames(`${prefixCls}-progress-bar`)}>
+    ? <div className={`${prefixCls}-progress-bar`}>
       <div
-        className={classnames(`${prefixCls}-progress-bar__outer`)}
+        className={`${prefixCls}-progress-bar__outer`}
         style={{ height: `${strokeWidth}px` }}
       >
         <div
-          className={classnames(`${prefixCls}-progress-bar__inner`)}
+          className={`${prefixCls}-progress-bar__inner`}
           style={{ width: `${percentage}%` }}
         >
           {showText &&
           textInside &&
-          <div className={classnames(`${prefixCls}-progress-bar__innerText`)}>
+          <div className={`${prefixCls}-progress-bar__innerText`}>
             {`${percentage}%`}
           </div>}
         </div>
       </div>
     </div>
     : <div
-      className={classnames(`${prefixCls}-progress-circle`)}
+      className={`${prefixCls}-progress-circle`}
       style={{ height: `${width}px`, width: `${width}px` }}
     >
       <svg viewBox='0 0 100 100'>
         <path
-          className={classnames(`${prefixCls}-progress-circle__track`)}
+          className={`${prefixCls}-progress-circle__track`}
           d={trackPath()}
           stroke='#e5e9f2'
           strokeWidth={relativeStrokeWidth()}
           fill='none'
         />
         <path
-          className={classnames(`${prefixCls}-progress-circle__path`)}
+          className={`${prefixCls}-progress-circle__path`}
           d={trackPath()}
           strokeLinecap='round'
           stroke={stroke()}
@@ -145,7 +160,7 @@ const Progress: React.FC<ProgressProps> = props => {
 
   const progressInfo = showText && !textInside &&
     <div
-      className={classnames(`${prefixCls}-progress__text`)}
+      className={`${prefixCls}-progress__text`}
       style={{ fontSize: `${progressTextSize()}px` }}
     >
       {status ? <i className={iconClass()} /> : `${percentage}%`}
@@ -172,6 +187,8 @@ Progress.defaultProps = {
   showText: true,
   textInside: false
 }
+
+Progress.displayName = 'Progress'
 
 export default Progress
 

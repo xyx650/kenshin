@@ -10,6 +10,8 @@ export interface CompositionImage<P> extends React.FC<P> {
   PreviewGroup: typeof PreviewGroup
 }
 
+export type { ImageProps }
+
 const Image: CompositionImage<ImageProps> = ({
   prefixCls: customizePrefixCls = prefix,
   preview,
@@ -40,8 +42,9 @@ const Image: CompositionImage<ImageProps> = ({
   />
 }
 
-// export { ImageProps }
 
 Image.PreviewGroup = PreviewGroup
+
+Image.displayName = 'Image'
 
 export default Image

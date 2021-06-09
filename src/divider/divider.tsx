@@ -15,16 +15,6 @@ export interface DividerProps {
    */
   orientation?: 'left' | 'right' | 'center';
   /**
-   * @description 文字是否显示为普通正文样式
-   * @default false
-   */
-  plain?: boolean;
-  /**
-   * @description 是否虚线
-   * @default false
-   */
-  dashed?: boolean;
-  /**
    * @description 自定义样式
    */
   style?: React.CSSProperties;
