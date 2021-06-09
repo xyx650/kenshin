@@ -5,6 +5,7 @@ import { MentionsProps as RcMentionsProps } from 'rc-mentions/lib/Mentions';
 import './mentions.less';
 import Loading from '../loading';
 import { prefixCls as prefix } from '../config';
+import omit from 'rc-util/lib/omit';
 
 const { Option } = RcMentions;
 
@@ -22,7 +23,23 @@ interface CompoundedProps {
   Option?: typeof Option;
 }
 
-export interface MentionProps {
+interface MentionsConfig {
+  prefix?: string | string[];
+  split?: string;
+}
+
+interface MentionsEntity {
+  prefix: string;
+  value: string;
+}
+
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<MentionProps & React.RefAttributes<HTMLElement>> {
+  Option: typeof Option;
+  getMentions: (value: string, config?: MentionsConfig) => MentionsEntity[];
+}
+
+export interface MentionProps extends RcMentionsProps {
   /** 加载中 */
   loading?: boolean;
   /** 自动获得焦点 */
@@ -32,7 +49,7 @@ export interface MentionProps {
   /** 默认值 */
   defaultValue?: string;
   /** 自定义过滤逻辑 */
-  filterOption?: false | ((input: string, option: OptionProps) => boolean);
+  filterOption?: false | ((input: string, option: any) => boolean);
   /**	指定建议框挂载的 HTML 节点 */
   getPopupContainer?: () => HTMLElement;
   /**	当下拉列表为空时显示的内容 */
@@ -66,8 +83,8 @@ export interface MentionProps {
   disabled?: boolean;
 }
 
-const Mentions: React.FC<MentionProps> = props => {
-  let { className, disabled, loading, filterOption, children, notFoundContent } = props;
+const InternalMentions: React.ForwardRefRenderFunction<unknown, MentionProps> = (props, _ref) => {
+  let { className, disabled, loading, filterOption, children, notFoundContent, ...data } = props;
   const [focused, setFocused] = React.useState(false);
 
   const onFocus: React.FocusEventHandler<HTMLTextAreaElement> = (...args) => {
@@ -103,7 +120,6 @@ const Mentions: React.FC<MentionProps> = props => {
         </Option>
       );
     }
-
     return children;
   };
 
@@ -126,8 +142,7 @@ const Mentions: React.FC<MentionProps> = props => {
 
   return (
     <RcMentions
-      {...props}
-      loading={loading?.toString()}
+      {...data}
       prefixCls={prefixCls}
       notFoundContent={getNotFoundContent()}
       className={mergedClassName}
@@ -139,6 +154,37 @@ const Mentions: React.FC<MentionProps> = props => {
       {getOptions()}
     </RcMentions>
   );
+};
+
+const Mentions = React.forwardRef<unknown, MentionProps>(InternalMentions) as CompoundedComponent;
+
+Mentions.getMentions = (value: string = '', config?: MentionsConfig): MentionsEntity[] => {
+  const { prefix = '@', split = ' ' } = config || {};
+  const prefixList: string[] = Array.isArray(prefix) ? prefix : [prefix];
+
+  return value
+    .split(split)
+    .map((str = ''): MentionsEntity | null => {
+      let hitPrefix: string | null = null;
+
+      prefixList.some(prefixStr => {
+        const startStr = str.slice(0, prefixStr.length);
+        if (startStr === prefixStr) {
+          hitPrefix = prefixStr;
+          return true;
+        }
+        return false;
+      });
+
+      if (hitPrefix !== null) {
+        return {
+          prefix: hitPrefix,
+          value: str.slice(hitPrefix!.length),
+        };
+      }
+      return null;
+    })
+    .filter((entity): entity is MentionsEntity => !!entity && !!entity.value);
 };
 
 Mentions.displayName = 'Mentions';
