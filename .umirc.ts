@@ -21,7 +21,7 @@ export default defineConfig({
   publicPath: './',
   dynamicImport: {},
   styles: [`
-    a:-webkit-any-link { text-decoration: none; cursor: none }
+    .__dumi-default-previewer a:-webkit-any-link { text-decoration: none; cursor: normal }
   `],
   headScripts: [
     'https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js',
