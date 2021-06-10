@@ -9,10 +9,65 @@ import React from 'react';
 import { DatePicker } from 'kenshin';
 
 const onChange = (date, dateString) => {
-  console.log(date, dateString);
+  console.log(date, dateString)
 }
 
 export default () => <DatePicker onChange={onChange}/>
+```
+
+```tsx
+/**
+ * title: 其他模式选择
+ * desc: 可选择年月周等
+ */
+import React from 'react';
+import { DatePicker } from 'kenshin';
+
+const onChange = (date, dateString) => {
+  console.log(date, dateString)
+}
+
+export default () => <>
+  <DatePicker onChange={onChange} picker="week" placeholder='选择星期'/>
+  <br/>
+  <br/>
+  <DatePicker onChange={onChange} picker="month" placeholder='选择月份'/>
+  <br/>
+  <br/>
+  <DatePicker onChange={onChange} picker="year" placeholder='选择年份'/>
+</>
+```
+
+
+
+```tsx
+/**
+ * title: 大小选择
+ * desc: 多种种大小的输入框，若不设置，则为 default
+ */
+import React from 'react';
+import { DatePicker } from 'kenshin';
+
+export default () => <>
+  <DatePicker size='small'/>
+  <br/>
+  <br/>
+  <DatePicker  />
+  <br/>
+  <br/>
+  <DatePicker size='large'/>
+</>
+```
+
+```tsx
+/**
+ * title: 范围选择
+ * desc: 使用`RangePicker`指定范围
+ */
+import React from 'react';
+import { DatePicker } from 'kenshin';
+
+export default () => <DatePicker.RangePicker />
 ```
 
 
@@ -28,16 +83,16 @@ export default () => <DatePicker onChange={onChange}/>
 | disabled | 禁用 | `boolean` | `false` |
 | disabledDate | 不可选择的日期 | `(currentDate: moment) => boolean` | `-` |
 | dropdownClassName | 额外的弹出日历 className | `string` | `-` |
-| getPopupContainer | 定义浮层的容器，默认为 body 上新建 div | `(trigger) => HTMLElement` | `-` |
+| getPopupContainer | 定义浮层的容器，默认为 body 上新建 div | `trigger => HTMLElement` | `-` |
 | inputReadOnly | 设置输入框为只读（避免在移动设备上打开虚拟键盘） | `boolean` | `false` |
 | mode | 日期面板的状态 | `time` \| `date` \| `month` \| `year` \| `decade` | `-` |
 | open | 控制弹层是否展开 | `boolean` | `-` |
-| panelRender | 自定义渲染面板 | `(panelNode) => React.ReactNode` | `-` |
+| panelRender | 自定义渲染面板 | `panelNode => React.ReactNode` | `-` |
 | picker | 设置选择器类型 | `date` \| `week` \| `month` \| `quarter` \| `year` | `date` |
-| placeholder | 输入框提示文字 | `string \| \[string, string]` | `-` |
+| placeholder | 输入框提示文字 | `string \| [string, string]` | `-` |
 | popupStyle | 额外的弹出日历样式 | `React.CSSProperties` | `{}` |
 | size | 输入框大小，`large` 高度为 40px，`small` 为 24px，默认是 32px | `large` \| `middle` \| `small` | `-` |
 | style | 自定义输入框样式 | `React.CSSProperties` | `{}` |
 | suffixIcon | 自定义的选择框后缀图标 | `React.ReactNode` | `-` |
-| onOpenChange | 弹出日历和关闭日历的回调 | `(open) => void` | `-` |
+| onOpenChange | 弹出日历和关闭日历的回调 | `open => void` | `-` |
 | onPanelChange | 日历面板切换的回调 | `(value, mode) => void` | `-` |

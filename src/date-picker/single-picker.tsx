@@ -66,7 +66,7 @@ export default function generatePicker<DateType>(generateConfig: GenerateConfig<
 
         return <RCPicker<DateType>
           ref={this.pickerRef}
-          placeholder={getPlaceholder(mergedPicker, { lang: locale } as PickerLocale, placeholder)}
+          placeholder={getPlaceholder(mergedPicker, { lang: locale } as PickerLocale, placeholder) || '请选择'}
           suffixIcon={mergedPicker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />}
           clearIcon={<CloseCircleFilled />}
           allowClear

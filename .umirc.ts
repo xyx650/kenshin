@@ -3,11 +3,11 @@ import { defineConfig } from 'dumi'
 import { resolve } from 'path'
 
 export default defineConfig({
-  title: 'WDCUI',
+  title: 'WDCUI🌝',
   favicon:
-    'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
+    'https://www.logosc.cn/uploads/icon/2020/09/03/8ed61bf6-a367-4f29-9e61-ad6804b87eaf.png',
   logo:
-    'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
+    'https://www.logosc.cn/uploads/icon/2020/09/03/8ed61bf6-a367-4f29-9e61-ad6804b87eaf.png',
   outputPath: 'site',
   // more config: https://d.umijs.org/config
   targets: { ie: 9 },

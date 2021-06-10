@@ -1,6 +1,6 @@
 {
   "name": "kenshin",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "React UI Components",
   "keywords": [
     "umi",
@@ -93,7 +93,7 @@
     "classnames": "^2.2.6",
     "dumi": "^1.1.18",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "father-build": "^1.19.5",
+    "father-build": "^1.19.6",
     "gh-pages": "^3.0.0",
     "jest-transform-stub": "^2.0.0",
     "lint-staged": "^10.0.7",
