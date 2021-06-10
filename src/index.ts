@@ -24,6 +24,7 @@ import Pagination from './pagination';
 import DatePicker from './date-picker';
 import Select from './select';
 import Mentions from './mentions';
+import Tabs from './tabs';
 import Carousel from './carousel';
 
 export {
@@ -53,5 +54,6 @@ export {
   DatePicker,
   Select,
   Mentions,
+  Tabs,
   Carousel,
 };
