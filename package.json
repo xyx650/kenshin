@@ -1,6 +1,6 @@
 {
   "name": "kenshin",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "React UI Components",
   "keywords": [
     "umi",
@@ -63,7 +63,6 @@
     "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "raf": "^3.4.1",
-    "rc-dropdown": "^3.2.0",
     "rc-image": "^5.2.4",
     "rc-mentions": "^1.6.1",
     "rc-pagination": "^3.1.6",
