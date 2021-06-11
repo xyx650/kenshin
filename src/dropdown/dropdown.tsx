@@ -12,18 +12,61 @@ import DropdownMenu from './drop-menu'
 import './index.less'
 
 export interface DropdownProps {
+  /**
+   * @description 下拉菜单内容
+   */
   menu: React.ReactElement;
+  /**
+   * @description 菜单按钮类型(只在splitButton为 true 的情况下有效)
+   */
   type?: ButtonProps['type'];
+  /**
+   * @description 菜单按钮尺寸
+   */
   size?: ButtonProps['size'];
+  /**
+   * @description 触发下拉的行为
+   * @default hover
+   */
   trigger?: 'hover' | 'click';
+  /**
+   * @description 菜单水平对齐方向
+   * @default end
+   */
   menuAlign?: 'start' | 'end';
+  /**
+   * @description 下拉触发元素是否呈现为按钮组
+   * @default false
+   */
   splitButton?: boolean;
+  /**
+   * @description 是否在点击菜单项后隐藏菜单
+   * @default true
+   */
   hideOnClick?: boolean;
+  /**
+   * @description splitButton 为 true 时，点击左侧按钮的回调
+   */
   onClick?: () => void;
+  /**
+   * @description 点击菜单项触发的事件回调
+   */
   onCommand?: (command: string) => void;
+  /**
+   * @description 下拉框出现/隐藏时触发
+   */
   onVisibleChange?: (visible: boolean) => void;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
   className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
 }
 

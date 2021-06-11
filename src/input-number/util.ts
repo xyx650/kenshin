@@ -1,3 +1,4 @@
+/* eslint-disable */
 export function accSub(arg1: number, arg2: number) {
   let r1: number, r2: number, m: number, n: number
   try {

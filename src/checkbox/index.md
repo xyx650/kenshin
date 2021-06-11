@@ -123,8 +123,6 @@ export default () => <Checkbox.Group value={['上海', '北京']} onChange={hand
 | trueLabel | 选中时的值 | `string \| number`|     `--`       |
 | falseLabel | 没有选中时的值 | `string \| number`|      `--`          |
 | disabled | 禁用状态 | `boolean`                                                      |  `false`  |
-| loading | 加载状态 | `boolean`                                                      |   `false`  |
-| disabled | 禁用状态| `boolean`                                                      |  `false`  |
 | checked | 当前是否勾选 | `boolean`|   `false` |
 | indeterminate | 设置 indeterminate 状态，只负责样式控制 | `boolean`             |   `false` |
 | className | 自定义样式类 | `string`                                                       |  `--`  |

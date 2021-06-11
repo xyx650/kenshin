@@ -6,14 +6,37 @@ import Color from './color'
 import { prefixCls as prefix } from '../config'
 import './index.less'
 
-export type ColorPickerProps = {
-  value: string | number | null,
-  showAlpha: boolean,
-  colorFormat: string,
-  onChange: (color: string | null) => void
-  prefixCls?: string;
+export interface ColorPickerProps {
+  /**
+   * @description 绑定的颜色值
+   * @default null
+   */
+  value: string | number | null;
+  /**
+   * @description 是否显示透明通道
+   */
+  showAlpha?: boolean;
+  /**
+   * @description 颜色类型
+   * @default hex
+   */
+  colorFormat?: string;
+  /**
+   * @description 颜色改变回调
+   */
+  onChange?: (color: string | null) => void;
+  /**
+   * @description 自定义样式类名
+   */
   className?: string;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类名
+   */
+  prefixCls?: string;
 }
 
 
@@ -21,6 +44,7 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
   const {
     showAlpha,
     colorFormat,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onChange = (color: string | null) => {},
     prefixCls = prefix
   } = props
@@ -55,6 +79,7 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
   }
 
   // 隐藏组件
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleClickOutside = () => {
     setShowPicker(false)
   }
@@ -72,24 +97,14 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
     setShowPicker(false)
     setValue(null)
     setShowPanelColor(false)
-
     onChange(null)
     resetColor()
-
-    // this.setState({
-    //   showPicker: false,
-    //   showPanelColor: false,
-    //   value: null
-    // }, () => {
-    //   this.props.onChange(null)
-    //   this.resetColor()
-    // })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const hide = () => {
     setShowPicker(false)
     resetColor()
-    // this.setState({ showPicker: false }, () => this.resetColor())
   }
 
   //
@@ -100,7 +115,6 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
 
   // 输入后确认
   const confirmValue = () => {
-    // this.setState({ showPicker: false }, () => onChange(value as string))
     setShowPicker(false)
     onChange(value as string)
   }
@@ -119,14 +133,15 @@ const ColorPicker: React.FC<ColorPickerProps> = props => {
         color={color}
         onPick={confirmValue}
         onClear={clearValue}
-        showAlpha={showAlpha}
-        onChange={color => props.onChange(color)}
+        showAlpha={!!showAlpha}
+        onChange={color => props.onChange?.(color)}
       />
     </div>
   </colorPickerContext.Provider>
 }
 
 ColorPicker.defaultProps = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onChange(color: string | null) {}
 }
 

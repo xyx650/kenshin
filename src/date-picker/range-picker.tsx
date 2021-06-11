@@ -7,10 +7,10 @@ import SwapRightOutlined from '@ant-design/icons/SwapRightOutlined'
 import { RangePicker as RCRangePicker } from 'rc-picker'
 import type { GenerateConfig } from 'rc-picker/lib/generate/index'
 import { prefixCls as prefix } from '../config'
-import type { RangePickerProps , PickerLocale } from './picker'
+import type { RangePickerProps, PickerLocale } from './picker'
 import { Components, getTimeProps } from './picker'
 import locale from 'rc-picker/lib/locale/zh_CN'
-import { getRangePlaceholder } from '@/date-picker/util'
+import { getRangePlaceholder } from './util'
 
 
 export default function generateRangePicker<DateType>(generateConfig: GenerateConfig<DateType>) {
@@ -45,36 +45,36 @@ export default function generateRangePicker<DateType>(generateConfig: GenerateCo
         ...(picker === 'time' ? getTimeProps({ format, ...this.props, picker }) : {})
       }
       return <RCRangePicker<DateType>
-         separator={
-           <span aria-label="to" className={`${prefixCls}-separator`}>
+        separator={
+          <span aria-label='to' className={`${prefixCls}-separator`}>
               <SwapRightOutlined />
             </span>
-         }
-         ref={this.pickerRef}
-         placeholder={getRangePlaceholder(picker, { lang: locale } as PickerLocale, placeholder)}
-         suffixIcon={picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />}
-         clearIcon={<CloseCircleFilled />}
-         allowClear
-         transitionName={`${customizePrefixCls}-slide-up`}
-         {...restProps}
-         {...additionalOverrideProps}
-         className={classNames(
-           {
-             [`${prefixCls}-${customizeSize}`]: customizeSize,
-             [`${prefixCls}-borderless`]: !bordered,
-           },
-           className,
-         )}
-         locale={locale}
-         prefixCls={prefixCls}
-         getPopupContainer={customGetPopupContainer}
-         generateConfig={generateConfig}
-         prevIcon={<span className={`${prefixCls}-prev-icon`} />}
-         nextIcon={<span className={`${prefixCls}-next-icon`} />}
-         superPrevIcon={<span className={`${prefixCls}-super-prev-icon`} />}
-         superNextIcon={<span className={`${prefixCls}-super-next-icon`} />}
-         components={Components}
-       />
+        }
+        ref={this.pickerRef}
+        placeholder={getRangePlaceholder(picker, { lang: locale } as PickerLocale, placeholder) || ['开始', '结束']}
+        suffixIcon={picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />}
+        clearIcon={<CloseCircleFilled />}
+        allowClear
+        transitionName={`${customizePrefixCls}-slide-up`}
+        {...restProps}
+        {...additionalOverrideProps}
+        className={classNames(
+          {
+            [`${prefixCls}-${customizeSize}`]: customizeSize,
+            [`${prefixCls}-borderless`]: !bordered
+          },
+          className
+        )}
+        locale={locale}
+        prefixCls={prefixCls}
+        getPopupContainer={customGetPopupContainer}
+        generateConfig={generateConfig}
+        prevIcon={<span className={`${prefixCls}-prev-icon`} />}
+        nextIcon={<span className={`${prefixCls}-next-icon`} />}
+        superPrevIcon={<span className={`${prefixCls}-super-prev-icon`} />}
+        superNextIcon={<span className={`${prefixCls}-super-next-icon`} />}
+        components={Components}
+      />
     }
 
     render() {

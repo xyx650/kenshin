@@ -24,9 +24,18 @@ export interface CommentProps extends React.HTMLAttributes<HTMLDivElement> {
    * @description    展示时间描述
    */
   datetime?: React.ReactNode;
-  prefixCls?: string;
+  /**
+   * @description 自定义样式
+   */
+  style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
   className?: string;
-  style?: React.CSSProperties
+  /**
+   * @description 自定义样式类前缀
+   */
+  prefixCls?: string;
 }
 
 const Comment: React.FC<CommentProps> = props => {
@@ -74,5 +83,7 @@ const Comment: React.FC<CommentProps> = props => {
     {children && <div className={classnames(`${prefixCls}-nested`)}>{children}</div>}
   </div>
 }
+
+Comment.displayName = 'Comment'
 
 export default Comment
