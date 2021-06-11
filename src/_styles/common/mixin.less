@@ -593,7 +593,14 @@
     opacity: 0;
   }
 }
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
 
+.square(@size) {
+  .size(@size; @size);
+}
 
 
 

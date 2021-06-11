@@ -26,6 +26,8 @@ const View: React.FC<ViewProps> = props => {
   return React.cloneElement(React.Children.only(children as React.ReactElement), cls)
 }
 
+View.displayName = 'View'
+
 export default View
 
 
