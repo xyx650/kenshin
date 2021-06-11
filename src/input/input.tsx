@@ -207,6 +207,8 @@ Input.defaultProps = {
   autoComplete: 'off'
 }
 
+Input.displayName = 'Input'
+
 export default Input
 
 
