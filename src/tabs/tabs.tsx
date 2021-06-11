@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import EllipsisOutlined from '@ant-design/icons/EllipsisOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
+import { prefixCls as rootPrefixCls } from '../config';
 import './tabs.less';
 
 export type TabsType = 'line' | 'card' | 'editable-card';
@@ -21,7 +22,7 @@ export interface TabsProps extends Omit<RcTabsProps, 'editable'> {
 
 function Tabs({ type, className, size, onEdit, hideAdd, centered, addIcon, ...props }: TabsProps) {
   const { prefixCls: customizePrefixCls, moreIcon = <EllipsisOutlined /> } = props;
-  const prefixCls = 'kenshin';
+  const prefixCls = rootPrefixCls + '-tabs';
 
   let editable: EditableConfig | undefined;
   if (type === 'editable-card') {

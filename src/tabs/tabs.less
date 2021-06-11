@@ -1,6 +1,16 @@
+@import '../_styles/common/prefix';
+@tabs-prefix-cls: ~'@{prefix}';
 @them-color: #1890ff;
+@border-color: #f1f1f1;
+@bg-tab: #fafafa;
+@box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+@transition-times: 0.3s;
+@disabled-opacity: 0.4;
+@card-close-icon-color: rgba(0, 0, 0, 0.45);
+@dropdown-menu-font-color: #333;
+@dropdown-menu-item-active: #f5f5f5;
 
-.kenshin-nav {
+.@{tabs-prefix-cls}-tabs-nav {
   position: relative;
   display: flex;
   flex: none;
@@ -12,17 +22,16 @@
     right: 0;
     bottom: 0;
     left: 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid @border-color;
     content: '';
   }
 
-  .kenshin-nav-operations {
-    z-index: 2;
+  .@{tabs-prefix-cls}-tabs-nav-operations {
     display: flex;
     align-self: stretch;
-    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: @box-shadow;
 
-    .kenshin-nav-more {
+    .@{tabs-prefix-cls}-tabs-nav-more {
       position: relative;
       flex: 1;
       padding: 8px 16px;
@@ -30,171 +39,172 @@
       border: 0;
     }
   }
+
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex: auto;
+    align-self: stretch;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
-.kenshin-tabs {
+.@{tabs-prefix-cls}-tabs-tab:hover {
+  color: @them-color;
+}
+
+.@{tabs-prefix-cls}-tabs-tabs {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.kenshin-left,
-.kenshin-right {
-  .kenshin-nav {
-    flex-direction: column;
-  }
-}
-
-.kenshin-nav-wrap {
-  position: relative;
-  display: inline-block;
-  display: flex;
-  flex: auto;
-  align-self: stretch;
-  overflow: hidden;
-  white-space: nowrap;
-  transform: translate(0);
-}
-
-.kenshin-nav-list {
+.@{tabs-prefix-cls}-tabs-nav-list {
   position: relative;
   display: flex;
-  border-bottom: 1px solid #f1f1f1;
-  transition: transform 0.3s;
+  transition: transform @transition-times;
 
-  .kenshin-tab-active {
+  .@{tabs-prefix-cls}-tabs-tab-active {
     color: @them-color;
   }
 
-  .kenshin-tab {
+  .@{tabs-prefix-cls}-tabs-tab {
     display: flex;
     padding: 12px 0;
     cursor: pointer;
+    transition: font-size @transition-times, padding @transition-times, color @transition-times;
   }
 
-  .kenshin-tab-disabled {
+  .@{tabs-prefix-cls}-tabs-tab-disabled {
     cursor: not-allowed;
-    opacity: 0.4;
+    opacity: @disabled-opacity;
   }
 
-  .kenshin-tab + .kenshin-tab {
+  .@{tabs-prefix-cls}-tabs-tab + .@{tabs-prefix-cls}-tabs-tab {
     margin-left: 32px;
   }
 
-  .kenshin-ink-bar {
+  .@{tabs-prefix-cls}-tabs-ink-bar {
     position: absolute;
     bottom: 0;
     height: 2px;
     background: @them-color;
-    transition: left 0.3s, top 0.3s;
+    transition: left @transition-times, top @transition-times;
   }
 }
 
-// tabsPosition 定位样式
-.kenshin-left {
+// tabsPosition 定位样式  ======================================
+.@{tabs-prefix-cls}-tabs-left,
+.@{tabs-prefix-cls}-tabs-right {
+  .@{tabs-prefix-cls}-tabs-nav {
+    flex-direction: column;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-left {
   flex-direction: row;
 
-  .kenshin-nav-list {
+  .@{tabs-prefix-cls}-tabs-nav-list {
     border: 0;
-    border-right: 1px solid #f1f1f1;
+    border-right: 1px solid @border-color;
   }
 }
 
-.kenshin-right {
+.@{tabs-prefix-cls}-tabs-right {
   flex-direction: row-reverse;
 
-  .kenshin-nav-list {
+  .@{tabs-prefix-cls}-tabs-nav-list {
     border: 0;
-    border-left: 1px solid #f1f1f1;
+    border-left: 1px solid @border-color;
 
-    .kenshin-ink-bar {
+    .@{tabs-prefix-cls}-tabs-ink-bar {
       left: 0 !important;
     }
   }
 }
 
-.kenshin-bottom {
+.@{tabs-prefix-cls}-tabs-bottom {
   flex-direction: column-reverse;
 
-  .kenshin-nav::before {
+  .@{tabs-prefix-cls}-tabs-nav::before {
     top: 0;
     bottom: auto;
   }
 
-  .kenshin-nav-list {
+  .@{tabs-prefix-cls}-tabs-nav-list {
     border: 0;
-    border-top: 1px solid #f1f1f1;
+    border-top: 1px solid @border-color;
 
-    .kenshin-ink-bar {
+    .@{tabs-prefix-cls}-tabs-ink-bar {
       top: 0 !important;
     }
   }
 }
 
-// =========== end   ==========
-
-.kenshin-centered {
-  .kenshin-nav-wrap {
-    justify-content: center;
-  }
-}
-
-.kenshin-left,
-.kenshin-right {
+.@{tabs-prefix-cls}-tabs-left,
+.@{tabs-prefix-cls}-tabs-right {
   display: flex;
 
-  .kenshin-nav-wrap {
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
     flex-direction: column;
   }
 
-  .kenshin-content-holder {
+  .@{tabs-prefix-cls}-tabs-content-holder {
     flex: 1;
     padding-left: 24px;
   }
 
-  .kenshin-nav-list {
+  .@{tabs-prefix-cls}-tabs-nav-list {
     flex-direction: column;
     border-bottom: 0;
 
-    .kenshin-ink-bar {
+    .@{tabs-prefix-cls}-tabs-ink-bar {
       right: 0;
       width: 2px;
       background: @them-color;
     }
   }
 
-  .kenshin-tab {
+  .@{tabs-prefix-cls}-tabs-tab {
     padding: 8px 12px;
   }
 
-  .kenshin-tab + .kenshin-tab {
+  .@{tabs-prefix-cls}-tabs-tab + .@{tabs-prefix-cls}-tabs-tab {
     margin-top: 16px;
     margin-left: 0;
   }
 }
+// =========== end   =======================================
 
-.kenshin-dropdown {
+.@{tabs-prefix-cls}-tabs-centered {
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
+    justify-content: center;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-dropdown {
   position: absolute;
-  z-index: 999;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
 
-  .kenshin-dropdown-menu {
+  .@{tabs-prefix-cls}-tabs-dropdown-menu {
     min-width: 120px;
     max-height: 200px;
     margin: 0;
     padding: 0;
     overflow-y: scroll;
-    color: #333;
+    color: @dropdown-menu-font-color;
     list-style: none;
-    background: #fff;
+    background: @bg-tab;
     cursor: pointer;
 
     li {
       padding: 5px 12px;
 
       &:hover {
-        background: #f5f5f5;
+        background: @dropdown-menu-item-active;
       }
     }
   }
@@ -209,37 +219,37 @@
   pointer-events: auto !important;
 }
 
-.kenshin-editable-card,
-.kenshin-card {
+// type = card或editable-card 时样式===================================
+.@{tabs-prefix-cls}-tabs-editable-card,
+.@{tabs-prefix-cls}-tabs-card {
   border: 0;
   box-shadow: none;
 
-  .kenshin-nav-list {
+  .@{tabs-prefix-cls}-tabs-nav-list {
     border: 0;
 
-    .kenshin-ink-bar {
-      background: #fff;
+    .@{tabs-prefix-cls}-tabs-ink-bar {
+      background: @bg-tab;
       transition: none;
     }
 
-    .kenshin-tab-active {
-      background: #fff;
+    .@{tabs-prefix-cls}-tabs-tab-active {
+      background: @bg-tab;
     }
 
-    .kenshin-tab {
+    .@{tabs-prefix-cls}-tabs-tab {
       margin: 0;
       margin-left: 2px;
       padding: 8px 16px;
-      padding: 8px 16px;
-      background: #fafafa;
-      border: 1px solid #f0f0f0;
-      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      background: @bg-tab;
+      border: 1px solid @border-color;
+      transition: all @transition-times cubic-bezier(0.645, 0.045, 0.355, 1);
 
-      .kenshin-tab-remove {
+      .@{tabs-prefix-cls}-tabs-tab-remove {
         flex: none;
         margin-right: -4px;
         margin-left: 8px;
-        color: rgba(0, 0, 0, 0.45);
+        color: @card-close-icon-color;
         font-size: 12px;
         background: 0 0;
         border: none;
@@ -247,20 +257,42 @@
       }
     }
 
-    .kenshin-nav-add {
+    .@{tabs-prefix-cls}-tabs-nav-add {
       min-width: 40px;
       padding: 0 8px;
-      background: #fafafa;
-      border: 1px solid #f0f0f0;
+      background: @bg-tab;
+      border: 1px solid @border-color;
       border-radius: 2px 2px 0 0;
       outline: none;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: all @transition-times cubic-bezier(0.645, 0.045, 0.355, 1);
     }
   }
 }
 
-.kenshin-nav-operations-hidden {
+// end=======================================================
+
+// size对应样式====================================
+.@{tabs-prefix-cls}-tabs-small {
+  & > .@{tabs-prefix-cls}-tabs-nav {
+    .@{tabs-prefix-cls}-tabs-tab {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-large {
+  & > .@{tabs-prefix-cls}-tabs-nav {
+    .@{tabs-prefix-cls}-tabs-tab {
+      padding: 16px 0;
+      font-size: 16px;
+    }
+  }
+}
+//  size对应样式=  end===================================================
+
+.@{tabs-prefix-cls}-tabs-nav-operations-hidden {
   position: absolute;
   visibility: hidden;
   pointer-events: none;

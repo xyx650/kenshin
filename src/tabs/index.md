@@ -208,6 +208,47 @@ export default () => {
 
 ```tsx
 /**
+ * title: 大小
+ * desc: 大号页签用在页头区域，小号用在弹出框等较狭窄的容器内。
+ */
+import React from 'react';
+import { Tabs, Button } from 'kenshin';
+const { TabPane } = Tabs;
+
+export default () => {
+  const [size, setSize] = React.useState('top');
+
+  return (
+    <>
+      <Button.Group style={{ marginBottom: '30px' }}>
+        <Button type="plain" onClick={() => setSize('small')}>
+          small
+        </Button>
+        <Button type="plain" onClick={() => setSize('default')}>
+          default
+        </Button>
+        <Button type="plain" onClick={() => setSize('large')}>
+          large
+        </Button>
+      </Button.Group>
+      <Tabs size={size}>
+        <TabPane tab="Tab 1" key="1">
+          Content of Tab 1
+        </TabPane>
+        <TabPane tab="Tab 2" key="2">
+          Content of Tab 2
+        </TabPane>
+        <TabPane tab="Tab 3" key="3">
+          Content of Tab 3
+        </TabPane>
+      </Tabs>
+    </>
+  );
+};
+```
+
+```tsx
+/**
  * title: 卡片式页签
  * desc: 另一种样式的页签，不提供对应的垂直样式。
  */
@@ -357,26 +398,25 @@ export default () => {
 
 ### Tabs
 
-| 参数               | 说明                                                     | 类型                                                                                     | 默认值                             |
-| ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------- |
-| activeKey          | 当前激活 tab 面板的 key                                  | `string`                                                                                 | -                                  |
-| addIcon            | 自定义添加按钮                                           | `ReactNode`                                                                              | -                                  |
-| animated           | 是否使用动画切换 Tabs, 仅生效于 `tabPosition="top"`      | `boolean \| { inkBar: boolean, tabPane: boolean }`                                       | `{ inkBar: true, tabPane: false }` |
-| centered           | 标签居中展示                                             | `boolean`                                                                                | `false`                            |
-| defaultActiveKey   | 初始化选中面板的 key，如果没有设置 activeKey             | `string`                                                                                 | `第一个面板`                       |
-| hideAdd            | 是否隐藏加号图标，在 `type="editable-card"` 时有效       | `boolean`                                                                                | `false`                            |  |
-| moreIcon           | 自定义折叠 icon                                          | `ReactNode`                                                                              | `&lt;EllipsisOutlined />`          |
-| renderTabBar       | 替换 TabBar，用于二次封装标签头                          | `(props: DefaultTabBarProps, DefaultTabBar: React.ComponentClass) => React.ReactElement` | -                                  |
-| size               | 大小，提供 `large` `default` 和 `small` 三种大小         | `string`                                                                                 | `default`                          |
-| tabBarExtraContent | tab bar 上额外的元素                                     | `ReactNode \| {left?: ReactNode, right?: ReactNode}`                                     | -                                  |
-| tabBarGutter       | tabs 之间的间隙                                          | `number`                                                                                 | -                                  |
-| tabBarStyle        | tab bar 的样式对象                                       | `object`                                                                                 | -                                  |
-| tabPosition        | 页签位置，可选值有 `top` `right` `bottom` `left`         | `string`                                                                                 | `top`                              |
-| type               | 页签的基本样式，可选 `line`、`card` `editable-card` 类型 | `string`                                                                                 | `line`                             |
-| onChange           | 切换面板的回调                                           | `function(activeKey) {}`                                                                 | -                                  |
-| onEdit             | 新增和删除页签的回调，在 `type="editable-card"` 时有效   | `(targetKey, action): void`                                                              | -                                  |
-| onTabClick         | tab 被点击的回调                                         | `function(key: string, event: MouseEvent)`                                               | -                                  |
-| onTabScroll        | tab 滚动时触发                                           | `function({ direction: left \| right \| top \| bottom })`                                | -                                  |
+| 参数               | 说明                                                     | 类型                                                                                     | 默认值                    |
+| ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------- |
+| activeKey          | 当前激活 tab 面板的 key                                  | `string`                                                                                 | -                         |
+| addIcon            | 自定义添加按钮                                           | `ReactNode`                                                                              | -                         |
+| centered           | 标签居中展示                                             | `boolean`                                                                                | `false`                   |
+| defaultActiveKey   | 初始化选中面板的 key，如果没有设置 activeKey             | `string`                                                                                 | `第一个面板`              |
+| hideAdd            | 是否隐藏加号图标，在 `type="editable-card"` 时有效       | `boolean`                                                                                | `false`                   |  |
+| moreIcon           | 自定义折叠 icon                                          | `ReactNode`                                                                              | `&lt;EllipsisOutlined />` |
+| renderTabBar       | 替换 TabBar，用于二次封装标签头                          | `(props: DefaultTabBarProps, DefaultTabBar: React.ComponentClass) => React.ReactElement` | -                         |
+| size               | 大小，提供 `large` `default` 和 `small` 三种大小         | `string`                                                                                 | `default`                 |
+| tabBarExtraContent | tab bar 上额外的元素                                     | `ReactNode \| {left?: ReactNode, right?: ReactNode}`                                     | -                         |
+| tabBarGutter       | tabs 之间的间隙                                          | `number`                                                                                 | -                         |
+| tabBarStyle        | tab bar 的样式对象                                       | `object`                                                                                 | -                         |
+| tabPosition        | 页签位置，可选值有 `top` `right` `bottom` `left`         | `string`                                                                                 | `top`                     |
+| type               | 页签的基本样式，可选 `line`、`card` `editable-card` 类型 | `string`                                                                                 | `line`                    |
+| onChange           | 切换面板的回调                                           | `function(activeKey) {}`                                                                 | -                         |
+| onEdit             | 新增和删除页签的回调，在 `type="editable-card"` 时有效   | `(targetKey, action): void`                                                              | -                         |
+| onTabClick         | tab 被点击的回调                                         | `function(key: string, event: MouseEvent)`                                               | -                         |
+| onTabScroll        | tab 滚动时触发                                           | `function({ direction: left \| right \| top \| bottom })`                                | -                         |
 
 ### Tabs.TabPane
 
