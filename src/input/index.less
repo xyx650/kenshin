@@ -83,6 +83,11 @@
     color: #bfcbd9;
     transition: all .3s;
 
+    &[class^="@{prefix}-icon-"],
+    &[class*=" @{prefix}-icon-"] {
+      font-size: 14px;
+    }
+
     &:after {
       content: '';
       height: 100%;

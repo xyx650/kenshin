@@ -8,12 +8,12 @@ import './index.less'
 export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'defaultValue' | 'onInput' | 'onChange' | 'size'> {
   defaultValue?: number;
   value: number | string;
-  step: number | string;
-  max: number | string;
-  min: number | string;
-  disabled: boolean;
-  controls: boolean;
-  size: 'small' | 'large' | 'mini';
+  step?: number | string;
+  max?: number | string;
+  min?: number | string;
+  disabled?: boolean;
+  controls?: boolean;
+  size?: 'small' | 'large' | 'mini';
   onChange?: (val: number | string | undefined) => void;
   style?: React.CSSProperties;
   className?: string;
@@ -24,9 +24,16 @@ export interface InputNumberProps extends Omit<React.InputHTMLAttributes<HTMLInp
 const InputNumber: React.FC<InputNumberProps> = props => {
   const [value, setValue] = React.useState(props.value)
   const [inputActive, setInputActive] = React.useState(false)
-  // const input = React.useRef<Input>(null)
 
-  const { controls, disabled, size, max, min, prefixCls = prefix } = props
+  const {
+    controls = true,
+    disabled = false,
+    size,
+    max = Infinity,
+    min = 0,
+    step = 1,
+    prefixCls = prefix
+  } = props
 
   // 防抖定时器
   let timer: number | undefined
@@ -39,11 +46,13 @@ const InputNumber: React.FC<InputNumberProps> = props => {
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     switch (e.keyCode) {
-      case 38: // KeyUp
+      // KeyUp
+      case 38:
         e.preventDefault()
         increase()
         break
-      case 40: // KeyDown
+      // KeyDown
+      case 40:
         e.preventDefault()
         decrease()
         break
@@ -63,7 +72,6 @@ const InputNumber: React.FC<InputNumberProps> = props => {
     }
     setValue(v)
 
-    // this.setState({ value }, this.onChange)
   }
 
   // 输入事件
@@ -82,7 +90,6 @@ const InputNumber: React.FC<InputNumberProps> = props => {
 
   // click plus
   const increase = () => {
-    const { step, max, disabled, min } = props
 
     let _value = value
 
@@ -97,7 +104,6 @@ const InputNumber: React.FC<InputNumberProps> = props => {
 
   // click minus
   const decrease = () => {
-    const { step, min, disabled, max } = props
     let _value = value
 
     if (!minDisabled()) {
@@ -125,10 +131,10 @@ const InputNumber: React.FC<InputNumberProps> = props => {
   const isValid = () => value !== '' && !isNaN(+value)
 
   // 最小值禁止状态
-  const minDisabled = () => !isValid() || (+value - +props.step < +props.min)
+  const minDisabled = () => !isValid() || (+value - +step < +min)
 
   // 最大值禁止状态
-  const maxDisabled = () => !isValid() || (+value + +props.step > +props.max)
+  const maxDisabled = () => !isValid() || (+value + +step > +max)
 
 
   return (

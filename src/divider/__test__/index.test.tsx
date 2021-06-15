@@ -12,9 +12,9 @@ describe(Divider.displayName!, () => {
 
   afterEach(cleanup)
   it('set style', () => {
-    const text = 'left'
-    const el = render(<Divider orientation={text}>{text}</Divider>)
-    expect(el.getByText(text)).toBeInTheDocument()
-    expect(el.getByText(text)).toHaveClass(`is-${text}`)
+    const orientation = 'left'
+    const el = render(<Divider orientation={orientation}>{orientation}</Divider>)
+    expect(el.getByText(orientation)).toBeInTheDocument()
+    expect(el.getByText(orientation)).toHaveClass(`is-${orientation}`)
   })
 })
