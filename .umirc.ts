@@ -27,7 +27,7 @@ export default defineConfig({
     'https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js',
     `
       document.addEventListener('DOMContentLoaded', function() {
-         pangu.autoSpacingPage()
+        pangu.autoSpacingPage()
       })
     `
   ]
