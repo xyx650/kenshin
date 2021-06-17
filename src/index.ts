@@ -26,6 +26,7 @@ import Select from './select';
 import Mentions from './mentions';
 import Tabs from './tabs';
 import Carousel from './carousel';
+import Menu from './menu';
 
 export {
   Rate,
@@ -56,4 +57,5 @@ export {
   Mentions,
   Tabs,
   Carousel,
+  Menu,
 };
