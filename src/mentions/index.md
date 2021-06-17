@@ -169,28 +169,28 @@ export default () => {
 
 ######
 
-| Name              | Description                   | Type                                                       | Default   |
-| ----------------- | ----------------------------- | ---------------------------------------------------------- | --------- |
-| loading           | 加载中                        | boolean                                                    | --        |
-| autoFocus         | 自动获得焦点                  | boolean                                                    | false     |
-| autoSize          | 自适应内容高度，可设置为 true | false 或对象：{ minRows: 2, maxRows: 6 } boolean \| object | false     |
-| defaultValue      | 默认值                        | string                                                     | --        |
-| filterOption      | 自定义过滤逻辑                | false \| ((input: string, option: OptionProps) => boolean) | --        |
-| getPopupContainer | 指定建议框挂载的              | HTML 节点 \| () => HTMLElement                             | --        |
-| notFoundContent   | 当下拉列表为空时显示的内容    | ReactNode                                                  | Not Found |
-| placement         | 弹出层展示位置                | "top" \| "bottom"                                          | bottom    |
-| direction         | 设置弹出方向                  | "ltr" \| "rtl"                                             | ltr       |
-| prefix            | 设置触发关键字                | string \| string[]                                         | @         |
-| split             | 设置选中项前后分隔符          | string                                                     | --        |
-| validateSearch    | 自定义触发验证逻辑            | (text: string, props: MentionsProps) => boolean            | --        |
-| value             | 设置值                        | string                                                     | --        |
-| onBlur            | 失去焦点时触发                | FocusEventHandler< Element>                                | --        |
-| onChange          | 值改变时触发                  | (text: string) => void                                     | --        |
-| onFocus           | 获得焦点时触发                | FocusEventHandler< Element>                                | --        |
-| onSearch          | 搜索时触发                    | (text: string, prefix: string) => void                     | --        |
-| onSelect          | 选择选项时触发                | (option: any, prefix: string) => void                      | --        |
-| className         | 类名                          | string                                                     | --        |
-| disabled          | 设置不可操作                  | boolean                                                    | --        |
+| Name              | Description                   | Type                                                         | Default     |
+| ----------------- | ----------------------------- | ------------------------------------------------------------ | ----------- |
+| loading           | 加载中                        | `boolean`                                                    | `--`        |
+| autoFocus         | 自动获得焦点                  | `boolean`                                                    | `false`     |
+| autoSize          | 自适应内容高度，可设置为 true | `false 或对象：{ minRows: 2, maxRows: 6 } boolean \| object` | `false`     |
+| defaultValue      | 默认值                        | `string`                                                     | `--`        |
+| filterOption      | 自定义过滤逻辑                | `false \| ((input: string, option: OptionProps) => boolean)` | `--`        |
+| getPopupContainer | 指定建议框挂载的              | `HTML 节点 \| () => HTMLElement`                             | `--`        |
+| notFoundContent   | 当下拉列表为空时显示的内容    | `ReactNode`                                                  | `Not Found` |
+| placement         | 弹出层展示位置                | `"top" \| "bottom"`                                          | `bottom`    |
+| direction         | 设置弹出方向                  | `"ltr" \| "rtl"`                                             | `ltr`       |
+| prefix            | 设置触发关键字                | `string \| string[]`                                         | `@`         |
+| split             | 设置选中项前后分隔符          | `string`                                                     | `--`        |
+| validateSearch    | 自定义触发验证逻辑            | `(text: string, props: MentionsProps) => boolean`            | `--`        |
+| value             | 设置值                        | `string`                                                     | `--`        |
+| onBlur            | 失去焦点时触发                | `FocusEventHandler< Element>`                                | `--`        |
+| onChange          | 值改变时触发                  | `(text: string) => void`                                     | `--`        |
+| onFocus           | 获得焦点时触发                | `FocusEventHandler< Element>`                                | `--`        |
+| onSearch          | 搜索时触发                    | `(text: string, prefix: string) => void`                     | `--`        |
+| onSelect          | 选择选项时触发                | `(option: any, prefix: string) => void`                      | `--`        |
+| className         | 类名                          | `string`                                                     | `--`        |
+| disabled          | 设置不可操作                  | `boolean`                                                    | `--`        |
 
 ### Mentions 方法
 

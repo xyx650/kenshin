@@ -1,26 +1,16 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import RcMentions from 'rc-mentions';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { MentionsProps as RcMentionsProps } from 'rc-mentions/lib/Mentions';
 import './mentions.less';
 import Loading from '../loading';
 import { prefixCls as prefix } from '../config';
-import omit from 'rc-util/lib/omit';
 
 const { Option } = RcMentions;
 
 function loadingFilterOption() {
   return true;
-}
-
-export interface OptionProps {
-  value: string;
-  children: React.ReactNode;
-  [key: string]: any;
-}
-
-interface CompoundedProps {
-  Option?: typeof Option;
 }
 
 interface MentionsConfig {
@@ -83,8 +73,9 @@ export interface MentionProps extends RcMentionsProps {
   disabled?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const InternalMentions: React.ForwardRefRenderFunction<unknown, MentionProps> = (props, _ref) => {
-  let { className, disabled, loading, filterOption, children, notFoundContent, ...data } = props;
+  const { className, disabled, loading, filterOption, children, notFoundContent, ...data } = props;
   const [focused, setFocused] = React.useState(false);
 
   const onFocus: React.FocusEventHandler<HTMLTextAreaElement> = (...args) => {
