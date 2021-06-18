@@ -1,6 +1,6 @@
 {
   "name": "kenshin",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "React UI Components",
   "keywords": [
     "umi",
@@ -90,7 +90,7 @@
     "@umijs/fabric": "^2.5.13",
     "@umijs/test": "^3.0.5",
     "classnames": "^2.2.6",
-    "dumi": "^1.1.18",
+    "dumi": "^1.1.20",
     "eslint-plugin-react-hooks": "^4.2.0",
     "father-build": "^1.19.6",
     "gh-pages": "^3.0.0",

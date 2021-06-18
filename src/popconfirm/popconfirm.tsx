@@ -4,6 +4,7 @@ import KeyCode from 'rc-util/lib/KeyCode'
 import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled'
 import Button from '../button'
 import type { AbstractTooltipProps } from '../tooltip'
+import type { ButtonProps } from '../button'
 import Tooltip from '../tooltip'
 import classnames from 'classnames'
 import { cloneElement } from '../_util/reactNode'
@@ -19,10 +20,10 @@ export interface PopconfirmProps extends AbstractTooltipProps {
   onConfirm?: (e?: React.MouseEvent<HTMLElement>) => void;
   onCancel?: (e?: React.MouseEvent<HTMLElement>) => void;
   okText?: React.ReactNode;
-  // okType?: LegacyButtonType;
+  okType?: ButtonProps['type'];
   cancelText?: React.ReactNode;
-  // okButtonProps?: NativeButtonProps;
-  // cancelButtonProps?: NativeButtonProps;
+  okButtonProps?: ButtonProps;
+  cancelButtonProps?: ButtonProps;
   icon?: React.ReactNode;
   onVisibleChange?: (visible: boolean, e?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLDivElement>) => void;
 }
@@ -44,12 +45,12 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
 
   const onConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
     settingVisible(false, e)
-    props.onConfirm?.call(this, e)
+    props.onConfirm?.(e)
   }
 
   const onCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     settingVisible(false, e)
-    props.onCancel?.call(this, e)
+    props.onCancel?.(e)
   }
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -80,12 +81,12 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
 
   const renderOverlay = (prefixCls: string) => {
     const {
-      // okButtonProps,
-      // cancelButtonProps,
+      okButtonProps,
+      cancelButtonProps,
       title,
       cancelText,
       okText,
-      // okType,
+      okType = 'primary',
       icon
     } = props
     return <div className={`${prefixCls}-inner-content`}>
@@ -97,13 +98,15 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
         <Button
           onClick={onCancel}
           size='small'
+          {...cancelButtonProps}
         >
           {cancelText || '取消'}
         </Button>
         <Button
           onClick={onConfirm}
           size='small'
-          type='primary'
+          type={okType}
+          {...okButtonProps}
         >
           {okText || '确定'}
         </Button>
@@ -137,9 +140,9 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
     transitionName={props.transitionName || `${prefix}-zoom-big`}
   >
     {cloneElement(children, {
-      onKeyDown: (e: React.KeyboardEvent<any>) => {
+      onKeyDown(e: React.KeyboardEvent<any>) {
         if (React.isValidElement(children)) {
-          children?.props.onKeyDown?.(e)
+          children.props.onKeyDown?.(e)
         }
         onKeyDown(e)
       }
@@ -151,9 +154,11 @@ const Popconfirm = React.forwardRef<unknown, PopconfirmProps>((props, ref) => {
 Popconfirm.defaultProps = {
   placement: 'top',
   trigger: 'click',
-  // okType: 'primary' as PopconfirmProps['okType'],
+  okType: 'primary',
   icon: <ExclamationCircleFilled />,
   disabled: false
 }
+
+Popconfirm.displayName = 'Popconfirm'
 
 export default Popconfirm

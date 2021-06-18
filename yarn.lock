@@ -2893,10 +2893,10 @@
     react-router-dom "5.2.0"
     regenerator-runtime "0.13.5"
 
-"@umijs/preset-dumi@1.1.18":
-  version "1.1.18"
-  resolved "https://registry.nlark.com/@umijs/preset-dumi/download/@umijs/preset-dumi-1.1.18.tgz#122740926fff0b3028dbaad2157cb597344ebb48"
-  integrity sha1-EidAkm//CzAo26rSFXy1lzROu0g=
+"@umijs/preset-dumi@1.1.20":
+  version "1.1.20"
+  resolved "https://registry.npmjs.org/@umijs/preset-dumi/-/preset-dumi-1.1.20.tgz#e4e5ff1b59523ae0cc7c495ffc5933f136442d7c"
+  integrity sha512-VO7NuKcosi2S4o4HVAbdJIaXYVZrcqk+6Ie+c6n7x4d6giqHKZjYImTciWyBjiponvl2E/fkFboj++wnSw/rzA==
   dependencies:
     "@babel/core" "^7.7.2"
     "@babel/generator" "^7.7.2"
@@ -2912,7 +2912,7 @@
     copy-text-to-clipboard "^2.2.0"
     deepmerge "^4.2.2"
     dumi-assets-types "1.0.0"
-    dumi-theme-default "1.1.1"
+    dumi-theme-default "1.1.3"
     enhanced-resolve "^4.1.1"
     github-slugger "^1.3.0"
     hast-util-has-property "^1.0.4"
@@ -5256,21 +5256,21 @@ dumi-assets-types@1.0.0:
   resolved "https://registry.npm.taobao.org/dumi-assets-types/download/dumi-assets-types-1.0.0.tgz?cache=0&sync_timestamp=1610894488713&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdumi-assets-types%2Fdownload%2Fdumi-assets-types-1.0.0.tgz#d5368cb11045b203bf1ef1080e553b2287a2ec81"
   integrity sha1-1TaMsRBFsgO/HvEIDlU7Ioei7IE=
 
-dumi-theme-default@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.nlark.com/dumi-theme-default/download/dumi-theme-default-1.1.1.tgz?cache=0&sync_timestamp=1621397260580&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdumi-theme-default%2Fdownload%2Fdumi-theme-default-1.1.1.tgz#cfd9fcf93045a2e2469dce407a05616be9c7c8a5"
-  integrity sha1-z9n8+TBFouJGnc5AegVha+nHyKU=
+dumi-theme-default@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.npmjs.org/dumi-theme-default/-/dumi-theme-default-1.1.3.tgz#645181e2741391a6cb0d5ace2739b10e99444909"
+  integrity sha512-5N/r7UsEh27Sw9B9toFAYbdv0fA8fwSKFW6JVCnDFgeQzeHkE8NJ5DjLBD/RRPsIUJTIzlQXqtI/1RUbPdw7iQ==
   dependencies:
     prism-react-renderer "^1.1.1"
     prismjs "^1.21.0"
     rc-tabs "^11.7.1"
 
-dumi@^1.1.18:
-  version "1.1.18"
-  resolved "https://registry.nlark.com/dumi/download/dumi-1.1.18.tgz#2ed4eb2797753f5dc35ce9033d683280a4e2860e"
-  integrity sha1-LtTrJ5d1P13DXOkDPWgygKTihg4=
+dumi@^1.1.20:
+  version "1.1.20"
+  resolved "https://registry.npmjs.org/dumi/-/dumi-1.1.20.tgz#7e7d8d5c960d8b1202a0cc476bd1ba9d55c42e91"
+  integrity sha512-xmg2rR/egKmDuq/H6q6ABwkIKBBnt0vL9bZzfEmbdndLJXgZQ6vt8kOegKPFdz9GZbW8FJFZ2SGrMqwLDwEC2g==
   dependencies:
-    "@umijs/preset-dumi" "1.1.18"
+    "@umijs/preset-dumi" "1.1.20"
     umi "^3.0.0"
 
 duplexer2@0.0.2:

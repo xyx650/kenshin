@@ -132,6 +132,7 @@ interface SelectInterface extends InternalSelectType {
   SECRET_COMBOBOX_MODE_DO_NOT_USE: string;
   Option: typeof Option;
   OptGroup: typeof OptGroup;
+  displayName: string;
 }
 
 const Select = SelectRef as SelectInterface
@@ -139,5 +140,7 @@ const Select = SelectRef as SelectInterface
 Select.SECRET_COMBOBOX_MODE_DO_NOT_USE = SECRET_COMBOBOX_MODE_DO_NOT_USE
 Select.Option = Option
 Select.OptGroup = OptGroup
+
+Select.displayName = 'Select'
 
 export default Select

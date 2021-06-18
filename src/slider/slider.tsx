@@ -7,13 +7,10 @@ import './slider.less'
 
 // Slider 基础属性
 export interface SliderBaseProps {
-  // prefixCls?: string;
-  // tooltipPrefixCls?: string;
   reverse?: boolean;
   min?: number;
   max?: number;
   step?: null | number;
-  // marks?: SliderMarks;
   dots?: boolean;
   included?: boolean;
   disabled?: boolean;
@@ -58,9 +55,7 @@ interface HandleGeneratorInfo {
   index: number;
 }
 
-export type HandleGeneratorFn = (config: {
-  info: HandleGeneratorInfo;
-}) => React.ReactElement;
+export type HandleGeneratorFn = (config: { info: HandleGeneratorInfo }) => React.ReactElement;
 
 
 export type Visibles = Record<number, boolean>;
@@ -69,7 +64,7 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
   const {
     range,
     className,
-    prefixCls = prefix,
+    prefixCls = `${prefix}-slider`,
     ...restProps
   } = props
   const [visibles, setVisibles] = React.useState<Visibles>({})
@@ -80,10 +75,15 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
   }
 
   const handleWithTooltip: HandleGeneratorFn = ({
-    info: { value, dragging, index, ...restProps }
+    info: {
+      value,
+      dragging,
+      index,
+      ...restProps
+    }
   }) => {
     const {
-      tipFormatter,
+      tipFormatter = (value?: number) => typeof value === 'number' ? value.toString() : '',
       tooltipVisible,
       getTooltipPopupContainer,
       vertical
@@ -96,7 +96,7 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
       visible={visible}
       placement='top'
       key={index}
-      overlayClassName={`${prefixCls}-tooltip`}
+      overlayClassName={`${prefix}-tooltip`}
       getTooltipContainer={getTooltipPopupContainer}
     >
       <RcHandle
@@ -113,12 +113,12 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
 
   const draggableTrack = typeof range === 'object' ? range.draggableTrack : undefined
 
-
   // 返回范围选择
   if (range) {
     return <RcRange
       {...(restProps as SliderRangeProps)}
       step={restProps.step!}
+      prefixCls={prefixCls}
       draggableTrack={draggableTrack}
       className={cls}
       ref={ref}
@@ -130,6 +130,7 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
   return <RcSlider
     {...(restProps as SliderSingleProps)}
     step={restProps.step!}
+    prefixCls={prefixCls}
     className={cls}
     ref={ref}
     handle={(info: HandleGeneratorInfo) => handleWithTooltip({ info })}
@@ -139,9 +140,9 @@ const Slider = React.forwardRef <unknown, SliderSingleProps | SliderRangeProps>(
 })
 
 Slider.defaultProps = {
-  tipFormatter(value?: number) {
-    return typeof value === 'number' ? value.toString() : ''
-  }
+  tipFormatter: (value?: number) => typeof value === 'number' ? value.toString() : ''
 }
+
+Slider.displayName = 'Slider'
 
 export default Slider

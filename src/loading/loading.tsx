@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import { prefixCls as prefix } from '../config'
 import './index.less'
 
-export type LoadingProps = {
+export interface LoadingProps {
   /**
    * @description       loading 状态
    */
@@ -17,13 +17,16 @@ export type LoadingProps = {
    */
   text?: string;
   /**
-   * @description       自定义样式
+   * @description 自定义样式
    */
   style?: React.CSSProperties;
   /**
-   * @description       自定义样式类
+   * @description 自定义样式类
    */
   className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
 }
 
@@ -87,7 +90,11 @@ const Loading: React.FC<LoadingProps> = props => {
     {props.children}
   </div>
 }
+
 Loading.defaultProps = {
   fullscreen: false
 }
+
+Loading.displayName = 'Loading'
+
 export default Loading

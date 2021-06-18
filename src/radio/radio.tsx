@@ -6,7 +6,7 @@ import './radio.less'
 export interface RadioProps {
   value: string | number;
   onChange?: (val: string | number) => void;
-  disabled: boolean;
+  disabled?: boolean;
   checked: boolean;
   style?: React.CSSProperties;
   className?: string;
@@ -22,7 +22,7 @@ const Radio: React.FC<RadioProps> = props => {
   const [checked, setChecked] = React.useState(getChecked(props))
   const [focus, setFocus] = React.useState(false)
 
-  const { disabled, value, children, prefixCls = prefix } = props
+  const { disabled = false, value, children, prefixCls = prefix } = props
 
   // componentWillReceiveProps
   React.useEffect(() => {

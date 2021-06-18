@@ -22,34 +22,101 @@ type colorMap = {
 
 export interface RateProps {
   /**
-   * @description       icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色
+   * @description icon 的颜色数组，共有 3 个元素，为 3 个分段所对应的颜色
+   * @default ['#F7BA2A', '#F7BA2A', '#F7BA2A']
    */
   colors?: [string, string, string];
   /**
-   * @description       辅助文字数组
+   * @description 辅助文字数组
+   * @default  ['极差', '失望', '一般', '满意', '惊喜']
    */
-  texts?: [string, string, string, string, string];
+  texts?: string[];
   /**
-   * @description       是否显示文字
+   * @description 是否显示文字
+   * @default false
    */
   showText?: boolean;
+  /**
+   * @description 辅助文字的颜色
+   * @default '#1F2D3D'
+   */
   textColor?: string;
+  /**
+   * @description 是否为只读
+   * @default false
+   */
   disabled?: boolean;
+  /**
+   * @description 绑定的值
+   * @default 0
+   */
   value: number;
+  /**
+   * @description 只读时的辅助文字模板
+   * @default { value }
+   */
   textTemplate?: string;
+  /**
+   * @description 低分和中等分数的界限值，值本身被划分在低分中
+   * @default 2
+   */
   lowThreshold?: number;
+  /**
+   * @description 高分和中等分数的界限值，值本身被划分在高分中
+   * @default 4
+   */
   highThreshold?: number;
+  /**
+   * @description 最大分值
+   * @default 5
+   */
   max?: number;
-  voidColor: string;
-  disabledVoidColor: string;
-  iconClasses: [string, string, string];
-  voidIconClass: string;
-  disabledVoidIconClass: string;
-  allowHalf: boolean;
-  onChange?: (value: number) => void;
+  /**
+   * @description 未选中 icon 的颜色
+   * @default '#C6D1DE'
+   */
+  voidColor?: string;
+  /**
+   * @description 只读时未选中 icon 的颜色
+   * @default '#EFF2F7'
+   */
+  disabledVoidColor?: string;
+  /**
+   * @description icon 的类名数组，共有 3 个元素，为 3 个分段所对应的类名
+   * @default ['kenshin-icon-star-on', 'kenshin-icon-star-on', 'kenshin-icon-star-on']
+   */
+  iconClasses?: [string, string, string];
+  /**
+   * @description 未选中 icon 的类名
+   * @default 'kenshin-icon-star-off'
+   */
+  voidIconClass?: string;
+  /**
+   * @description 只读时未选中 icon 的类名
+   * @default 'kenshin-icon-star-on'
+   */
+  disabledVoidIconClass?: string;
+  /**
+   * @description 是否允许半选
+   * @default false
+   */
+  allowHalf?: boolean;
+  /**
+   * @description 自定义样式
+   */
   style?: React.CSSProperties;
+  /**
+   * @description 自定义样式类
+   */
   className?: string;
+  /**
+   * @description 自定义样式类前缀
+   */
   prefixCls?: string;
+  /**
+   * @description 分值改变时触发
+   */
+  onChange?: (value: number) => void;
 }
 
 
@@ -100,7 +167,10 @@ const Rate: React.FC<RateProps> = props => {
 
   // 设置当前值
   const setCurrentVal = (e: React.MouseEvent<HTMLElement, MouseEvent>, v: number) => {
-    const { disabled, allowHalf } = props
+    const {
+      disabled = false,
+      allowHalf = false
+    } = props
 
     if (disabled) {
       return
@@ -114,7 +184,6 @@ const Rate: React.FC<RateProps> = props => {
       if (hasClass(target, `${prefixCls}-rate__decimal`)) {
         target = target.parentNode as HTMLElement
       }
-
       setPointerAtLeftHalf((e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth)
       setCurrentValue(((e.clientX - target.getBoundingClientRect().left) * 2 <= target.clientWidth) ? v - 0.5 : v)
     } else {
@@ -137,7 +206,7 @@ const Rate: React.FC<RateProps> = props => {
   }
 
 
-  const getIconStyle = (item: number): { color: string } => {
+  const getIconStyle = (item: number) => {
     const { disabled } = props
     const voidColor = disabled
       ? colorMap.disabledVoidColor
@@ -293,5 +362,7 @@ Rate.defaultProps = {
   allowHalf: false,
   textTemplate: '{value}'
 }
+
+Rate.displayName = 'Rate'
 
 export default Rate

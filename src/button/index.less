@@ -22,6 +22,7 @@
   padding: 10px 15px;
   font-size: 14px;
   border-radius: 4px;
+  transition: all .25s;
 
   & + .@{button} {
     margin-left: 10px;
@@ -41,6 +42,10 @@
 
   &::-moz-focus-inner {
     border: 0;
+  }
+
+  [class*='@{prefix}-icon-'] {
+    font-size: 12px;
   }
 
   [class*='@{prefix}-icon-'] + span {
