@@ -1,21 +1,20 @@
 @import "../_styles/common/index";
 
+@rate: ~'@{prefix}-rate';
 
-@rate-prefix-cls: ~'@{prefix}-rate';
-
-@{rate-prefix-cls} {
+.@{rate} {
   height: var(--rate-height);
   line-height: 1;
 }
 
-@{rate-prefix-cls}__item {
+.@{rate}__item {
   display: inline-block;
   position: relative;
   font-size: 0;
   vertical-align: middle;
 }
 
-@{rate-prefix-cls}__icon {
+.@{rate}__icon {
   position: relative;
   display: inline-block;
   font-size: var(--rate-icon-size);
@@ -34,7 +33,7 @@
   }
 }
 
-@{rate-prefix-cls}__decimal {
+.@{rate}__decimal {
   position: absolute;
   top: 0;
   left: 0;
@@ -42,7 +41,8 @@
   overflow: hidden;
 }
 
-@{rate-prefix-cls}__text {
+.@{rate}__text {
   font-size: var(--rate-font-size);
   vertical-align: middle;
+  margin-left: 10px;
 }
