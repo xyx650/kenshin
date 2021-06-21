@@ -1,0 +1,199 @@
+@them-color: #4388f8;
+@no-active-color: #e9e9e9;
+@transition-time: 0.3s;
+@card-item-scale: scale(1.1);
+@slik-button-border-color: #4389f933;
+
+.dotsSize(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+.kenshin-slick {
+  position: relative;
+
+  .slick-slider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-slide {
+    min-height: 200px;
+    text-align: center;
+    transition: @transition-time;
+  }
+
+  .kenshin-card {
+    .slick-center {
+      transform: @card-item-scale;
+    }
+  }
+
+  // 指示点
+  .slick-dots {
+    display: flex !important;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0 3px;
+
+      button {
+        font-size: 0;
+        background: @no-active-color;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: @transition-time;
+        .dotsSize(16px, 3px);
+      }
+    }
+
+    &.slick-dots-include {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .slick-dots-rectangle li {
+    &.slick-active > button {
+      width: 24px;
+      background: @them-color;
+    }
+  }
+
+  .slick-dots-dots li {
+    button {
+      padding: 0;
+      background: @no-active-color;
+      border-radius: 50%;
+      opacity: 1;
+      .dotsSize(6px, 6px);
+    }
+
+    &.slick-active > button {
+      background: @them-color;
+    }
+  }
+
+  // 垂直样式
+  &.kenshin-vertical {
+    .slick-slider {
+      display: flex;
+
+      .slick-list {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .slick-dots-vertical {
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        width: 30px;
+        max-height: 200px;
+        margin-left: 10px;
+      }
+    }
+
+    .slick-next {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      transform: rotate(90deg);
+    }
+
+    .slick-prev {
+      top: 0;
+      right: 0;
+      left: auto;
+      transform: rotate(90deg);
+    }
+  }
+
+  // 左右按钮 ===================
+  .slick-icon {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid @slik-button-border-color;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .slick-prev {
+    left: 20px;
+  }
+
+  .slick-next {
+    right: 20px;
+  }
+
+  // 左右按钮end =================
+}
+
+.slick-vertical {
+  .slick-track {
+    flex-direction: column;
+  }
+}
+
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+.kenshin-outside {
+  display: flex;
+  align-items: center;
+
+  .slick-slider {
+    flex: 1;
+  }
+
+  .slick-icon {
+    position: relative;
+    right: 0;
+    left: 0;
+  }
+
+  .slick-prev {
+    margin-right: 10px;
+  }
+
+  .slick-next {
+    margin-left: 10px;
+  }
+}
+
+.kenshin-include {
+  .slick-icon,
+  .slick-dots {
+    opacity: 0;
+    transition: opacity @transition-time;
+    pointer-events: none;
+  }
+
+  &:hover {
+    .slick-icon,
+    .slick-dots {
+      opacity: 1;
+      pointer-events: visible;
+    }
+  }
+}

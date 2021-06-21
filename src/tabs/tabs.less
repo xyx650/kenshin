@@ -1,0 +1,300 @@
+@import '../_styles/common/prefix';
+@tabs-prefix-cls: ~'@{prefix}';
+@them-color: #1890ff;
+@border-color: #f1f1f1;
+@bg-tab: #fafafa;
+@box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+@transition-times: 0.3s;
+@disabled-opacity: 0.4;
+@card-close-icon-color: rgba(0, 0, 0, 0.45);
+@dropdown-menu-font-color: #333;
+@dropdown-menu-item-active: #f5f5f5;
+
+.@{tabs-prefix-cls}-tabs-nav {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid @border-color;
+    content: '';
+  }
+
+  .@{tabs-prefix-cls}-tabs-nav-operations {
+    display: flex;
+    align-self: stretch;
+    box-shadow: @box-shadow;
+
+    .@{tabs-prefix-cls}-tabs-nav-more {
+      position: relative;
+      flex: 1;
+      padding: 8px 16px;
+      background: 0 0;
+      border: 0;
+    }
+  }
+
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex: auto;
+    align-self: stretch;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-tab:hover {
+  color: @them-color;
+}
+
+.@{tabs-prefix-cls}-tabs-tabs {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.@{tabs-prefix-cls}-tabs-nav-list {
+  position: relative;
+  display: flex;
+  transition: transform @transition-times;
+
+  .@{tabs-prefix-cls}-tabs-tab-active {
+    color: @them-color;
+  }
+
+  .@{tabs-prefix-cls}-tabs-tab {
+    display: flex;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: font-size @transition-times, padding @transition-times, color @transition-times;
+  }
+
+  .@{tabs-prefix-cls}-tabs-tab-disabled {
+    color: inherit;
+    cursor: not-allowed;
+    opacity: @disabled-opacity;
+  }
+
+  .@{tabs-prefix-cls}-tabs-tab + .@{tabs-prefix-cls}-tabs-tab {
+    margin-left: 32px;
+  }
+
+  .@{tabs-prefix-cls}-tabs-ink-bar {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: @them-color;
+    transition: left @transition-times, top @transition-times;
+  }
+}
+
+// tabsPosition 定位样式  ======================================
+.@{tabs-prefix-cls}-tabs-left,
+.@{tabs-prefix-cls}-tabs-right {
+  .@{tabs-prefix-cls}-tabs-nav {
+    flex-direction: column;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-left {
+  flex-direction: row;
+
+  .@{tabs-prefix-cls}-tabs-nav-list {
+    border: 0;
+    border-right: 1px solid @border-color;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-right {
+  flex-direction: row-reverse;
+
+  .@{tabs-prefix-cls}-tabs-nav-list {
+    border: 0;
+    border-left: 1px solid @border-color;
+
+    .@{tabs-prefix-cls}-tabs-ink-bar {
+      left: 0 !important;
+    }
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-bottom {
+  flex-direction: column-reverse;
+
+  .@{tabs-prefix-cls}-tabs-nav::before {
+    top: 0;
+    bottom: auto;
+  }
+
+  .@{tabs-prefix-cls}-tabs-nav-list {
+    border: 0;
+    border-top: 1px solid @border-color;
+
+    .@{tabs-prefix-cls}-tabs-ink-bar {
+      top: 0 !important;
+    }
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-left,
+.@{tabs-prefix-cls}-tabs-right {
+  display: flex;
+
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
+    flex-direction: column;
+  }
+
+  .@{tabs-prefix-cls}-tabs-content-holder {
+    flex: 1;
+    padding-left: 24px;
+  }
+
+  .@{tabs-prefix-cls}-tabs-nav-list {
+    flex-direction: column;
+    border-bottom: 0;
+
+    .@{tabs-prefix-cls}-tabs-ink-bar {
+      right: 0;
+      width: 2px;
+      background: @them-color;
+    }
+  }
+
+  .@{tabs-prefix-cls}-tabs-tab {
+    padding: 8px 12px;
+  }
+
+  .@{tabs-prefix-cls}-tabs-tab + .@{tabs-prefix-cls}-tabs-tab {
+    margin-top: 16px;
+    margin-left: 0;
+  }
+}
+// =========== end   =======================================
+
+.@{tabs-prefix-cls}-tabs-centered {
+  .@{tabs-prefix-cls}-tabs-nav-wrap {
+    justify-content: center;
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-dropdown {
+  position: absolute;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  .@{tabs-prefix-cls}-tabs-dropdown-menu {
+    min-width: 120px;
+    max-height: 200px;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    color: @dropdown-menu-font-color;
+    list-style: none;
+    background: @bg-tab;
+    cursor: pointer;
+
+    li {
+      padding: 5px 12px;
+
+      &:hover {
+        background: @dropdown-menu-item-active;
+      }
+    }
+  }
+}
+
+.tabs-slide-up-leave {
+  display: none;
+}
+
+.tabs-slide-up-enter {
+  display: block;
+  pointer-events: auto !important;
+}
+
+// type = card或editable-card 时样式===================================
+.@{tabs-prefix-cls}-tabs-editable-card,
+.@{tabs-prefix-cls}-tabs-card {
+  border: 0;
+  box-shadow: none;
+
+  .@{tabs-prefix-cls}-tabs-nav-list {
+    border: 0;
+
+    .@{tabs-prefix-cls}-tabs-ink-bar {
+      background: @bg-tab;
+      transition: none;
+    }
+
+    .@{tabs-prefix-cls}-tabs-tab-active {
+      background: @bg-tab;
+    }
+
+    .@{tabs-prefix-cls}-tabs-tab {
+      margin: 0;
+      margin-left: 2px;
+      padding: 8px 16px;
+      background: @bg-tab;
+      border: 1px solid @border-color;
+      transition: all @transition-times cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      .@{tabs-prefix-cls}-tabs-tab-remove {
+        flex: none;
+        margin-right: -4px;
+        margin-left: 8px;
+        color: @card-close-icon-color;
+        font-size: 12px;
+        background: 0 0;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .@{tabs-prefix-cls}-tabs-nav-add {
+      min-width: 40px;
+      padding: 0 8px;
+      background: @bg-tab;
+      border: 1px solid @border-color;
+      border-radius: 2px 2px 0 0;
+      outline: none;
+      cursor: pointer;
+      transition: all @transition-times cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+  }
+}
+
+// end=======================================================
+
+// size对应样式====================================
+.@{tabs-prefix-cls}-tabs-small {
+  & > .@{tabs-prefix-cls}-tabs-nav {
+    .@{tabs-prefix-cls}-tabs-tab {
+      padding: 8px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.@{tabs-prefix-cls}-tabs-large {
+  & > .@{tabs-prefix-cls}-tabs-nav {
+    .@{tabs-prefix-cls}-tabs-tab {
+      padding: 16px 0;
+      font-size: 16px;
+    }
+  }
+}
+//  size对应样式=  end===================================================
+
+.@{tabs-prefix-cls}-tabs-nav-operations-hidden {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}

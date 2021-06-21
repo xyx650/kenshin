@@ -24,6 +24,9 @@ import Pagination from './pagination';
 import DatePicker from './date-picker';
 import Select from './select';
 import Mentions from './mentions';
+import Tabs from './tabs';
+import Carousel from './carousel';
+import Menu from './menu';
 
 export {
   Rate,
@@ -52,4 +55,7 @@ export {
   DatePicker,
   Select,
   Mentions,
+  Tabs,
+  Carousel,
+  Menu,
 };
