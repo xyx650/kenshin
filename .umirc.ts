@@ -24,9 +24,30 @@ export default defineConfig({
     .__dumi-default-previewer a:-webkit-any-link { text-decoration: none; cursor: normal }
   `],
   headScripts: [
-    'https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js',
     `
-      window.onload = function() { pangu.autoSpacingPage() }
+      function loadScript(url, callback) {
+        var script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.async = 'async'
+        script.src = url
+        document.head.appendChild(script)
+        if (script.readyState) {
+          script.onreadystatechange = function() {
+            if (script.readyState == 'complete' || script.readyState == 'loaded') {
+              script.onreadystatechange = null
+              callback()
+            }
+          }
+        } else {
+          script.onload = function() { callback() }
+        }
+      }
+
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js', function() {
+        pangu.autoSpacingPage()
+      })
     `
   ]
 })
+
+
