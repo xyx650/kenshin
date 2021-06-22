@@ -15,61 +15,61 @@ export interface SwitchProps {
    * @description 绑定的value
    * @default true
    */
-  value: number | string | boolean;
+  value?: number | string | boolean;
   /**
    * @description 是否禁用
    * @default false
    */
-  disabled: boolean;
+  disabled?: boolean;
   /**
    * @description switch 的宽度（像素）
    * @default 58（有文字）/ 46（无文字）
    */
-  width: number;
+  width?: number;
   /**
    * @description switch 打开时所显示图标的类名，设置此项会忽略 onText
    * @default ''
    */
-  onIconClass: string;
+  onIconClass?: string;
   /**
    * @description switch 关闭时所显示图标的类名，设置此项会忽略 offText
    * @default ''
    */
-  offIconClass: string;
+  offIconClass?: string;
   /**
    * @description switch 打开时的文字
    * @default ''
    */
-  onText: string;
+  onText?: string;
   /**
    * @description switch 关闭时的文字
    * @default ''
    */
-  offText: string;
+  offText?: string;
   /**
    * @description switch 打开时的背景色
    * @default #20A0FF
    */
-  onColor: string;
+  onColor?: string;
   /**
    * @description switch 关闭时的背景色
    * @default #C0CCDA
    */
-  offColor: string;
+  offColor?: string;
   /**
    * @description switch 打开时的值
    * @default true
    */
-  onValue: number | string | boolean;
+  onValue?: number | string | boolean;
   /**
    * @description switch 关闭时的值 switch
    * @default false
    */
-  offValue: number | string | boolean;
+  offValue?: number | string | boolean;
   /**
    * @description switch 对应的 name 属性
    */
-  name: string;
+  name?: string;
   /**
    * @description switch 状态发生变化时的回调函数
    */
@@ -102,16 +102,37 @@ export interface SwitchProps {
 
 const Switch: React.FC<SwitchProps> = props => {
 
+  const {
+    name = '',
+    disabled = false,
+    onText = '',
+    offText = '',
+    onValue = true,
+    offValue = false,
+    onColor = '#20A0FF',
+    offColor = '#C0CCDA',
+    onIconClass = '',
+    offIconClass = '',
+    allowFocus = false,
+    value: propValue = true,
+    width = 0,
+    onChange,
+    onBlur,
+    onFocus,
+    prefixCls = prefix,
+    style,
+    className
+  } = props
+
   const [state, setState] = React.useState<SwitchState>({
-    value: props.value,
-    coreWidth: props.width ?? 0,
+    value: propValue,
+    coreWidth: width,
     buttonStyle: { transform: '' }
   })
 
   const inputRef = React.useRef<HTMLInputElement>(null)
   const coreRef = React.useRef<HTMLSpanElement>(null)
 
-  const { name, disabled, onText, offText, onValue, onIconClass, offIconClass, allowFocus, prefixCls = prefix } = props
   const { value, coreWidth, buttonStyle } = state
 
   // 判断是否初次渲染
@@ -121,16 +142,16 @@ const Switch: React.FC<SwitchProps> = props => {
   React.useEffect(() => {
     if (isFirst.current) {
       updateSwitch()
-      if (props.width) {
-        setState({ ...state, coreWidth: props.width })
+      if (width) {
+        setState({ ...state, coreWidth: width })
       }
-      props.onChange?.(state.value)
+      onChange?.(value)
     }
-  }, [state.value, props])
+  }, [value, width])
 
   // didMount
   React.useEffect(() => {
-    if (!props.width) {
+    if (!width) {
       state.coreWidth = hasText() ? 58 : 46
     }
     updateSwitch()
@@ -140,55 +161,54 @@ const Switch: React.FC<SwitchProps> = props => {
 
   const updateSwitch = () => {
     handleButtonTransform()
-    if (props.onColor || props.offColor) {
+    if (onColor || offColor) {
       setBackgroundColor()
     }
   }
 
   const setBackgroundColor = () => {
-    const newColor = state.value === props.onValue ? props.onColor : props.offColor
+    const newColor = value === onValue ? onColor : offColor
     coreRef.current!.style.borderColor = newColor
     coreRef.current!.style.backgroundColor = newColor
   }
 
   const handleButtonTransform = () => {
-    const { value } = state
-    const { coreWidth } = state
-    buttonStyle.transform = value === props.onValue ? `translate(${coreWidth - 20}px, 2px)` : 'translate(2px, 2px)'
+    const { value, coreWidth } = state
+    buttonStyle.transform = value === onValue ? `translate(${coreWidth - 20}px, 2px)` : 'translate(2px, 2px)'
     setState({ ...state, buttonStyle })
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
       ...state,
-      value: e.target.checked ? props.onValue : props.offValue
+      value: e.target.checked ? onValue : offValue
     })
   }
 
   const setFocus = () => {
-    props.allowFocus && inputRef.current!.focus()
+    allowFocus && inputRef.current!.focus()
   }
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    props.allowFocus && props.onFocus?.(e)
+    allowFocus && onFocus?.(e)
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    props.allowFocus && props.onBlur?.(e)
+    allowFocus && onBlur?.(e)
   }
 
 
   // 是否包含文本
-  const hasText = () => props.onText || props.offText
+  const hasText = () => onText || offText
 
 
   return <label
-    style={props.style}
+    style={style}
     className={classnames(`${prefixCls}-switch`, {
       'is-disabled': disabled,
       [`${prefixCls}-switch--wide`]: hasText(),
       'is-checked': value === onValue
-    })}>
+    }, className)}>
 
     <View show={disabled}>
       <div className={`${prefixCls}-switch__mask`} />

@@ -23,7 +23,7 @@ import React from 'react';
 import { ColorPicker } from 'kenshin';
 
 export default () => {
-  const [color,] = React.useState('#000000')
+  const [color,] = React.useState('#000')
   return <ColorPicker defaultColor={color} width={111} />
 }
 ```

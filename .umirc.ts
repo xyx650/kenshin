@@ -25,7 +25,7 @@ export default defineConfig({
   `],
   headScripts: [
     `
-      function loadScript(url, callback) {
+      function $__loadScript(url, callback) {
         var script = document.createElement('script')
         script.type = 'text/javascript'
         script.async = 'async'
@@ -43,7 +43,7 @@ export default defineConfig({
         }
       }
 
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js', function() {
+      $__loadScript('https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js', function() {
         pangu.autoSpacingPage()
       })
     `
